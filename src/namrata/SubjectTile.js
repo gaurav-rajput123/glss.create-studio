@@ -4,8 +4,12 @@ import React, { useState } from "react";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import EditIcon from '@mui/icons-material/Edit';
 import FeedIcon from '@mui/icons-material/Feed';
+import DeleteIcon from "@mui/icons-material/Delete";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { TextField } from "@mui/material";
 import TextNLabel from "./TextNLabel";
+import "./SubjectTile.css"
+
 function SubjectTile() {
 
 
@@ -33,7 +37,7 @@ function SubjectTile() {
     }
   return(
   <div>
-    <StyledCard >
+    <StyledCard sx={{backgroundColor:"#f1f1f1"}}>
     <IconButton onClick={()=>setIsExpanded(!isExpanded)}>
         <ArrowRightIcon sx={{transform: isExpanded ? "rotate(90deg)" : "rotate(0)"}}/>
     </IconButton>
@@ -44,12 +48,21 @@ function SubjectTile() {
     <div style={{flexGrow: 1}}/>
      
     <IconButton>
-       <EditIcon/>
+       <EditIcon className="Icon1"sx={{color:"#b7b7b7",marginX:"10px"}}/>
     </IconButton>
     
     <IconButton>
-       <FeedIcon/>
+       <FeedIcon className="Icon1" sx={{color:"#b7b7b7", marginX:"10px"}}/>
     </IconButton>
+
+    <IconButton>
+      <DeleteIcon className="Icon1" sx={{color:"#b7b7b7", marginX:"10px"}}/>
+    </IconButton>
+
+    <IconButton>
+     <AddCircleIcon className="Icon1" sx={{color:"#b7b7b7", marginX:"10px"}}/>
+    </IconButton>
+
     
     
         
