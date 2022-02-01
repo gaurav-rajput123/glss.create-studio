@@ -10,7 +10,9 @@ function SubjectTile() {
 
 
     const StyledCard = styled(Card)({
-        display: "flex"
+        display: "flex",
+        margin: '12px 0px',
+        padding: "12px 12px 12px 0px"  
     })
 
     const [isExpanded, setIsExpanded] = useState(false)
@@ -19,7 +21,16 @@ function SubjectTile() {
 
     const [subTitle, setSubTitle] = useState("d")
 
+    const [isTitle, setIsTitle] = useState(true)
 
+    const [label, setLabel] = useState("Section")
+
+    const setLabelController = () => {
+      setIsTitle(!isTitle)
+    }
+    const handleLabel = (labelVal) => {
+      setLabel(labelVal)
+    }
   return(
   <div>
     <StyledCard >
@@ -28,7 +39,7 @@ function SubjectTile() {
     </IconButton>
     {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
 
-    <TextNLabel/>
+    <TextNLabel isLabelShown={isTitle} setIsLabelShown={setLabelController} label={label} setLabel={handleLabel}/>
     
     <div style={{flexGrow: 1}}/>
      

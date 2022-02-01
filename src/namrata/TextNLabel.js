@@ -3,28 +3,30 @@ import { Button } from '@mui/material';
 import { Typography } from '@mui/material';
 import React, { useState } from 'react';
 
-function TextNLabel() {
-    const [title, setTitle] = useState('Section')
-    const [isLabel, setIsLabel] = useState(false)
-    const [label, setLabel] = useState("Title")
+function TextNLabel({isLabelShown, setIsLabelShown, label, setLabel}) {
 
+    const [labelIn, setLabelIn] = useState(label)
     return (
-        isLabel ?
+        isLabelShown ?
             (
-                <div onClick={()=>setIsLabel(!isLabel)}>
-                    <Typography >
-                    {label}
+                <div onClick={()=>setIsLabelShown()} style={{display: "flex", alignItems :"center"}}>
+                    <Typography fontSize={20} >
+                    {labelIn}
                 </Typography>
                 </div>
             )
             :
             (
-                <div>
+                <div style={{ display: "flex", alignItems: "center"}}>
                     <TextField
-                        value={label}
-                        onChange={(e) => setLabel(e.target.value)}
-                        label="hello brother from another mother" />
-                    <Button onClick={() => setIsLabel(!isLabel)}>
+                        value={labelIn}
+                        variant="filled"
+                        onChange={(e) => setLabelIn(e.target.value)}
+                        label="Set Title" />
+                    <Button onClick={() => {
+                        setLabel(labelIn)
+                        setIsLabelShown(!isLabelShown)
+                    }} sx={{marginLeft: "12px"}}variant='contained'>
                         <Typography>
                             Set Title
                         </Typography>
