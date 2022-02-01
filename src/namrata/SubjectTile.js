@@ -4,6 +4,10 @@ import React, { useState } from "react";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import EditIcon from '@mui/icons-material/Edit';
 import FeedIcon from '@mui/icons-material/Feed';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+
+
 function SubjectTile() {
 
 
@@ -20,7 +24,7 @@ function SubjectTile() {
 
   return(
   <div>
-    <StyledCard >
+    <StyledCard sx={{backgroundColor:"#f1f1f1"}}>
     <IconButton onClick={()=>setIsExpanded(!isExpanded)}>
         <ArrowRightIcon sx={{transform: isExpanded ? "rotate(90deg)" : "rotate(0)"}}/>
     </IconButton>
@@ -38,12 +42,21 @@ function SubjectTile() {
     <div style={{flexGrow: 1}}/>
      
     <IconButton>
-       <EditIcon/>
+       <EditIcon sx={{color:"#b7b7b7"}}/>
     </IconButton>
     
     <IconButton>
-       <FeedIcon/>
+       <FeedIcon sx={{color:"#b7b7b7"}}/>
     </IconButton>
+
+    <IconButton>
+      <DeleteIcon sx={{color:"#b7b7b7"}}/>
+    </IconButton>
+
+    <IconButton>
+     <AddCircleIcon sx={{color:"#b7b7b7"}}/>
+    </IconButton>
+
     
     
         
