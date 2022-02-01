@@ -23,7 +23,7 @@ function TextNLabel() {
                     <TextField
                         value={label}
                         onChange={(e) => setLabel(e.target.value)}
-                        label="hello brother from another mother" />
+                        label="Section 1" />
                     <Button onClick={() => setIsLabel(!isLabel)}>
                         <Typography>
                             Set Title

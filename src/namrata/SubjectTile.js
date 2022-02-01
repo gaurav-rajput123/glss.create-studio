@@ -4,8 +4,12 @@ import React, { useState } from "react";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import EditIcon from '@mui/icons-material/Edit';
 import FeedIcon from '@mui/icons-material/Feed';
+import DeleteIcon from "@mui/icons-material/Delete";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { TextField } from "@mui/material";
 import TextNLabel from "./TextNLabel";
+import "./SubjectTile.css"
+
 function SubjectTile() {
 
 
@@ -33,19 +37,19 @@ function SubjectTile() {
     <div style={{flexGrow: 1}}/>
      
     <IconButton>
-       <EditIcon sx={{color:"#b7b7b7"}}/>
+       <EditIcon className="Icon1"sx={{color:"#b7b7b7",marginX:"10px"}}/>
     </IconButton>
     
     <IconButton>
-       <FeedIcon sx={{color:"#b7b7b7"}}/>
+       <FeedIcon className="Icon1" sx={{color:"#b7b7b7", marginX:"10px"}}/>
     </IconButton>
 
     <IconButton>
-      <DeleteIcon sx={{color:"#b7b7b7"}}/>
+      <DeleteIcon className="Icon1" sx={{color:"#b7b7b7", marginX:"10px"}}/>
     </IconButton>
 
     <IconButton>
-     <AddCircleIcon sx={{color:"#b7b7b7"}}/>
+     <AddCircleIcon className="Icon1" sx={{color:"#b7b7b7", marginX:"10px"}}/>
     </IconButton>
 
     
