@@ -1,13 +1,11 @@
 import styled from "@emotion/styled";
-import { Button, Card, IconButton, TextField, Typography } from "@mui/material";
+import { Button, Card, IconButton, Typography } from "@mui/material";
 import React, { useState } from "react";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import EditIcon from '@mui/icons-material/Edit';
 import FeedIcon from '@mui/icons-material/Feed';
-import DeleteIcon from '@mui/icons-material/Delete';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-
-
+import { TextField } from "@mui/material";
+import TextNLabel from "./TextNLabel";
 function SubjectTile() {
 
 
@@ -28,17 +26,10 @@ function SubjectTile() {
     <IconButton onClick={()=>setIsExpanded(!isExpanded)}>
         <ArrowRightIcon sx={{transform: isExpanded ? "rotate(90deg)" : "rotate(0)"}}/>
     </IconButton>
+    {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
 
-    {
-
-        isSettingTitle ? (<div><TextField label="hello" value={subTitle} type="text" variant='filled' onChange={(e)=>setSubTitle(e.currentTarget.value)} /><Button onClick={()=>setIsSettingTitle(!isSettingTitle)}>close it</Button></div>) : (<div onClick={()=>setIsSettingTitle(!isSettingTitle)}><Typography>{subTitle}</Typography>
-            
-
-        </div>)
-
-
-
-    }
+    <TextNLabel/>
+    
     <div style={{flexGrow: 1}}/>
      
     <IconButton>
