@@ -47,24 +47,25 @@ function SubjectTile() {
     
     <div style={{flexGrow: 1}}/>
      
-    <IconButton>
-       <EditIcon className="Icon1"sx={{color:"#b7b7b7",marginX:"10px"}}/>
+    <IconButton sx={{marginRight: "10px"}}>
+       <EditIcon className="Icon1"sx={{color:"#b7b7b7",}}/>
     </IconButton>
     
-    <IconButton>
-       <FeedIcon className="Icon1" sx={{color:"#b7b7b7", marginX:"10px"}}/>
+    <IconButton sx={{marginRight: "10px"}}>
+       <FeedIcon className="Icon1" sx={{color:"#b7b7b7", }}/>
     </IconButton>
 
-    <IconButton>
-      <DeleteIcon className="Icon1" sx={{color:"#b7b7b7", marginX:"10px"}}/>
+    <IconButton sx={{marginRight: "10px"}}>
+      <DeleteIcon className="Icon1" sx={{color:"#b7b7b7",}}/>
     </IconButton>
 
-    <IconButton>
-     <AddCircleIcon className="Icon1" sx={{color:"#b7b7b7", marginX:"10px"}}/>
+    <IconButton sx={{marginRight: "10px"}}>
+     <AddCircleIcon className="Icon1" sx={{color:"#b7b7b7", }}/>
     </IconButton>
 
     
-    
+
+
         
     </StyledCard>
   </div>)

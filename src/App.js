@@ -4,12 +4,16 @@ import courseArray from './resources/courseArray'
 import SubjectTitle from './namrata/SubjectTile'
 import { TextField } from '@mui/material';
 import { useState } from 'react';
+import Middle from './namrata/Middle';
 function App() {
   const [val, setVal] = useState("hello")
   return (
     <div className="App">
       <SubjectTitle/>
-      <TextField value={val} onChange={(e)=>setVal(e.target.value)} label="hello"/>
+      <Middle/>
+
+  
+      
     </div>
   );
 
