@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 function TextNLabel({isLabelShown, setIsLabelShown, label, setLabel}) {
 
     const [labelIn, setLabelIn] = useState(label)
+    
     return (
         isLabelShown ?
             (

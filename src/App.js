@@ -1,17 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
-import courseArray from './resources/courseArray'
-import SubjectTitle from './namrata/SubjectTile'
-import { TextField } from '@mui/material';
 import { useState } from 'react';
-import Middle from "./namrata/Middle";
+import Middle from './namrata/Middle';
+
+import TextDescription from './namrata/TextDescription';
+
+
 
 function App() {
   const [val, setVal] = useState("hello")
   return (
     <div className="App">
-      <SubjectTitle/>
       <Middle/>
+
+      
+    
+      
+      
+      
+
+  
+      
     </div>
   );
 
