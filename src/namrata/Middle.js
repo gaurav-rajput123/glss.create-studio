@@ -69,7 +69,7 @@ export default function Middle() {
       <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height: "auto", borderRadius: "15px" }}>
 
 
-        <div style={{ display: "flex", marginTop: "50px 0px 0px 70px", justifyContent:'space-evenly' }}>
+        <div style={{ display: "flex", margin: "50px 0px 0px 70px", justifyContent:'space-evenly' }}>
           <Butn Text="Select Course"/>
           <div style={{ margin: "40px 20px 0px 10px" }}>
             <Button
