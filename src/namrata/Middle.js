@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-
-
-// import {Box, Paper, Button, Card} from "@mui/material";
-
+import Butn from "./Butn";
 import { Paper, Box, Button, Card } from "@mui/material";
 import SubjectTile from "./SubjectTile";
 import RecipeReviewCard from "./Subsection";
@@ -72,17 +69,8 @@ export default function Middle() {
       <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height: "auto", borderRadius: "15px" }}>
 
 
-        <div style={{ display: "flex", marginTop: "50px 0px 0px 70px" }}>
-          <div style={{ marginTop: "40px 20px 0px -10px" }}>
-            <Button
-              variant="contained"
-              size="large"
-              style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "180px" }}
-            >
-              Select Course
-            </Button>
-          </div>
-
+        <div style={{ display: "flex", marginTop: "50px 0px 0px 70px", justifyContent:'space-evenly' }}>
+          <Butn Text="Select Course"/>
           <div style={{ marginTop: "40px 20px 0px 10px" }}>
             <Button
               variant="contained"
@@ -94,36 +82,9 @@ export default function Middle() {
             </Button>
           </div>
 
-          <div style={{ marginTop: "40px 20px 0px 10px" }}>
-            <Button
-              variant="contained"
-              size="large"
-              style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "240px" }}
-            >
-              Collapse All Sections
-            </Button>
-          </div>
-
-          <div style={{ marginTop: "40px 20px 0px 10px" }}>
-            <Button
-              variant="contained"
-              size="large"
-              style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "160px" }}
-            >
-              Live View
-            </Button>
-          </div>
-
-          <div style={{ marginTop: "40px 0px 0px 10px" }}>
-            <Button
-              variant="contained"
-              size="large"
-              style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "160px" }}
-            >
-              Save
-            </Button>
-          </div>
-
+          <Butn Text="Collapse All Section" />
+          <Butn Text="Live View" />
+          <Butn Text=" Save" />
         </div>
         <Card />
     
