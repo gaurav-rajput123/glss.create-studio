@@ -71,7 +71,7 @@ export default function Middle() {
 
         <div style={{ display: "flex", marginTop: "50px 0px 0px 70px", justifyContent:'space-evenly' }}>
           <Butn Text="Select Course"/>
-          <div style={{ marginTop: "40px 20px 0px 10px" }}>
+          <div style={{ margin: "40px 20px 0px 10px" }}>
             <Button
               variant="contained"
               size="large"
