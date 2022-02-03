@@ -68,12 +68,12 @@ export default function Middle() {
     setCourses(newCourses)
   }
   return (
-    <Box className="box-list" style={{ marginTop: "10px", width: "1400px", zIndex: 2, marginLeft: "60px" }}>
-      <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height:"auto", borderRadius: "15px",padding:"10px" }}>
+    <Box className="box-list" style={{ margin: "10px 0px 0px 60px", width: "1400px", zIndex: 2 }}>
+      <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height: "auto", borderRadius: "15px" }}>
 
 
-        <div style={{ display: "flex", marginLeft: "70px", marginTop: "50px" }}>
-          <div style={{ marginLeft: "-10px", marginTop: "40px", padding:"30px" }}>
+        <div style={{ display: "flex", marginTop: "50px 0px 0px 70px" }}>
+          <div style={{ marginTop: "40px 20px 0px -10px" }}>
             <Button
               variant="contained"
               size="large"
@@ -83,7 +83,7 @@ export default function Middle() {
             </Button>
           </div>
 
-          <div style={{ marginLeft: "10px", marginTop: "40px", padding:"30px" }}>
+          <div style={{ marginTop: "40px 20px 0px 10px" }}>
             <Button
               variant="contained"
               size="large"
@@ -94,7 +94,7 @@ export default function Middle() {
             </Button>
           </div>
 
-          <div style={{ marginLeft: "10px", marginTop: "40px", padding:"30px" }}>
+          <div style={{ marginTop: "40px 20px 0px 10px" }}>
             <Button
               variant="contained"
               size="large"
@@ -104,7 +104,7 @@ export default function Middle() {
             </Button>
           </div>
 
-          <div style={{ marginLeft: "10px", marginTop: "40px", padding:"30px" }}>
+          <div style={{ marginTop: "40px 20px 0px 10px" }}>
             <Button
               variant="contained"
               size="large"
@@ -114,7 +114,7 @@ export default function Middle() {
             </Button>
           </div>
 
-          <div style={{ marginLeft: "10px", marginTop: "40px", padding:"30px" }}>
+          <div style={{ marginTop: "40px 0px 0px 10px" }}>
             <Button
               variant="contained"
               size="large"
