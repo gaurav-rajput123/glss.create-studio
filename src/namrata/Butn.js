@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 
 function Butn (props){
     let {Text}=props
-  return <div style={{ margin: "40px 20px 0px 10px" }}>
+  return <div style={{ margin: "40px 20px 0px 10px" }}  onClick={()=>clickHoja()} >
       <Button
               variant="contained"
               size="large"
