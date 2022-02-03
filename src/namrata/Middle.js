@@ -71,22 +71,19 @@ export default function Middle() {
 
         <div style={{ display: "flex", margin: "50px 0px 0px 70px", justifyContent:'space-evenly' }}>
           <Butn Text="Select Course"/>
-          <div style={{ margin: "40px 20px 0px 10px" }}>
-            <Button
-              variant="contained"
-              size="large"
-              style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "180px" }}
-              onClick={()=>addNewSection()}
-            >
-              Add Section +
-            </Button>
-          </div>
-
+          <Butn Text="Select Course" clickHoja={addNewSection}/>
           <Butn Text="Collapse All Section" />
           <Butn Text="Live View" />
           <Butn Text=" Save" />
         </div>
         <Card />
+            {
+          courses.map((item,index)=>{
+            return(
+              <SubjectTile title={'grsdtghchkvfj,'}/>
+            )
+          })
+        }
     
         <RecipeReviewCard/>
         <TextDescription/>
