@@ -66,7 +66,7 @@ export default function Middle() {
   }
   return (
     <Box className="box-list" style={{ marginTop: "10px", width: "1400px", zIndex: 2, marginLeft: "60px" }}>
-      <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height: "600px", borderRadius: "15px" }}>
+      <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height: "auto", borderRadius: "15px" }}>
 
 
         <div style={{ display: "flex", marginLeft: "70px", marginTop: "50px" }}>
