@@ -1,13 +1,12 @@
-import logo from './logo.svg';
+
 import './App.css';
-import courseArray from './resources/courseArray'
-import Middle from './namrata/Middle'
-import SubjectTile from './namrata/SubjectTile'
+
+import Form from './vikram/Form'
 function App() {
   return (
     <div className="App">
       
-        <SubjectTile/>
+    <Form />
       
     </div>
   );
