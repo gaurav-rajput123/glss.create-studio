@@ -1,19 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
 import courseArray from './resources/courseArray'
-import SubjectTitle from './namrata/SubjectTile'
+import SubjectTile from './namrata/SubjectTile'
 import { TextField } from '@mui/material';
 import { useState } from 'react';
 import Middle from './namrata/Middle';
+import Landing from './namrata/Landing';
 function App() {
   const [val, setVal] = useState("hello")
   return (
     <div className="App">
-      <SubjectTitle/>
-      <Middle/>
+      <Landing />
+      {/* <SubjectTile />
+      <Middle /> */}
 
-  
-      
+
+
     </div>
   );
 

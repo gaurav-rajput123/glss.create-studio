@@ -5,6 +5,7 @@ import React, { useState } from "react";
 
 import { Paper, Box, Button, Card } from "@mui/material";
 import SubjectTile from "./SubjectTile";
+import styledEngine from "@mui/styled-engine";
 
 
 export default function Middle() {
@@ -64,9 +65,13 @@ export default function Middle() {
     })
     setCourses(newCourses)
   }
+
+  const lessWidthSubjectTile = styledEngine(SubjectTile)({
+    width: "90%"
+  })
   return (
     <Box className="box-list" style={{ marginTop: "10px", width: "1400px", zIndex: 2, marginLeft: "60px" }}>
-      <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height: "600px", borderRadius: "15px" }}>
+      <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height: "auto", borderRadius: "15px" }}>
 
 
         <div style={{ display: "flex", marginLeft: "70px", marginTop: "50px" }}>
@@ -85,7 +90,7 @@ export default function Middle() {
               variant="contained"
               size="large"
               style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "180px" }}
-              onClick={()=>addNewSection()}
+              onClick={() => addNewSection()}
             >
               Add Section +
             </Button>
@@ -123,12 +128,12 @@ export default function Middle() {
 
         </div>
         <Card />
-    {courses.map((item, index) => {
-    return (
-      <SubjectTile/>
-    )
-  })}
-  adsd
+        {courses.map((item, index) => {
+          return (
+            <SubjectTile />
+          )
+        })}
+        adsd
       </Paper>
 
     </Box>
