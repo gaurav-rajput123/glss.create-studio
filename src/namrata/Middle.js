@@ -12,57 +12,15 @@ export default function Middle() {
   const addNewSection = () => {
     let newCourses = [...courses]
     newCourses.push({
-      name: "Basic Electrical Engineering",
-      topics: [
-        {
-          name: "Thevenin's Theorem",
-          subTopics: [
-            {
-              name: "theory",
-              resources: {
-                video: "render video",
-                audio: "render audio",
-                ppt: "render PPT"
-              }
-
-            },
-            {
-              name: "Application",
-              resources: {
-                video: "render video",
-                audio: "render audio",
-                // ppt: "render PPT"
-              }
-
-            }
-          ]
-        },
-        {
-          name: "Nortons's Theorem",
-          subTopics: [
-            {
-              name: "theory",
-              resources: {
-                video: "render video",
-                audio: "render audio",
-                ppt: "render PPT"
-              }
-
-            },
-            {
-              name: "Application",
-              resources: {
-                video: "render video",
-                // audio: "render audio",
-                ppt: "render PPT"
-              }
-
-            }
-          ]
-        }
-      ]
+      name: "Basic Electrical Engineering"
     })
     setCourses(newCourses)
+  }
+
+  const updateCourse = (course, index) => {
+    let newCourseObj = [...courses]
+    newCourseObj[index] = course
+    setCourses(newCourseObj)
   }
   return (
     <Box className="box-list" style={{ marginTop: "10px", width: "1400px", zIndex: 2, marginLeft: "60px" }}>
@@ -125,15 +83,154 @@ export default function Middle() {
         <Card />
     {courses.map((item, index) => {
     return (
-      <SubjectTile/>
+      <MainTile key={index} course={item} courseIndex={index} courseArray={courses} updateCurrentCourse={updateCourse}/>
     )
   })}
-  adsd
       </Paper>
 
     </Box>
   )
 }
+
+
+
+function MainTile({course, courseIndex, courseArray, updateCurrentCourse}){
+  const updateCourse = () => {
+    let newCourseObj = {...course}
+    if(newCourseObj.hasOwnProperty('topics')){
+      newCourseObj.topics.push({
+        name: "Nortons Theorem",
+        subTopics: []
+      })
+    }else{
+      newCourseObj.topics = [
+        {
+          name: "Thevenins Theorem",
+          subTopics: []
+        }
+      ]
+    }
+
+    updateCurrentCourse(newCourseObj, courseIndex)
+  }
+  
+  return (
+    <Box>
+      <SubjectTile />
+      <Box sx={{width: "60%"}}>
+      {
+        course.topics?.map((topic, topicIndex, topicArr)=>{
+          return <SubjectTile/>
+        })
+      }
+      </Box>
+      <Button onClick={()=>updateCourse()}>Update</Button>
+      <Button onClick={()=>console.log(course)}>check</Button>
+    </Box>
+  )
+}
+function SubTopicsTile({subtopic, subTopicIndex, subTopicArray}){
+
+
+
+
+  const retCourseList = () => {
+    let retArr = []
+
+    for (let [key, val] of Object.entries(subtopic.resources)){
+      retArr.push(val)
+    }
+    return retArr
+  }
+
+  
+
+
+return (
+  <Box>
+    {subtopic.name}
+    {subtopic.subTopics.map((item)=>{
+      return (
+      <div>{item.name}</div>
+      )
+    })}
+  </Box>
+)
+}
+
+
+
+// function SubTopicsTile({subtopic, subTopicIndex, subTopicArray}){
+
+
+
+
+//     const retCourseList = () => {
+//       let retArr = []
+
+//       for (let [key, val] of Object.entries(subtopic.resources)){
+//         retArr.push(val)
+//       }
+//       return retArr
+//     }
+
+    
+  
+
+//   return (
+//     <Box>
+//       {subtopic.name}
+//       {
+//         retCourseList()
+//       }
+//     </Box>
+//   )
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 {/* <div className='mainCourse'>
         <h4>{item.name}</h4>
