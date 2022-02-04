@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-
-
-// import {Box, Paper, Button, Card} from "@mui/material";
-
+import Butn from "./Butn";
 import { Paper, Box, Button, Card } from "@mui/material";
 import SubjectTile from "./SubjectTile";
+import RecipeReviewCard from "./Subsection";
+import TextDescription from "./TextDescription";
+
 
 
 export default function Middle() {
@@ -23,62 +23,16 @@ export default function Middle() {
     setCourses(newCourseObj)
   }
   return (
-    <Box className="box-list" style={{ marginTop: "10px", width: "1400px", zIndex: 2, marginLeft: "60px" }}>
-      <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height: "600px", borderRadius: "15px" }}>
+    <Box className="box-list" style={{ margin: "10px 0px 0px 60px", width: "1400px", zIndex: 2 }}>
+      <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height: "auto", borderRadius: "15px" }}>
 
 
-        <div style={{ display: "flex", marginLeft: "70px", marginTop: "50px" }}>
-          <div style={{ marginLeft: "-10px", marginTop: "40px", marginRight: "20px" }}>
-            <Button
-              variant="contained"
-              size="large"
-              style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "180px" }}
-            >
-              Select Course
-            </Button>
-          </div>
-
-          <div style={{ marginLeft: "10px", marginTop: "40px", marginRight: "20px" }}>
-            <Button
-              variant="contained"
-              size="large"
-              style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "180px" }}
-              onClick={()=>addNewSection()}
-            >
-              Add Section +
-            </Button>
-          </div>
-
-          <div style={{ marginLeft: "10px", marginTop: "40px", marginRight: "20px" }}>
-            <Button
-              variant="contained"
-              size="large"
-              style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "240px" }}
-            >
-              Collapse All Sections
-            </Button>
-          </div>
-
-          <div style={{ marginLeft: "10px", marginTop: "40px", marginRight: "20px" }}>
-            <Button
-              variant="contained"
-              size="large"
-              style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "140px" }}
-            >
-              Live View
-            </Button>
-          </div>
-
-          <div style={{ marginLeft: "10px", marginTop: "40px" }}>
-            <Button
-              variant="contained"
-              size="large"
-              style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "140px" }}
-            >
-              Save
-            </Button>
-          </div>
-
+        <div style={{ display: "flex", margin: "50px 0px 0px 70px", justifyContent:'space-evenly' }}>
+          <Butn Text="Select Course"/>
+          <Butn Text="Select Course" clickHoja={addNewSection}/>
+          <Butn Text="Collapse All Section" />
+          <Butn Text="Live View" />
+          <Butn Text=" Save" />
         </div>
         <Card />
     {courses.map((item, index) => {
@@ -87,6 +41,8 @@ export default function Middle() {
     )
   })}
       </Paper>
+
+      
 
     </Box>
   )

@@ -1,8 +1,4 @@
-import logo from './logo.svg';
 import './App.css';
-import courseArray from './resources/courseArray'
-import SubjectTitle from './namrata/SubjectTile'
-import { TextField } from '@mui/material';
 import { useState } from 'react';
 import Middle from './namrata/Middle';
 import { Card } from '@mui/material';
