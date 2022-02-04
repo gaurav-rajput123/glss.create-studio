@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-
-
-// import {Box, Paper, Button, Card} from "@mui/material";
-
+import Butn from "./Butn";
 import { Paper, Box, Button, Card } from "@mui/material";
 import SubjectTile from "./SubjectTile";
-import styledEngine from "@mui/styled-engine";
+import RecipeReviewCard from "./Subsection";
+import TextDescription from "./TextDescription";
+
 
 
 export default function Middle() {
@@ -13,132 +12,181 @@ export default function Middle() {
   const addNewSection = () => {
     let newCourses = [...courses]
     newCourses.push({
-      name: "Basic Electrical Engineering",
-      topics: [
-        {
-          name: "Thevenin's Theorem",
-          subTopics: [
-            {
-              name: "theory",
-              resources: {
-                video: "render video",
-                audio: "render audio",
-                ppt: "render PPT"
-              }
-
-            },
-            {
-              name: "Application",
-              resources: {
-                video: "render video",
-                audio: "render audio",
-                // ppt: "render PPT"
-              }
-
-            }
-          ]
-        },
-        {
-          name: "Nortons's Theorem",
-          subTopics: [
-            {
-              name: "theory",
-              resources: {
-                video: "render video",
-                audio: "render audio",
-                ppt: "render PPT"
-              }
-
-            },
-            {
-              name: "Application",
-              resources: {
-                video: "render video",
-                // audio: "render audio",
-                ppt: "render PPT"
-              }
-
-            }
-          ]
-        }
-      ]
+      name: "Basic Electrical Engineering"
     })
     setCourses(newCourses)
   }
 
-  const lessWidthSubjectTile = styledEngine(SubjectTile)({
-    width: "90%"
-  })
+  const updateCourse = (course, index) => {
+    let newCourseObj = [...courses]
+    newCourseObj[index] = course
+    setCourses(newCourseObj)
+  }
   return (
-    <Box className="box-list" style={{ marginTop: "10px", width: "1400px", zIndex: 2, marginLeft: "60px" }}>
+    <Box className="box-list" style={{ margin: "10px 0px 0px 60px", width: "1400px", zIndex: 2 }}>
       <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height: "auto", borderRadius: "15px" }}>
 
 
-        <div style={{ display: "flex", marginLeft: "70px", marginTop: "50px" }}>
-          <div style={{ marginLeft: "-10px", marginTop: "40px", marginRight: "20px" }}>
-            <Button
-              variant="contained"
-              size="large"
-              style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "180px" }}
-            >
-              Select Course
-            </Button>
-          </div>
-
-          <div style={{ marginLeft: "10px", marginTop: "40px", marginRight: "20px" }}>
-            <Button
-              variant="contained"
-              size="large"
-              style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "180px" }}
-              onClick={() => addNewSection()}
-            >
-              Add Section +
-            </Button>
-          </div>
-
-          <div style={{ marginLeft: "10px", marginTop: "40px", marginRight: "20px" }}>
-            <Button
-              variant="contained"
-              size="large"
-              style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "240px" }}
-            >
-              Collapse All Sections
-            </Button>
-          </div>
-
-          <div style={{ marginLeft: "10px", marginTop: "40px", marginRight: "20px" }}>
-            <Button
-              variant="contained"
-              size="large"
-              style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "140px" }}
-            >
-              Live View
-            </Button>
-          </div>
-
-          <div style={{ marginLeft: "10px", marginTop: "40px" }}>
-            <Button
-              variant="contained"
-              size="large"
-              style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "140px" }}
-            >
-              Save
-            </Button>
-          </div>
-
+        <div style={{ display: "flex", margin: "50px 0px 0px 70px", justifyContent: 'space-evenly' }}>
+          <Butn Text="Select Course" />
+          <Butn Text="Select Course" clickHoja={addNewSection} />
+          <Butn Text="Collapse All Section" />
+          <Butn Text="Live View" />
+          <Butn Text=" Save" />
         </div>
         <Card />
         {courses.map((item, index) => {
           return (
-            <SubjectTile />
+            <MainTile key={index} course={item} courseIndex={index} courseArray={courses} updateCurrentCourse={updateCourse} />
           )
         })}
-        adsd
       </Paper>
+
+
 
     </Box>
   )
 }
+
+
+
+function MainTile({ course, courseIndex, courseArray, updateCurrentCourse }) {
+  const updateCourse = () => {
+    let newCourseObj = { ...course }
+    if (newCourseObj.hasOwnProperty('topics')) {
+      newCourseObj.topics.push({
+        name: "Nortons Theorem",
+        subTopics: []
+      })
+    } else {
+      newCourseObj.topics = [
+        {
+          name: "Thevenins Theorem",
+          subTopics: []
+        }
+      ]
+    }
+
+    updateCurrentCourse(newCourseObj, courseIndex)
+  }
+
+  return (
+    <Box>
+      <SubjectTile />
+      <Box sx={{ width: "60%" }}>
+        {
+          course.topics?.map((topic, topicIndex, topicArr) => {
+            return <SubjectTile />
+          })
+        }
+      </Box>
+      <Button onClick={() => updateCourse()}>Update</Button>
+      <Button onClick={() => console.log(course)}>check</Button>
+    </Box>
+  )
+}
+function SubTopicsTile({ subtopic, subTopicIndex, subTopicArray }) {
+
+
+
+
+  const retCourseList = () => {
+    let retArr = []
+
+    for (let [key, val] of Object.entries(subtopic.resources)) {
+      retArr.push(val)
+    }
+    return retArr
+  }
+
+
+
+
+  return (
+    <Box>
+      {subtopic.name}
+      {subtopic.subTopics.map((item) => {
+        return (
+          <div>{item.name}</div>
+        )
+      })}
+    </Box>
+  )
+}
+
+
+
+// function SubTopicsTile({subtopic, subTopicIndex, subTopicArray}){
+
+
+
+
+//     const retCourseList = () => {
+//       let retArr = []
+
+//       for (let [key, val] of Object.entries(subtopic.resources)){
+//         retArr.push(val)
+//       }
+//       return retArr
+//     }
+
+
+
+
+//   return (
+//     <Box>
+//       {subtopic.name}
+//       {
+//         retCourseList()
+//       }
+//     </Box>
+//   )
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 {/* <div className='mainCourse'>
         <h4>{item.name}</h4>

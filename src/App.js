@@ -1,21 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
-import courseArray from './resources/courseArray'
-import SubjectTile from './namrata/SubjectTile'
-import { TextField } from '@mui/material';
 import { useState } from 'react';
 import Middle from './namrata/Middle';
-import Landing from './namrata/Landing';
+import { Card } from '@mui/material';
+import { CardHeader } from '@mui/material';
+import { CardContent } from '@mui/material';
+import { CardActions } from '@mui/material';
+import { Button } from '@mui/material';
+import { Typography } from '@mui/material';
 function App() {
   const [val, setVal] = useState("hello")
   return (
     <div className="App">
-      <Landing />
-      {/* <SubjectTile />
-      <Middle /> */}
+      {/* <SubjectTitle/> */}
+      <Middle/>
 
-
-
+     
+      
     </div>
   );
 
