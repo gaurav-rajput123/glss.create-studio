@@ -87,7 +87,7 @@ export default function Middle() {
     )
   })}
       </Paper>
-
+      <Button onClick={()=>console.log(courses)}>Check Course in Middle</Button>
     </Box>
   )
 }
@@ -115,12 +115,12 @@ function MainTile({course, courseIndex, courseArray, updateCurrentCourse}){
   }
   
   return (
-    <Box>
+    <Box sx={{border: "1px solid black", margin: "8px 0px"}}>
       <SubjectTile />
-      <Box sx={{width: "60%"}}>
+      <Box sx={{width: "60%", }}>
       {
         course.topics?.map((topic, topicIndex, topicArr)=>{
-          return <SubjectTile/>
+          return <SubjectTile key={topicIndex}/>
         })
       }
       </Box>
