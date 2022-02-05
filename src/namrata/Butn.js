@@ -2,10 +2,8 @@ import React from 'react';
 import { Button } from '@mui/material';
 
 function Butn(props) {
-  let { Text } = props
-  return <div style={{ margin: "40px 20px 0px 10px" }}
-    onClick={() => clickHoja()}
-  >
+  let { Text, clickHoja } = props
+  return <div style={{ margin: "40px 20px 0px 10px" }} onClick={() => clickHoja()}>
     <Button
       variant="contained"
       size="large"

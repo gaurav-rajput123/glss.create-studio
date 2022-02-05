@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Card, IconButton, Typography } from "@mui/material";
+import { Card, IconButton, Box, Button } from "@mui/material";
 import React, { useState } from "react";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import EditIcon from '@mui/icons-material/Edit';
@@ -7,11 +7,13 @@ import FeedIcon from '@mui/icons-material/Feed';
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import TextNLabel from "./TextNLabel";
-import "./SubjectTile.css"
-import Collapsible from "./SubContent";
+import "./SubjectTile.css";
+// import Collapsible from "./SubContent";
+import TopicTile from './TopicTile';
+// import Subsection from './Subsection';
 
 function SubjectTile(prop) {
-  let { name, title } = prop
+  let { name, changeCourseName, courseIndex, courseArray, addTopics } = prop
 
   const StyledCard = styled(Card)({
     display: "flex",
@@ -21,28 +23,31 @@ function SubjectTile(prop) {
 
   const [isExpanded, setIsExpanded] = useState(false)
 
-  const [isSettingTitle, setIsSettingTitle] = useState(false)
-
-  const [subTitle, setSubTitle] = useState("d")
-
   const [isTitle, setIsTitle] = useState(true)
 
-  const [label, setLabel] = useState(title)
+  const [label, setLabel] = useState("Section")
 
   const setLabelController = () => {
     setIsTitle(!isTitle)
   }
   const handleLabel = (labelVal) => {
     setLabel(labelVal)
+    changeCourseName(courseIndex, courseArray, labelVal)
   }
+
+
+  const addNewTopics = () => {
+    addTopics()
+  }
+
   return (
     <div>
       <StyledCard sx={{ backgroundColor: "#f1f1f1" }}>
         <IconButton onClick={() => setIsExpanded(!isExpanded)}>
-
-          <ArrowRightIcon sx={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0)" }}
-          />
+          <ArrowRightIcon sx={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0)" }} />
         </IconButton>
+        {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
+
         {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
 
         <TextNLabel isLabelShown={isTitle} setIsLabelShown={setLabelController} label={label} setLabel={handleLabel} />
@@ -52,7 +57,7 @@ function SubjectTile(prop) {
 
         <div style={{ flexGrow: 1 }} />
 
-        <IconButton sx={{ marginRight: "10px" }}>
+        <IconButton sx={{ marginRight: "10px" }} onClick={() => setLabelController()}>
           <EditIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
 
@@ -65,20 +70,17 @@ function SubjectTile(prop) {
         </IconButton>
 
         <IconButton sx={{ marginRight: "10px" }}
-
+          onClick={() => addNewTopics()}
         >
           <AddCircleIcon className="Icon1" sx={{ color: "#b7b7b7", }}
 
           />
         </IconButton>
-
-
-
-
-
       </StyledCard>
-    </div>
+    </div >
   )
+
 }
+
 
 export default SubjectTile;

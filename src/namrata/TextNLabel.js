@@ -20,7 +20,6 @@ function TextNLabel({ isLabelShown, setIsLabelShown, label, setLabel }) {
             (
                 <div style={{ display: "flex", alignItems: "center" }}>
                     <TextField
-                        type='text'
                         placeholder='Add Section'
                         variant="filled"
                         onChange={(e) => setLabelIn(e.target.value)}

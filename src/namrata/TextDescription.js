@@ -12,17 +12,14 @@ function TextDescription() {
 
 
   return (
-    <div className='row'>
-      <div className=''>
+    <div style={{ padding:'1%'}}>
+      <div>
         <div style={{textAlign:"center"}}>
            <h3>Description</h3>
            
         </div>
          <TextEditor setValue={setValue} config={config} />
-         <br/>
-         <div>
-           {parse(value)}
-         </div>
+         {/* <br/> */}
       </div>
       
     </div>
