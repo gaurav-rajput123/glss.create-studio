@@ -41,7 +41,7 @@ function SubjectTile(prop) {
     }
 
   return(
-  <div>
+  <div style={{paddingBottom:'0%'}}>
     <StyledCard sx={{backgroundColor:"#f1f1f1"}}>
      <IconButton onClick={()=>setIsExpanded(!isExpanded)}>
      
