@@ -3,9 +3,7 @@ import Butn from "./Butn";
 import { Paper, Box, Button, Card } from "@mui/material";
 import SubjectTile from "./SubjectTile";
 import TopicTile from "./TopicTile";
-import { textAlign } from "@mui/system";
-// import TopicTile from './TopicTile';
-
+import SubTopicTile from './SubTopicTile';
 
 
 export default function Middle() {
@@ -90,6 +88,12 @@ function MainTile({course, courseIndex, courseArray, updateCurrentCourse, change
     newCourseObject.topics = newTopicArray
     updateCurrentCourse(newCourseObject, courseIndex)
   } 
+
+  const addNewSubTopic = (newTopicArray) => {
+    let newCourseObject = {...course}
+    newCourseObject.topics = newTopicArray
+    updateCurrentCourse(newCourseObject, courseIndex)
+  }
   
   return (
     <Box>
@@ -102,12 +106,11 @@ function MainTile({course, courseIndex, courseArray, updateCurrentCourse, change
           topic={topic}
           topicIndex={topicIndex}
           topicArray={topicArr}
-          changeTopicName={updateTopicName}  />
+          changeTopicName={updateTopicName}
+          addNewSubTopic={addNewSubTopic}  />
         })
       }
       </Box>
-      <Button onClick={()=>updateCourse()}>Update</Button>
-      <Button onClick={()=>console.log(course)}>check</Button>
     </Box>
   )
 }
@@ -115,33 +118,29 @@ function MainTile({course, courseIndex, courseArray, updateCurrentCourse, change
 
 
 
-function TopicTileBox({topic, topicIndex, topicArray, updateCurrentTopic, changeTopicName}){
-  const updateTopic = () => {
-    let newTopicObj = {...topic}
-    if(newTopicObj.hasOwnProperty('topics')){
-      newTopicObj.topics.push({
-        name: "Nortons Theorem",
-        subTopics: []
-      })
-    }else{
-      newTopicObj.topics = [
-        {
-          name: "Thevenins Theorem",
-          subTopics: []
-        }
-      ]
+function TopicTileBox({topic, topicIndex, topicArray, changeTopicName, addNewSubTopic}){
+  const updateSubTopic = () => {
+   
+    let newSubTopic = {
+      "name": "newSubTopic"
     }
 
-    updateCurrentTopic(newTopicObj, topicIndex)
+    let newTopicArray = [...topicArray]
+    if(newTopicArray[topicIndex].hasOwnProperty('subTopics')){
+      newTopicArray[topicIndex].subTopics.push(newSubTopic)
+    }else{
+      newTopicArray[topicIndex].subTopics = [newSubTopic]
+    }
+    addNewSubTopic(newTopicArray)
   }
   
   return (
     <Box>
-      <TopicTile changeTopicName={changeTopicName} topicIndex={topicIndex} topicArray={topicArray} addTopics={updateTopic} />
-      <Box sx={{width: "90%"}}>
+      <TopicTile changeTopicName={changeTopicName} topicIndex={topicIndex} topicArray={topicArray} addSubTopics={updateSubTopic} />
+      <Box sx={{width: "98%", marginLeft:'1%'}}>
       {
-        topic.topics?.map((topic, topicIndex, topicArr)=>{
-          {/* return <Subsection /> */}
+        topic.subTopics?.map((subTopic, subTopicIndex, subTopicArr)=>{
+          return <SubTopicTile key={subTopicIndex} />
         })
       }
       </Box>

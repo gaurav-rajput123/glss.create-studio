@@ -12,7 +12,7 @@ import Collapsible from "./SubContent";
 import Subsection from './SubTopicTile';
 
 
-function TopicTile({changeTopicName, topicIndex, topicArray, addTopics}) {
+function TopicTile({changeTopicName, topicIndex, topicArray, addSubTopics}) {
 
 
     const StyledCard = styled(Card)({
@@ -34,6 +34,10 @@ function TopicTile({changeTopicName, topicIndex, topicArray, addTopics}) {
     const handleLabel = (labelVal) => {
       setLabel(labelVal)
       changeTopicName(labelVal, topicIndex, topicArray)
+    }
+
+    const addSubTopic = () => {
+      addSubTopics()
     }
 
     
@@ -64,6 +68,9 @@ function TopicTile({changeTopicName, topicIndex, topicArray, addTopics}) {
     </IconButton>
 
     <IconButton sx={{marginRight: "10px"}}
+    onClick={()=>{
+      addSubTopic()
+    }}
     >
      <AddCircleIcon className="Icon1" sx={{color:"#b7b7b7", }}
       

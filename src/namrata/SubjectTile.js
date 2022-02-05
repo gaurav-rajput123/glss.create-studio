@@ -82,43 +82,4 @@ function SubjectTile(prop) {
 }
 
 
-export function TopicTileBox({topic, topicIndex, topicArray, updateCurrentTopic, changeTopicName}){
-  const updateTopic = () => {
-    let newTopicObj = {...topic}
-    if(newTopicObj.hasOwnProperty('topics')){
-      newTopicObj.topics.push({
-        name: "Nortons Theorem",
-        subTopics: []
-      })
-    }else{
-      newTopicObj.topics = [
-        {
-          name: "Thevenins Theorem",
-          subTopics: []
-        }
-      ]
-    }
-
-    updateCurrentTopic(newTopicObj, topicIndex)
-  }
-  
-  return (
-    <Box>
-      <TopicTile changeTopicName={changeTopicName} topicIndex={topicIndex} topicArray={topicArray} addTopics={updateTopic} />
-      <Box sx={{width: "60%"}}>
-      {
-        topic.topics?.map((topic, topicIndex, topicArr)=>{
-          return <TopicTile />
-        })
-      }
-      </Box>
-      <Button onClick={()=>updateTopic()}>Update</Button>
-      <Button onClick={()=>console.log(topic)}>check</Button>
-    </Box>
-  )
-}
-
-
-
-
 export default SubjectTile;
