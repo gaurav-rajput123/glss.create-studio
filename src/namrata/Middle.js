@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 // import {Box, Paper, Button, Card} from "@mui/material";
 
 import { Paper, Box, Button, Card } from "@mui/material";
@@ -8,13 +7,15 @@ import SubjectTile from "./SubjectTile";
 
 
 export default function Middle() {
+
   const [courses, setCourses] = useState([])
   const addNewSection = () => {
     let newCourses = [...courses]
     newCourses.push({
       name: "Basic Electrical Engineering"
-    })
-    setCourses(newCourses)
+
+    });
+    setCourses(newCourses);
   }
 
   const updateCourse = (course, index) => {
@@ -22,6 +23,15 @@ export default function Middle() {
     newCourseObj[index] = course
     setCourses(newCourseObj)
   }
+
+  const changeCourseName = (courseIndex, courseArray, labelVal) => {
+    let newCourseObject = { ...courseArray[courseIndex] }
+    newCourseObject.name = labelVal
+    let newCourseArray = [...courseArray]
+    newCourseArray[courseIndex] = newCourseObject
+    setCourses(newCourseArray)
+  }
+
   return (
     <Box className="box-list" style={{ marginTop: "10px", width: "1400px", zIndex: 2, marginLeft: "60px" }}>
       <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height: "600px", borderRadius: "15px" }}>
@@ -43,7 +53,7 @@ export default function Middle() {
               variant="contained"
               size="large"
               style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "180px" }}
-              onClick={()=>addNewSection()}
+              onClick={() => addNewSection()}
             >
               Add Section +
             </Button>
@@ -81,55 +91,60 @@ export default function Middle() {
 
         </div>
         <Card />
-    {courses.map((item, index) => {
-    return (
-      <MainTile key={index} course={item} courseIndex={index} courseArray={courses} updateCurrentCourse={updateCourse}/>
-    )
-  })}
+        {courses.map((item, index) => {
+          return (
+            <MainTile key={index + 4} course={item} courseIndex={index} courseArray={courses} updateCurrentCourse={updateCourse}
+              changeCourseName={changeCourseName}
+
+            />
+          )
+        })}
       </Paper>
-      <Button onClick={()=>console.log(courses)}>Check Course in Middle</Button>
+      <Button onClick={() => console.log(courses)} >Check Course in Middle</Button>
     </Box>
   )
 }
 
 
 
-function MainTile({course, courseIndex, courseArray, updateCurrentCourse}){
+function MainTile({ course, courseIndex, courseArray, updateCurrentCourse, changeCourseName }) {
+
   const updateCourse = () => {
-    let newCourseObj = {...course}
-    if(newCourseObj.hasOwnProperty('topics')){
+    let newCourseObj = { ...course }
+    if (newCourseObj.hasOwnProperty('topics')) {
       newCourseObj.topics.push({
         name: "Nortons Theorem",
         subTopics: []
       })
-    }else{
-      newCourseObj.topics = [
-        {
-          name: "Thevenins Theorem",
-          subTopics: []
-        }
-      ]
+    } else {
+      newCourseObj.topics = []
+      newCourseObj.topics.push({
+        name: "Thevenins Theorem",
+        subTopics: []
+      })
     }
 
     updateCurrentCourse(newCourseObj, courseIndex)
   }
-  
+
+
+
   return (
-    <Box sx={{border: "1px solid black", margin: "8px 0px"}}>
-      <SubjectTile />
-      <Box sx={{width: "60%", }}>
-      {
-        course.topics?.map((topic, topicIndex, topicArr)=>{
-          return <SubjectTile key={topicIndex}/>
-        })
-      }
+    <Box sx={{ border: "1px solid black", margin: "8px 0px" }}>
+      <SubjectTile changeCourseName={changeCourseName} courseIndex={courseIndex} courseArray={courseArray} addTopics={updateCourse} />
+      <Box sx={{ width: "90%" }}>
+        {
+          course.topics?.map((topic, topicIndex, topicArr) => {
+            return <SubjectTile key={topicIndex} style={{ float: 'right' }} />
+          })
+        }
       </Box>
-      <Button onClick={()=>updateCourse()}>Update</Button>
-      <Button onClick={()=>console.log(course)}>check</Button>
+      {/* <Button onClick={() => updateCourse()}>Update</Button>
+      <Button onClick={() => console.log(course)}>check</Button> */}
     </Box>
   )
 }
-function SubTopicsTile({subtopic, subTopicIndex, subTopicArray}){
+function SubTopicsTile({ subtopic, subTopicIndex, subTopicArray }) {
 
 
 
@@ -137,25 +152,25 @@ function SubTopicsTile({subtopic, subTopicIndex, subTopicArray}){
   const retCourseList = () => {
     let retArr = []
 
-    for (let [key, val] of Object.entries(subtopic.resources)){
+    for (let [key, val] of Object.entries(subtopic.resources)) {
       retArr.push(val)
     }
     return retArr
   }
 
-  
 
 
-return (
-  <Box>
-    {subtopic.name}
-    {subtopic.subTopics.map((item)=>{
-      return (
-      <div>{item.name}</div>
-      )
-    })}
-  </Box>
-)
+
+  return (
+    <Box>
+      {subtopic.name}
+      {subtopic.subTopics.map((item) => {
+        return (
+          <div>{item.name}</div>
+        )
+      })}
+    </Box>
+  )
 }
 
 
@@ -174,8 +189,8 @@ return (
 //       return retArr
 //     }
 
-    
-  
+
+
 
 //   return (
 //     <Box>

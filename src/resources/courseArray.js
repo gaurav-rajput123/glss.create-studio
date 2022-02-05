@@ -1,4 +1,4 @@
-const courseArray = [
+let courseArray = [
     {
         name: "Basic Electrical Engineering",
         topics: [
@@ -104,4 +104,21 @@ const courseArray = [
 ]
 
 
-export default courseArray
+function changeSubjectName(courseArray, index, newName) {
+
+    console.log(courseArray)
+    let newObject = courseArray[index]
+    console.log(newObject)
+    newObject.name = newName
+    courseArray[index] = newObject
+    console.log(courseArray)
+}
+changeSubjectName(courseArray, 0, "siddhart")
+
+// console.log(courseArray)
+
+
+
+
+
+// export default courseArray
