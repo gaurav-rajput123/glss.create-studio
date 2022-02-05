@@ -69,24 +69,21 @@ export default function Middle() {
       <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height: "auto", borderRadius: "15px" }}>
 
 
-        <div style={{ display: "flex", marginTop: "50px 0px 0px 70px", justifyContent:'space-evenly' }}>
+        <div style={{ display: "flex", margin: "50px 0px 0px 70px", justifyContent:'space-evenly' }}>
           <Butn Text="Select Course"/>
-          <div style={{ marginTop: "40px 20px 0px 10px" }}>
-            <Button
-              variant="contained"
-              size="large"
-              style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "180px" }}
-              onClick={()=>addNewSection()}
-            >
-              Add Section +
-            </Button>
-          </div>
-
-          <Butn Text="Collapse All Section" />
+          <Butn Text="Add Section +" clickHoja={addNewSection} />
+          <Butn Text="Collapse All Section" clickHoja={addNewSection} />
           <Butn Text="Live View" />
           <Butn Text=" Save" />
         </div>
         <Card />
+        {
+          courses.map((item,index)=>{
+            return(
+              <SubjectTile title={'grsdtghchkvfj,'}/>
+            )
+          })
+        }
     
         <RecipeReviewCard/>
         <TextDescription/>

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Card, IconButton, Box } from "@mui/material";
+import { Card, IconButton, Typography, Box } from "@mui/material";
 import React, { useState } from "react";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import EditIcon from '@mui/icons-material/Edit';
@@ -7,10 +7,8 @@ import FeedIcon from '@mui/icons-material/Feed';
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import TextNLabel from "./TextNLabel";
-import "./SubjectTile.css";
-// import Collapsible from "./SubContent";
-// import TopicTile from './TopicTile';
-import Subsection from './Subsection';
+import "./SubjectTile.css"
+import Collapsible from "./SubContent";
 
 
 function SubjectTile({title}) {
@@ -131,13 +129,7 @@ function SubjectTile({title}) {
     </IconButton>
     </StyledCard>
 
-    {courses.map((item, index) => {
-      return (
-        <Box sx={{width: '90%', marginLeft: '5%'}}>
-          <Subsection />
-        </Box>
-      )
-    })}
+   
   </div>
   )
 }
