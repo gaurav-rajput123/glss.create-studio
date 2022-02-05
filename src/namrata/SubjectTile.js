@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Card, IconButton, Box } from "@mui/material";
+import { Card, IconButton, Box, Button } from "@mui/material";
 import React, { useState } from "react";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import EditIcon from '@mui/icons-material/Edit';
@@ -9,11 +9,11 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import TextNLabel from "./TextNLabel";
 import "./SubjectTile.css";
 // import Collapsible from "./SubContent";
-// import TopicTile from './TopicTile';
-import Subsection from './Subsection';
+import TopicTile from './TopicTile';
+// import Subsection from './Subsection';
 
 function SubjectTile(prop) {
-  let {name} =prop
+  let {name, changeCourseName, courseIndex, courseArray, addTopics} =prop
 
     const StyledCard = styled(Card)({
         display: "flex",
@@ -22,10 +22,6 @@ function SubjectTile(prop) {
     })
 
     const [isExpanded, setIsExpanded] = useState(false)
-
-    const [isSettingTitle, setIsSettingTitle] = useState(false)
-
-    const [subTitle, setSubTitle] = useState("d")
 
     const [isTitle, setIsTitle] = useState(true)
 
@@ -36,63 +32,12 @@ function SubjectTile(prop) {
     }
     const handleLabel = (labelVal) => {
       setLabel(labelVal)
+      changeCourseName(courseIndex, courseArray, labelVal)
     }
 
-    const [courses, setCourses] = useState([])
-    const addNewSection = () => {
-      let newCourses = [...courses]
-      newCourses.push({
-        name: "Basic Electrical Engineering",
-        topics: [
-          {
-            name: "Thevenin's Theorem",
-            subTopics: [
-              {
-                name: "theory",
-                resources: {
-                  video: "render video",
-                  audio: "render audio",
-                  ppt: "render PPT"
-                }
-  
-              },
-              {
-                name: "Application",
-                resources: {
-                  video: "render video",
-                  audio: "render audio",
-                  // ppt: "render PPT"
-                }
-  
-              }
-            ]
-          },
-          {
-            name: "Nortons's Theorem",
-            subTopics: [
-              {
-                name: "theory",
-                resources: {
-                  video: "render video",
-                  audio: "render audio",
-                  ppt: "render PPT"
-                }
-  
-              },
-              {
-                name: "Application",
-                resources: {
-                  video: "render video",
-                  // audio: "render audio",
-                  ppt: "render PPT"
-                }
-  
-              }
-            ]
-          }
-        ]
-      })
-      setCourses(newCourses)
+   
+    const addNewTopics = () => {
+      addTopics()
     }
 
   return(
@@ -125,23 +70,55 @@ function SubjectTile(prop) {
     </IconButton>
 
     <IconButton sx={{marginRight: "10px"}}
-    onClick={()=>addNewSection()}
+    onClick={()=>addNewTopics()}
     >
      <AddCircleIcon className="Icon1" sx={{color:"#b7b7b7", }}
       
      />
     </IconButton>
     </StyledCard>
-
-    {courses.map((item, index) => {
-      return (
-        <Box sx={{width: '90%', marginLeft: '5%'}}>
-          <Subsection />
-        </Box>
-      )
-    })}
   </div>
   )
 }
+
+
+export function TopicTileBox({topic, topicIndex, topicArray, updateCurrentTopic, changeTopicName}){
+  const updateTopic = () => {
+    let newTopicObj = {...topic}
+    if(newTopicObj.hasOwnProperty('topics')){
+      newTopicObj.topics.push({
+        name: "Nortons Theorem",
+        subTopics: []
+      })
+    }else{
+      newTopicObj.topics = [
+        {
+          name: "Thevenins Theorem",
+          subTopics: []
+        }
+      ]
+    }
+
+    updateCurrentTopic(newTopicObj, topicIndex)
+  }
+  
+  return (
+    <Box>
+      <TopicTile changeTopicName={changeTopicName} topicIndex={topicIndex} topicArray={topicArray} addTopics={updateTopic} />
+      <Box sx={{width: "60%"}}>
+      {
+        topic.topics?.map((topic, topicIndex, topicArr)=>{
+          return <TopicTile />
+        })
+      }
+      </Box>
+      <Button onClick={()=>updateTopic()}>Update</Button>
+      <Button onClick={()=>console.log(topic)}>check</Button>
+    </Box>
+  )
+}
+
+
+
 
 export default SubjectTile;

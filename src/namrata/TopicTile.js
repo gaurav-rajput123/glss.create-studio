@@ -9,9 +9,10 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import TextNLabel from "./TextNLabel";
 import "./SubjectTile.css"
 import Collapsible from "./SubContent";
+import Subsection from './SubTopicTile';
 
 
-function SubjectTile({title}) {
+function TopicTile({changeTopicName, topicIndex, topicArray, addTopics}) {
 
 
     const StyledCard = styled(Card)({
@@ -22,81 +23,23 @@ function SubjectTile({title}) {
 
     const [isExpanded, setIsExpanded] = useState(false)
 
-    const [isSettingTitle, setIsSettingTitle] = useState(false)
-
-    const [subTitle, setSubTitle] = useState("d")
-
     const [isTitle, setIsTitle] = useState(true)
 
-    const [label, setLabel] = useState("Section")
+    const [label, setLabel] = useState("Topic")
 
     const setLabelController = () => {
       setIsTitle(!isTitle)
+      
     }
     const handleLabel = (labelVal) => {
       setLabel(labelVal)
+      changeTopicName(labelVal, topicIndex, topicArray)
     }
 
-    const [courses, setCourses] = useState([])
-    const addNewSection = () => {
-      let newCourses = [...courses]
-      newCourses.push({
-        name: "Basic Electrical Engineering",
-        topics: [
-          {
-            name: "Thevenin's Theorem",
-            subTopics: [
-              {
-                name: "theory",
-                resources: {
-                  video: "render video",
-                  audio: "render audio",
-                  ppt: "render PPT"
-                }
-  
-              },
-              {
-                name: "Application",
-                resources: {
-                  video: "render video",
-                  audio: "render audio",
-                  // ppt: "render PPT"
-                }
-  
-              }
-            ]
-          },
-          {
-            name: "Nortons's Theorem",
-            subTopics: [
-              {
-                name: "theory",
-                resources: {
-                  video: "render video",
-                  audio: "render audio",
-                  ppt: "render PPT"
-                }
-  
-              },
-              {
-                name: "Application",
-                resources: {
-                  video: "render video",
-                  // audio: "render audio",
-                  ppt: "render PPT"
-                }
-  
-              }
-            ]
-          }
-        ]
-      })
-      setCourses(newCourses)
-    }
-
+    
   return(
   <div>
-    <StyledCard sx={{backgroundColor:"#f1f1f1"}}>
+    <StyledCard sx={{backgroundColor:"#f1f1f1", borderLeft:'4px solid #375dbe'}}>
      <IconButton onClick={()=>setIsExpanded(!isExpanded)}>
      
         <ArrowRightIcon sx={{transform: isExpanded ? "rotate(90deg)" : "rotate(0)"}}
@@ -121,7 +64,6 @@ function SubjectTile({title}) {
     </IconButton>
 
     <IconButton sx={{marginRight: "10px"}}
-    onClick={()=>addNewSection()}
     >
      <AddCircleIcon className="Icon1" sx={{color:"#b7b7b7", }}
       
@@ -129,9 +71,9 @@ function SubjectTile({title}) {
     </IconButton>
     </StyledCard>
 
-   
+    
   </div>
   )
 }
 
-export default SubjectTile;
+export default TopicTile;
