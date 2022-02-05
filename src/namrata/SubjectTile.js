@@ -12,9 +12,8 @@ import "./SubjectTile.css";
 // import TopicTile from './TopicTile';
 import Subsection from './Subsection';
 
-
-function SubjectTile({title}) {
-
+function SubjectTile(prop) {
+  let {name} =prop
 
     const StyledCard = styled(Card)({
         display: "flex",
@@ -108,6 +107,9 @@ function SubjectTile({title}) {
 
     <TextNLabel isLabelShown={isTitle} setIsLabelShown={setLabelController} label={label} setLabel={handleLabel}/>
     
+    {name}
+
+
     <div style={{flexGrow: 1}}/>
      
     <IconButton sx={{marginRight: "10px"}} onClick={() => setLabelController()}>

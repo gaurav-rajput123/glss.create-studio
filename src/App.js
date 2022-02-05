@@ -1,24 +1,20 @@
 import './App.css';
 import { useState } from 'react';
 import Middle from './namrata/Middle';
-
-import TextDescription from './namrata/TextDescription';
-
-
-
+import { Card } from '@mui/material';
+import { CardHeader } from '@mui/material';
+import { CardContent } from '@mui/material';
+import { CardActions } from '@mui/material';
+import { Button } from '@mui/material';
+import { Typography } from '@mui/material';
 function App() {
   const [val, setVal] = useState("hello")
   return (
     <div className="App">
+      {/* <SubjectTitle/> */}
       <Middle/>
 
-      
-    
-      
-      
-      
-
-  
+     
       
     </div>
   );
