@@ -61,8 +61,8 @@ const handleLabel = (labelVal) => {
   };
 
   return (
-    <div>
-    <StyledCard sx={{backgroundColor:"#f1f1f1"}}>
+    <div >
+    <StyledCard sx={{backgroundColor:"#f1f1f1", borderLeft:'4px solid green'}}>
     <IconButton onClick={()=>setIsExpanded(!isExpanded)}>
         <ArrowRightIcon sx={{transform: isExpanded ? "rotate(90deg)" : "rotate(0)"}}
         />
@@ -144,7 +144,7 @@ const handleLabel = (labelVal) => {
         </Stack>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Button variant="contained" sx={{backgroundColor:"#375dbe",borderRadius:"5px"}}>
-            Lock
+            Upload
           </Button>
         </div>
         

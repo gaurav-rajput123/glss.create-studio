@@ -10,7 +10,7 @@ function TextNLabel({isLabelShown, setIsLabelShown, label, setLabel}) {
     return (
         isLabelShown ?
             (
-                <div onClick={()=>setIsLabelShown()} style={{display: "flex", alignItems :"center"}}>
+                <div  style={{display: "flex", alignItems :"center"}}>
                     <Typography fontSize={20} >
                     {labelIn}
                 </Typography>
@@ -20,7 +20,7 @@ function TextNLabel({isLabelShown, setIsLabelShown, label, setLabel}) {
             (
                 <div style={{ display: "flex", alignItems: "center"}}>
                     <TextField
-                        value={labelIn}
+                        placeholder='Add Section'
                         variant="filled"
                         onChange={(e) => setLabelIn(e.target.value)}
                         label="Set Title" />

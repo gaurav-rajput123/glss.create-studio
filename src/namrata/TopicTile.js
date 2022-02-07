@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Card, IconButton, Box, Button } from "@mui/material";
+import { Card, IconButton, Typography, Box } from "@mui/material";
 import React, { useState } from "react";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import EditIcon from '@mui/icons-material/Edit';
@@ -7,13 +7,13 @@ import FeedIcon from '@mui/icons-material/Feed';
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import TextNLabel from "./TextNLabel";
-import "./SubjectTile.css";
-// import Collapsible from "./SubContent";
-import TopicTile from './TopicTile';
-// import Subsection from './Subsection';
+import "./SubjectTile.css"
+import Collapsible from "./SubContent";
+import Subsection from './SubTopicTile';
 
-function SubjectTile(prop) {
-  let {name, changeCourseName, courseIndex, courseArray, addTopics} =prop
+
+function TopicTile({changeTopicName, topicIndex, topicArray, addSubTopics}) {
+
 
     const StyledCard = styled(Card)({
         display: "flex",
@@ -25,24 +25,25 @@ function SubjectTile(prop) {
 
     const [isTitle, setIsTitle] = useState(true)
 
-    const [label, setLabel] = useState("Section")
+    const [label, setLabel] = useState("Topic")
 
     const setLabelController = () => {
       setIsTitle(!isTitle)
+      
     }
     const handleLabel = (labelVal) => {
       setLabel(labelVal)
-      changeCourseName(courseIndex, courseArray, labelVal)
+      changeTopicName(labelVal, topicIndex, topicArray)
     }
 
-   
-    const addNewTopics = () => {
-      addTopics()
+    const addSubTopic = () => {
+      addSubTopics()
     }
 
+    
   return(
-  <div style={{paddingBottom:'0%'}}>
-    <StyledCard sx={{backgroundColor:"#f1f1f1"}}>
+  <div>
+    <StyledCard sx={{backgroundColor:"#f1f1f1", borderLeft:'4px solid #375dbe'}}>
      <IconButton onClick={()=>setIsExpanded(!isExpanded)}>
      
         <ArrowRightIcon sx={{transform: isExpanded ? "rotate(90deg)" : "rotate(0)"}}
@@ -52,9 +53,6 @@ function SubjectTile(prop) {
 
     <TextNLabel isLabelShown={isTitle} setIsLabelShown={setLabelController} label={label} setLabel={handleLabel}/>
     
-    {name}
-
-
     <div style={{flexGrow: 1}}/>
      
     <IconButton sx={{marginRight: "10px"}} onClick={() => setLabelController()}>
@@ -70,16 +68,19 @@ function SubjectTile(prop) {
     </IconButton>
 
     <IconButton sx={{marginRight: "10px"}}
-    onClick={()=>addNewTopics()}
+    onClick={()=>{
+      addSubTopic()
+    }}
     >
      <AddCircleIcon className="Icon1" sx={{color:"#b7b7b7", }}
       
      />
     </IconButton>
     </StyledCard>
+
+    
   </div>
   )
 }
 
-
-export default SubjectTile;
+export default TopicTile;
