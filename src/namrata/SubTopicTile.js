@@ -20,6 +20,7 @@ import TextNLabel from "./TextNLabel";
 import "./SubjectTile.css";
 import AddComponent from './Add';
 import { display } from "@mui/system";
+import TextDescription from "./TextDescription";
 
 
 
@@ -34,7 +35,7 @@ const ExpandMore = styled((props) => {
   })
 }));
 
-export default function RecipeReviewCard() {
+export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, courseArray, updateCourseArray }) {
   const [expanded, setExpanded] = React.useState(false);
   const StyledCard = styled(Card)({
     display: "flex",
@@ -56,7 +57,10 @@ export default function RecipeReviewCard() {
     setIsTitle(!isTitle)
   }
   const handleLabel = (labelVal) => {
-    setLabel(labelVal)
+    let newArr = [...courseArray]
+    console.log(courseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex])
+    courseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].name = labelVal.toString()
+    updateCourseArray(newArr)
   }
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -80,7 +84,7 @@ export default function RecipeReviewCard() {
           <EditIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
 
-        <IconButton sx={{ marginRight: "10px" }}>
+        <IconButton sx={{ marginRight: "10px" }} onClick={() => handleExpandClick()}>
           <FeedIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
 
@@ -96,6 +100,9 @@ export default function RecipeReviewCard() {
         </IconButton>
 
       </StyledCard >
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <TextDescription />
+      </Collapse>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
 
         <CardContent sx={{ display: "flex", justifyContent: "center" }}>
