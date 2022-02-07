@@ -56,6 +56,10 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
 
   const [label, setLabel] = useState("Section")
 
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const setLabelController = () => {
     setIsTitle(!isTitle)
   }
@@ -82,11 +86,11 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
 
   const handleDelete = () => {
     let newCourseArray = [...courseArray]
-    let newTopicArray = [...topicArray]
-    let newSubTopicArray = [...courseArray[courseIndex].topics[topicIndex].subTopics.slice(0, subTopicIndex), ...courseArray[courseIndex].topics[topicIndex].subTopics.slice(subTopicIndex+1)]
+    // let newTopicArray = [...topicArray]
+    let newSubTopicArray = [...courseArray[courseIndex].topics[topicIndex].subTopics.slice(0, subTopicIndex), ...courseArray[courseIndex].topics[topicIndex].subTopics.slice(subTopicIndex + 1)]
     newCourseArray[courseIndex].topics[topicIndex].subTopics = newSubTopicArray
     updateCourseArray(newCourseArray)
-}
+  }
 
   return (
     <div >
@@ -110,7 +114,7 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
           <FeedIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
 
-        <IconButton sx={{ marginRight: "10px" }} onClick={()=> handleDelete()}>
+        <IconButton sx={{ marginRight: "10px" }} onClick={() => handleDelete()}>
           <DeleteIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
 
