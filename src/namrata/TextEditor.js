@@ -1,6 +1,6 @@
 import React, {useRef} from "react";
 import JoditEditor from "jodit-react";
-import './App.css';
+// import './App.css';
 
 const TextEditor = ({setValue , config, initialValue}) => {
     const editor = useRef(null)

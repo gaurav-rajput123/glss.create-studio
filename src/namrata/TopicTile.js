@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Card, IconButton, Typography, Box } from "@mui/material";
+import { Card, IconButton, Typography, Box, Collapse } from "@mui/material";
 import React, { useState } from "react";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import EditIcon from '@mui/icons-material/Edit';
@@ -7,14 +7,16 @@ import FeedIcon from '@mui/icons-material/Feed';
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import TextNLabel from "./TextNLabel";
-import "./SubjectTile.css"
+import "./SubjectTile.css";
+import TextDescription from "./TextDescription";
 import Collapsible from "./SubContent";
 import Subsection from './SubTopicTile';
 
 
 function TopicTile({changeTopicName, topicIndex, topicArray, addSubTopics}) {
 
-
+    const [expanded, setExpanded] = React.useState(false);
+    
     const StyledCard = styled(Card)({
         display: "flex",
         margin: '12px 10px',
@@ -40,11 +42,18 @@ function TopicTile({changeTopicName, topicIndex, topicArray, addSubTopics}) {
       addSubTopics()
     }
 
+  
+    const handleExpandClick = () => {
+      setExpanded(!expanded);
+    };
+
     
   return(
   <div>
     <StyledCard sx={{backgroundColor:"#f1f1f1", borderLeft:'4px solid #375dbe'}}>
-     <IconButton onClick={()=>setIsExpanded(!isExpanded)}>
+
+    
+    <IconButton onClick={()=>setIsExpanded(!isExpanded)}>
      
         <ArrowRightIcon sx={{transform: isExpanded ? "rotate(90deg)" : "rotate(0)"}}
         />
@@ -59,7 +68,12 @@ function TopicTile({changeTopicName, topicIndex, topicArray, addSubTopics}) {
        <EditIcon className="Icon1"sx={{color:"#b7b7b7",}}/>
     </IconButton>
     
-    <IconButton sx={{marginRight: "10px"}}>
+    <IconButton sx={{marginRight: "10px"}}
+    onClick={()=>{
+      handleExpandClick()
+    }}
+    
+    >
        <FeedIcon className="Icon1" sx={{color:"#b7b7b7", }}/>
     </IconButton>
 
@@ -76,7 +90,12 @@ function TopicTile({changeTopicName, topicIndex, topicArray, addSubTopics}) {
       
      />
     </IconButton>
+    
+    
     </StyledCard>
+    <Collapse in={expanded}  timeout ="auto" unmountOnExit>
+        <TextDescription/>
+    </Collapse> 
 
     
   </div>

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Card, IconButton, Box, Button } from "@mui/material";
+import { Card, IconButton, Box, Button, Collapse} from "@mui/material";
 import React, { useState } from "react";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import EditIcon from '@mui/icons-material/Edit';
@@ -8,6 +8,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import TextNLabel from "./TextNLabel";
 import "./SubjectTile.css";
+import TextDescription from "./TextDescription";
 // import Collapsible from "./SubContent";
 import TopicTile from './TopicTile';
 // import Subsection from './Subsection';
@@ -20,6 +21,8 @@ function SubjectTile(prop) {
         margin: '12px 10px',
         padding: "12px 12px 12px 0px"  
     })
+    
+    const [expanded, setExpanded] = React.useState(false);
 
     const [isExpanded, setIsExpanded] = useState(false)
 
@@ -39,6 +42,10 @@ function SubjectTile(prop) {
     const addNewTopics = () => {
       addTopics()
     }
+
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+      };
 
   return(
   <div style={{paddingBottom:'0%'}}>
@@ -61,7 +68,9 @@ function SubjectTile(prop) {
        <EditIcon className="Icon1"sx={{color:"#b7b7b7",}}/>
     </IconButton>
     
-    <IconButton sx={{marginRight: "10px"}}>
+    <IconButton sx={{marginRight: "10px"}}
+    onClick={()=>handleExpandClick()}
+    >
        <FeedIcon className="Icon1" sx={{color:"#b7b7b7", }}/>
     </IconButton>
 
@@ -77,6 +86,11 @@ function SubjectTile(prop) {
      />
     </IconButton>
     </StyledCard>
+
+    <Collapse in={expanded}  timeout ="auto" unmountOnExit>
+        <TextDescription/>
+    </Collapse> 
+
   </div>
   )
 }

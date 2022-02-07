@@ -18,6 +18,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import TextNLabel from "./TextNLabel";
 import "./SubjectTile.css";
+import TextDescription from "./TextDescription";
 
 
 
@@ -77,7 +78,10 @@ const handleLabel = (labelVal) => {
        <EditIcon className="Icon1"sx={{color:"#b7b7b7",}}/>
     </IconButton>
     
-    <IconButton sx={{marginRight: "10px"}}>
+    <IconButton sx={{marginRight: "10px"}}
+    onClick={()=>handleExpandClick()}
+    
+    >
        <FeedIcon className="Icon1" sx={{color:"#b7b7b7", }}/>
     </IconButton>
 
@@ -97,6 +101,9 @@ const handleLabel = (labelVal) => {
 
         
     </StyledCard>
+    <Collapse in={expanded} timeout="auto" unmountOnExit>
+       <TextDescription/>
+    </Collapse>
     
     <Collapse in={expanded} timeout="auto" unmountOnExit>
        
