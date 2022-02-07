@@ -13,92 +13,75 @@ import Collapsible from "./SubContent";
 import Subsection from './SubTopicTile';
 
 
-function TopicTile({changeTopicName, topicIndex, topicArray, addSubTopics}) {
 
-    const [expanded, setExpanded] = React.useState(false);
-    
-    const StyledCard = styled(Card)({
-        display: "flex",
-        margin: '12px 10px',
-        padding: "12px 12px 12px 0px"  
-    })
+function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics }) {
 
-    const [isExpanded, setIsExpanded] = useState(false)
 
-    const [isTitle, setIsTitle] = useState(true)
+  const StyledCard = styled(Card)({
+    display: "flex",
+    margin: '12px 10px',
+    padding: "12px 12px 12px 0px"
+  })
 
-    const [label, setLabel] = useState("Topic")
+  const [isExpanded, setIsExpanded] = useState(false)
 
-    const setLabelController = () => {
-      setIsTitle(!isTitle)
-      
-    }
-    const handleLabel = (labelVal) => {
-      setLabel(labelVal)
-      changeTopicName(labelVal, topicIndex, topicArray)
-    }
+  const [isTitle, setIsTitle] = useState(true)
 
-    const addSubTopic = () => {
-      addSubTopics()
-    }
+  const [label, setLabel] = useState("Topic")
 
-  
-    const handleExpandClick = () => {
-      setExpanded(!expanded);
-    };
+  const setLabelController = () => {
+    setIsTitle(!isTitle)
 
-    
-  return(
-  <div>
-    <StyledCard sx={{backgroundColor:"#f1f1f1", borderLeft:'4px solid #375dbe'}}>
+  }
+  const handleLabel = (labelVal) => {
+    setLabel(labelVal)
+    changeTopicName(labelVal, topicIndex, topicArray)
+  }
 
-    
-    <IconButton onClick={()=>setIsExpanded(!isExpanded)}>
-     
-        <ArrowRightIcon sx={{transform: isExpanded ? "rotate(90deg)" : "rotate(0)"}}
-        />
-    </IconButton>
-    {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
+  const addSubTopic = () => {
+    addSubTopics()
+  }
 
-    <TextNLabel isLabelShown={isTitle} setIsLabelShown={setLabelController} label={label} setLabel={handleLabel}/>
-    
-    <div style={{flexGrow: 1}}/>
-     
-    <IconButton sx={{marginRight: "10px"}} onClick={() => setLabelController()}>
-       <EditIcon className="Icon1"sx={{color:"#b7b7b7",}}/>
-    </IconButton>
-    
-    <IconButton sx={{marginRight: "10px"}}
-    onClick={()=>{
-      handleExpandClick()
-    }}
-    
-    >
-       <FeedIcon className="Icon1" sx={{color:"#b7b7b7", }}/>
-    </IconButton>
 
-    <IconButton sx={{marginRight: "10px"}}>
-      <DeleteIcon className="Icon1" sx={{color:"#b7b7b7",}}/>
-    </IconButton>
+  return (
+    <div>
+      <StyledCard sx={{ backgroundColor: "#f1f1f1", borderLeft: '4px solid #375dbe' }}>
+        <IconButton onClick={() => setIsExpanded(!isExpanded)}>
 
-    <IconButton sx={{marginRight: "10px"}}
-    onClick={()=>{
-      addSubTopic()
-    }}
-    >
-     <AddCircleIcon className="Icon1" sx={{color:"#b7b7b7", }}
-      
-     />
-    </IconButton>
-    
-    
-    </StyledCard>
-    <Collapse in={expanded}  timeout ="auto" unmountOnExit>
-        <TextDescription/>
-    </Collapse> 
+          <ArrowRightIcon sx={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0)" }}
+          />
+        </IconButton>
+        {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
 
-    
-  </div>
+        <TextNLabel isLabelShown={isTitle} setIsLabelShown={setLabelController} label={label} setLabel={handleLabel} />
+
+        <div style={{ flexGrow: 1 }} />
+
+        <IconButton sx={{ marginRight: "10px" }} onClick={() => setLabelController()}>
+          <EditIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
+        </IconButton>
+
+        <IconButton sx={{ marginRight: "10px" }}>
+          <FeedIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
+        </IconButton>
+
+        <IconButton sx={{ marginRight: "10px" }}>
+          <DeleteIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
+        </IconButton>
+
+        <IconButton sx={{ marginRight: "10px" }}
+          onClick={() => {
+            addSubTopic()
+          }}
+        >
+          <AddCircleIcon className="Icon1" sx={{ color: "#b7b7b7", }}
+
+          />
+        </IconButton>
+      </StyledCard>
+
+
+    </div>
   )
 }
 

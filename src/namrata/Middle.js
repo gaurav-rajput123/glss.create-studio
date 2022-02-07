@@ -29,7 +29,9 @@ export default function Middle() {
     newCourseArray[courseIndex] = newCourseObj
     setCourses(newCourseArray)
   }
-
+  const updateCourseArray = (updatedCourseArray) => {
+    setCourses(updatedCourseArray)
+  }
   return (
     <Box className="box-list" style={{ margin: "10px 0px 0px 60px", width: "1400px", zIndex: 2 }}>
       <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height: "auto", borderRadius: "15px", paddingBottom:'1%' }}>
@@ -47,6 +49,7 @@ export default function Middle() {
     return (
       <MainTile key={index} course={item} courseIndex={index} courseArray={courses} updateCurrentCourse={updateCourse} 
         changeCourseName={changeCourseName}
+        updateCourseArray={updateCourseArray}
       />
     )
   })}
@@ -57,16 +60,16 @@ export default function Middle() {
 }
 
 
-
-function MainTile({course, courseIndex, courseArray, updateCurrentCourse, changeCourseName}){
+//  For Courses
+function MainTile({course, courseIndex, courseArray, updateCurrentCourse, changeCourseName, updateCourseArray}){
   const updateCourse = () => {
-    let newCourseObj = {...course}
-    if(newCourseObj.hasOwnProperty('topics')){
+    let newCourseObj = { ...course }
+    if (newCourseObj.hasOwnProperty('topics')) {
       newCourseObj.topics.push({
         name: "Nortons Theorem",
         subTopics: []
       })
-    }else{
+    } else {
       newCourseObj.topics = [
         {
           name: "Thevenins Theorem",
@@ -107,7 +110,11 @@ function MainTile({course, courseIndex, courseArray, updateCurrentCourse, change
           topicIndex={topicIndex}
           topicArray={topicArr}
           changeTopicName={updateTopicName}
-          addNewSubTopic={addNewSubTopic}  />
+          addNewSubTopic={addNewSubTopic} 
+          courseIndex={courseIndex} 
+          courseArray={courseArray}
+          updateCourseArray={updateCourseArray}
+          />
         })
       }
       </Box>
@@ -115,10 +122,8 @@ function MainTile({course, courseIndex, courseArray, updateCurrentCourse, change
   )
 }
 
-
-
-
-function TopicTileBox({topic, topicIndex, topicArray, changeTopicName, addNewSubTopic}){
+// For Topics
+function TopicTileBox({topic, topicIndex, topicArray, changeTopicName, addNewSubTopic, courseIndex, courseArray, updateCourseArray}){
   const updateSubTopic = () => {
    
     let newSubTopic = {
@@ -139,8 +144,17 @@ function TopicTileBox({topic, topicIndex, topicArray, changeTopicName, addNewSub
       <TopicTile changeTopicName={changeTopicName} topicIndex={topicIndex} topicArray={topicArray} addSubTopics={updateSubTopic} />
       <Box sx={{width: "98%", marginLeft:'1%'}}>
       {
-        topic.subTopics?.map((subTopic, subTopicIndex, subTopicArr)=>{
-          return <SubTopicTile key={subTopicIndex} />
+        topic.subTopics?.map((subTopic, subTopicIndex, subTopicArray)=>{
+          return <SubTopicTile 
+          key={subTopicIndex+4} 
+          subTopic={subTopic}
+          subTopicArray={subTopicArray}
+          courseIndex={courseIndex} 
+          courseArray={courseArray}
+          updateCourseArray={updateCourseArray}
+          topicIndex={topicIndex}
+          subTopicIndex={subTopicIndex}
+          />
         })
       }
       </Box>
