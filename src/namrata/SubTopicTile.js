@@ -18,11 +18,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import TextNLabel from "./TextNLabel";
 import "./SubjectTile.css";
-<<<<<<< HEAD
-=======
 import AddComponent from './Add';
 import { display } from "@mui/system";
->>>>>>> 8f0f651c06d2be135526630a3cb9529ee71954d7
 import TextDescription from "./TextDescription";
 
 
@@ -73,28 +70,11 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
     <div >
       <StyledCard sx={{ backgroundColor: "#f1f1f1", borderLeft: '4px solid green' }}>
 
-<<<<<<< HEAD
-    <TextNLabel isLabelShown={isTitle} setIsLabelShown={setLabelController} label={label} setLabel={handleLabel}/>
-    
-    <div style={{flexGrow: 1}}/>
-     
-    <IconButton sx={{marginRight: "10px"}}>
-       <EditIcon className="Icon1"sx={{color:"#b7b7b7",}}/>
-    </IconButton>
-    
-    <IconButton sx={{marginRight: "10px"}}
-    onClick={()=>handleExpandClick()}
-    
-    >
-       <FeedIcon className="Icon1" sx={{color:"#b7b7b7", }}/>
-    </IconButton>
-=======
         <IconButton onClick={() => setIsExpanded(!isExpanded)}>
           <ArrowRightIcon sx={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0)" }}
           />
         </IconButton>
         {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
->>>>>>> 8f0f651c06d2be135526630a3cb9529ee71954d7
 
         <TextNLabel isLabelShown={isTitle} setIsLabelShown={setLabelController} label={label} setLabel={handleLabel} />
 
@@ -125,17 +105,6 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
       </Collapse>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
 
-<<<<<<< HEAD
-        
-    </StyledCard>
-    <Collapse in={expanded} timeout="auto" unmountOnExit>
-       <TextDescription/>
-    </Collapse>
-    
-    <Collapse in={expanded} timeout="auto" unmountOnExit>
-       
-=======
->>>>>>> 8f0f651c06d2be135526630a3cb9529ee71954d7
         <CardContent sx={{ display: "flex", justifyContent: "center" }}>
           <Button variant="contained" sx={{ minWidth: "60% !important", backgroundColor: "#375dbe", height: "50px" }}>
             Add Component
