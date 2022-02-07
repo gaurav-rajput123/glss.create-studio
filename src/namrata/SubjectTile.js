@@ -21,7 +21,9 @@ function SubjectTile(prop) {
     margin: '12px 10px',
     padding: "12px 12px 12px 0px"
   })
-
+  
+  const [expanded, setExpanded] = React.useState(false);
+  
   const [isExpanded, setIsExpanded] = useState(false)
 
   const [isTitle, setIsTitle] = useState(true)
@@ -35,6 +37,10 @@ function SubjectTile(prop) {
     setLabel(labelVal)
     changeCourseName(courseIndex, courseArray, labelVal)
   }
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
 
   const addNewTopics = () => {
@@ -64,7 +70,9 @@ function SubjectTile(prop) {
           <EditIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
 
-        <IconButton sx={{ marginRight: "10px" }}>
+        <IconButton sx={{ marginRight: "10px" }}
+        onClick={() => handleExpandClick()}
+        >
           <FeedIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
 
@@ -80,6 +88,10 @@ function SubjectTile(prop) {
           />
         </IconButton>
       </StyledCard>
+
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <TextDescription />
+      </Collapse>
     </div >
   )
 
