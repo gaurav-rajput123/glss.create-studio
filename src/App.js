@@ -7,12 +7,14 @@ import { CardContent } from '@mui/material';
 import { CardActions } from '@mui/material';
 import { Button } from '@mui/material';
 import { Typography } from '@mui/material';
+// import Alternate from './namrata/Alternate';
 function App() {
   const [val, setVal] = useState("hello")
   return (
     <div className="App">
       {/* <SubjectTitle/> */}
       <Middle/>
+     
 
      
       

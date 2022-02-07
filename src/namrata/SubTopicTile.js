@@ -18,11 +18,11 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import TextNLabel from "./TextNLabel";
 import "./SubjectTile.css";
-import AddComponent from './Add';
-import { display } from "@mui/system";
 import TextDescription from "./TextDescription";
 import convertToString from "../resources/convertToString";
-const parse = require('html-react-parser')
+
+const parse = require('html-react-parser');
+
 
 
 
@@ -92,6 +92,7 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
     updateCourseArray(newCourseArray)
   }
 
+
   return (
     <div >
       <StyledCard sx={{ backgroundColor: "#f1f1f1", borderLeft: '4px solid green' }}>
@@ -148,6 +149,7 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
           <Button
             sx={{ minWidth: "150px", height: "100px" }}
             variant="outlined"
+
             color="error"
           >
             <AudioFileIcon />
@@ -155,7 +157,9 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
           <Button
             sx={{ minWidth: "150px", height: "100px" }}
             variant="outlined"
+           
           >
+           
             <OndemandVideoIcon />
           </Button>
           <Button
