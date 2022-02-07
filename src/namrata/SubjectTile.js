@@ -76,7 +76,7 @@ function SubjectTile(prop) {
 
 
         
-    </StyledCard>
+   </StyledCard>
   </div>
   )
 }

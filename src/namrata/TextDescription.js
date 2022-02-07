@@ -18,7 +18,7 @@ function TextDescription() {
            <h3>Description</h3>
            
         </div>
-         <TextEditor setValue={setValue} config={config} />
+         <TextEditor setValue={setValue} config={config}  contenteditable={false}/>
          <br/>
          <div>
            {parse(value)}
