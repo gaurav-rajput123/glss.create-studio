@@ -1,4 +1,4 @@
-import './App.css';
+// import './App.css';
 import { useState } from 'react';
 import Middle from './namrata/Middle';
 import { Card } from '@mui/material';
