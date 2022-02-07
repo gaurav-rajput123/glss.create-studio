@@ -37,7 +37,7 @@ const ExpandMore = styled((props) => {
   })
 }));
 
-export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, courseArray, updateCourseArray }) {
+export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, courseIndex, courseArray, updateCourseArray }) {
   const [expanded, setExpanded] = React.useState(false);
   const [expandedDescription, setExpandedDescription] = React.useState(false);
   const StyledCard = styled(Card)({
@@ -80,6 +80,14 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
     updateCourseArray(newArr)
   }
 
+  const handleDelete = () => {
+    let newCourseArray = [...courseArray]
+    let newTopicArray = [...topicArray]
+    let newSubTopicArray = [...courseArray[courseIndex].topics[topicIndex].subTopics.slice(0, subTopicIndex), ...courseArray[courseIndex].topics[topicIndex].subTopics.slice(subTopicIndex+1)]
+    newCourseArray[courseIndex].topics[topicIndex].subTopics = newSubTopicArray
+    updateCourseArray(newCourseArray)
+}
+
   return (
     <div >
       <StyledCard sx={{ backgroundColor: "#f1f1f1", borderLeft: '4px solid green' }}>
@@ -102,7 +110,7 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
           <FeedIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
 
-        <IconButton sx={{ marginRight: "10px" }}>
+        <IconButton sx={{ marginRight: "10px" }} onClick={()=> handleDelete()}>
           <DeleteIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
 

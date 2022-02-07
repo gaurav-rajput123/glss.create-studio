@@ -150,6 +150,7 @@ function TopicTileBox({topic, topicIndex, topicArray, changeTopicName, addNewSub
           return <SubTopicTile 
           key={subTopicIndex+4} 
           subTopic={subTopic}
+          topicArray={topicArray}
           subTopicArray={subTopicArray}
           courseIndex={courseIndex} 
           courseArray={courseArray}

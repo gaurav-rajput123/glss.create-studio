@@ -58,6 +58,13 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
     updateCourseArray(newArr)
   }
 
+  const handleDelete = () => {
+    let newCourseArray = [...courseArray]
+    let newTopicArray = [...courseArray[courseIndex].topics.slice(0, topicIndex), ...courseArray[courseIndex].topics.slice(topicIndex+1)]
+    newCourseArray[courseIndex].topics = newTopicArray
+    updateCourseArray(newCourseArray)
+}
+
 
 
   return (
@@ -84,7 +91,9 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
           <FeedIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
 
-        <IconButton sx={{ marginRight: "10px" }}>
+        <IconButton sx={{ marginRight: "10px" }}
+         onClick={() => handleDelete()}
+        >
           <DeleteIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
 

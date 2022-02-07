@@ -56,6 +56,12 @@ function SubjectTile(prop) {
     newArr[courseIndex].description = convertToString(stArr)
     updateCourseArray(newArr)
   }
+
+  const handleDelete = () => {
+      
+      let newCourseArray = [...courseArray.slice(0, courseIndex), ...courseArray.slice(courseIndex+1)]
+      updateCourseArray(newCourseArray)
+  }
   return (
     <div>
       <StyledCard sx={{ backgroundColor: "#f1f1f1" }}>
@@ -83,7 +89,7 @@ function SubjectTile(prop) {
           <FeedIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
 
-        <IconButton sx={{ marginRight: "10px" }}>
+        <IconButton sx={{ marginRight: "10px" }} onClick={()=>handleDelete()}>
           <DeleteIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
 
