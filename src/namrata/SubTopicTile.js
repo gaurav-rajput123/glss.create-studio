@@ -37,6 +37,7 @@ const ExpandMore = styled((props) => {
 
 export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, courseArray, updateCourseArray }) {
   const [expanded, setExpanded] = React.useState(false);
+  const [expandedDescription, setExpandedDescription] = React.useState(false);
   const StyledCard = styled(Card)({
     display: "flex",
     margin: '12px 10px',
@@ -66,6 +67,10 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
     setExpanded(!expanded);
   };
 
+  const handleExpandClickDescription = () => {
+    setExpandedDescription(!expandedDescription);
+  };
+
   return (
     <div >
       <StyledCard sx={{ backgroundColor: "#f1f1f1", borderLeft: '4px solid green' }}>
@@ -84,7 +89,7 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
           <EditIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
 
-        <IconButton sx={{ marginRight: "10px" }} onClick={() => handleExpandClick()}>
+        <IconButton sx={{ marginRight: "10px" }} onClick={() => handleExpandClickDescription()}>
           <FeedIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
 
@@ -100,7 +105,7 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
         </IconButton>
 
       </StyledCard >
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      <Collapse in={expandedDescription} timeout="auto" unmountOnExit>
         <TextDescription />
       </Collapse>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
