@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Card, IconButton, Box, Button, Collapse} from "@mui/material";
+import { Card, IconButton, Box, Button, Collapse } from "@mui/material";
 import React, { useState } from "react";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import EditIcon from '@mui/icons-material/Edit';
@@ -11,19 +11,21 @@ import "./SubjectTile.css";
 import TextDescription from "./TextDescription";
 // import Collapsible from "./SubContent";
 import TopicTile from './TopicTile';
+import convertToString from "../resources/convertToString";
 // import Subsection from './Subsection';
-
+// import parse from 'html-react-parser'
+const parse = require('html-react-parser')
 function SubjectTile(prop) {
-  let { name, changeCourseName, courseIndex, courseArray, addTopics } = prop
+  let { name, changeCourseName, courseIndex, courseArray, addTopics, updateCourseArray } = prop
 
   const StyledCard = styled(Card)({
     display: "flex",
     margin: '12px 10px',
     padding: "12px 12px 12px 0px"
   })
-  
+
   const [expanded, setExpanded] = React.useState(false);
-  
+
   const [isExpanded, setIsExpanded] = useState(false)
 
   const [isTitle, setIsTitle] = useState(true)
@@ -48,7 +50,12 @@ function SubjectTile(prop) {
   }
 
 
-
+  const getDescription = (description) => {
+    const newArr = [...courseArray]
+    const stArr = parse(description)
+    newArr[courseIndex].description = convertToString(stArr)
+    updateCourseArray(newArr)
+  }
   return (
     <div>
       <StyledCard sx={{ backgroundColor: "#f1f1f1" }}>
@@ -71,7 +78,7 @@ function SubjectTile(prop) {
         </IconButton>
 
         <IconButton sx={{ marginRight: "10px" }}
-        onClick={() => handleExpandClick()}
+          onClick={() => handleExpandClick()}
         >
           <FeedIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
@@ -90,7 +97,7 @@ function SubjectTile(prop) {
       </StyledCard>
 
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <TextDescription />
+        <TextDescription getDescription={getDescription} />
       </Collapse>
     </div >
   )

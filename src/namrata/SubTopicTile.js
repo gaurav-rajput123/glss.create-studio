@@ -21,6 +21,8 @@ import "./SubjectTile.css";
 import AddComponent from './Add';
 import { display } from "@mui/system";
 import TextDescription from "./TextDescription";
+import convertToString from "../resources/convertToString";
+const parse = require('html-react-parser')
 
 
 
@@ -71,6 +73,13 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
     setExpandedDescription(!expandedDescription);
   };
 
+  const getDescription = (description) => {
+    const newArr = [...courseArray]
+    const stArr = parse(description)
+    newArr[courseIndex].topics[topicIndex].subTopics[subTopicIndex].description = convertToString(stArr)
+    updateCourseArray(newArr)
+  }
+
   return (
     <div >
       <StyledCard sx={{ backgroundColor: "#f1f1f1", borderLeft: '4px solid green' }}>
@@ -106,7 +115,7 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
 
       </StyledCard >
       <Collapse in={expandedDescription} timeout="auto" unmountOnExit>
-        <TextDescription />
+        <TextDescription getDescription={getDescription} />
       </Collapse>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
 

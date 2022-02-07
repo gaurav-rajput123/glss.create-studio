@@ -11,10 +11,12 @@ import "./SubjectTile.css";
 import TextDescription from "./TextDescription";
 import Collapsible from "./SubContent";
 import Subsection from './SubTopicTile';
+import convertToString from "../resources/convertToString";
+const parse = require('html-react-parser')
 
 
 
-function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics }) {
+function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, updateCourseArray, courseArray, courseIndex }) {
 
 
   const StyledCard = styled(Card)({
@@ -22,7 +24,7 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics }) {
     margin: '12px 10px',
     padding: "12px 12px 12px 0px"
   })
-  
+
   const [expanded, setExpanded] = React.useState(false);
 
   const [isExpanded, setIsExpanded] = useState(false)
@@ -49,6 +51,14 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics }) {
   };
 
 
+  const getDescription = (description) => {
+    const newArr = [...courseArray]
+    const stArr = parse(description)
+    newArr[courseIndex].topics[topicIndex].description = convertToString(stArr)
+    updateCourseArray(newArr)
+  }
+
+
 
   return (
     <div>
@@ -69,7 +79,7 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics }) {
         </IconButton>
 
         <IconButton sx={{ marginRight: "10px" }}
-        onClick={() => handleExpandClick()}
+          onClick={() => handleExpandClick()}
         >
           <FeedIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
@@ -90,7 +100,7 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics }) {
       </StyledCard>
 
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <TextDescription />
+        <TextDescription getDescription={getDescription} />
       </Collapse>
 
 

@@ -100,7 +100,9 @@ function MainTile({course, courseIndex, courseArray, updateCurrentCourse, change
   
   return (
     <Box>
-      <SubjectTile changeCourseName={changeCourseName} courseIndex={courseIndex} courseArray={courseArray} addTopics={updateCourse} />
+      <SubjectTile changeCourseName={changeCourseName} courseIndex={courseIndex} courseArray={courseArray} addTopics={updateCourse} 
+        updateCourseArray={updateCourseArray}
+      />
       <Box sx={{width: "98%", marginLeft:'1%'}}>
       {
         course.topics?.map((topic, topicIndex, topicArr)=>{
@@ -141,7 +143,7 @@ function TopicTileBox({topic, topicIndex, topicArray, changeTopicName, addNewSub
   
   return (
     <Box>
-      <TopicTile changeTopicName={changeTopicName} topicIndex={topicIndex} topicArray={topicArray} addSubTopics={updateSubTopic} />
+      <TopicTile changeTopicName={changeTopicName} topicIndex={topicIndex} topicArray={topicArray} addSubTopics={updateSubTopic} updateCourseArray={updateCourseArray} courseArray={courseArray} courseIndex={courseIndex}/>
       <Box sx={{width: "98%", marginLeft:'1%'}}>
       {
         topic.subTopics?.map((subTopic, subTopicIndex, subTopicArray)=>{
@@ -154,6 +156,7 @@ function TopicTileBox({topic, topicIndex, topicArray, changeTopicName, addNewSub
           updateCourseArray={updateCourseArray}
           topicIndex={topicIndex}
           subTopicIndex={subTopicIndex}
+          updateCourseArray={updateCourseArray}
           />
         })
       }
