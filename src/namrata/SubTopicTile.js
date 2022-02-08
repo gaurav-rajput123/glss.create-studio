@@ -20,22 +20,36 @@ import TextNLabel from "./TextNLabel";
 import "./SubjectTile.css";
 import TextDescription from "./TextDescription";
 import convertToString from "../resources/convertToString";
+import Alternate from './Alternate';
+import Modal from '@mui/material/Modal';
+import { Box } from "@mui/system";
+
 
 const parse = require('html-react-parser');
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'white',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 
-
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest
-  })
-}));
+// const ExpandMore = styled((props) => {
+//   const { expand, ...other } = props;
+//   return <IconButton {...other} />;
+// })(({ theme, expand }) => ({
+//   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+//   marginLeft: "auto",
+//   transition: theme.transitions.create("transform", {
+//     duration: theme.transitions.duration.shortest
+//   })
+// }));
 
 export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, courseIndex, courseArray, updateCourseArray }) {
   const [expanded, setExpanded] = React.useState(false);
@@ -48,22 +62,15 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
 
   const [isExpanded, setIsExpanded] = useState(false)
 
-  const [isSettingTitle, setIsSettingTitle] = useState(false)
-
-  const [subTitle, setSubTitle] = useState("d")
-
   const [isTitle, setIsTitle] = useState(true)
 
   const [label, setLabel] = useState("Section")
-
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   const setLabelController = () => {
     setIsTitle(!isTitle)
   }
   const handleLabel = (labelVal) => {
+    setLabel(labelVal)
     let newArr = [...courseArray]
     console.log(courseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex])
     courseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].name = labelVal.toString()
@@ -91,6 +98,12 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
     newCourseArray[courseIndex].topics[topicIndex].subTopics = newSubTopicArray
     updateCourseArray(newCourseArray)
   }
+  // below, three lines of code are for modal used in video
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => setOpen(true);
+
+  const handleClose = () => setOpen(false);
 
 
   return (
@@ -149,33 +162,74 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
           <Button
             sx={{ minWidth: "150px", height: "100px" }}
             variant="outlined"
-
+            onClick={handleOpen}
             color="error"
           >
             <AudioFileIcon />
           </Button>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <Alternate />
+            </Box>
+          </Modal>
           <Button
             sx={{ minWidth: "150px", height: "100px" }}
             variant="outlined"
-           
+            onClick={handleOpen}
           >
-           
             <OndemandVideoIcon />
           </Button>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <Alternate />
+            </Box>
+          </Modal>
           <Button
             sx={{ minWidth: "150px", height: "100px" }}
             variant="outlined"
             color="success"
+            onClick={handleOpen}
           >
             <PictureAsPdfIcon />
           </Button>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <Alternate />
+            </Box>
+          </Modal>
           <Button
             sx={{ minWidth: "150px", height: "100px" }}
             variant="outlined"
             color="warning"
+            onClick={handleOpen}
           >
             <SlideshowIcon />
           </Button>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <Alternate />
+            </Box>
+          </Modal>
         </Stack>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Button variant="contained" sx={{ backgroundColor: "#375dbe", borderRadius: "5px" }}>
