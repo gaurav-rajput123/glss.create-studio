@@ -79,7 +79,7 @@ function MainTile({course, courseIndex, courseArray, updateCurrentCourse, change
     if (newCourseObj.hasOwnProperty('topics')) {
       newCourseObj.topics.push({
         name: "Nortons Theorem",
-        subTopics: []
+        subTopics: [] 
       })
     } else {
       newCourseObj.topics = [
