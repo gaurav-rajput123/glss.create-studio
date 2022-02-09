@@ -14,6 +14,7 @@ import TopicTile from './TopicTile';
 import convertToString from "../resources/convertToString";
 // import Subsection from './Subsection';
 // import parse from 'html-react-parser'
+import generateKey from "../resources/generateKey";
 const parse = require('html-react-parser')
 function SubjectTile(prop) {
   let { name, changeCourseName, courseIndex, courseArray, addTopics, updateCourseArray } = prop
@@ -36,8 +37,9 @@ function SubjectTile(prop) {
     setIsTitle(!isTitle)
   }
   const handleLabel = (labelVal) => {
-    setLabel(labelVal)
-    changeCourseName(courseIndex, courseArray, labelVal)
+    let newCourseArray = [...courseArray]
+    newCourseArray[courseIndex].name = labelVal
+    updateCourseArray(newCourseArray)
   }
 
   const handleExpandClick = () => {
@@ -46,7 +48,22 @@ function SubjectTile(prop) {
 
 
   const addNewTopics = () => {
-    addTopics()
+    let newCourseArray = [...courseArray]
+    if (newCourseArray[courseIndex].topics !== undefined) {
+      newCourseArray[courseIndex].topics.push({
+        id: generateKey(),
+        name: "Hello Sweetie"
+      })
+    } else {
+      newCourseArray[courseIndex].topics = [
+        {
+          id: generateKey(),
+          name: "Hello Sweetie"
+        }
+      ]
+    }
+    console.log(newCourseArray)
+    updateCourseArray(newCourseArray)
   }
 
 
@@ -58,9 +75,12 @@ function SubjectTile(prop) {
   }
 
   const handleDelete = () => {
-      
-      let newCourseArray = [...courseArray.slice(0, courseIndex), ...courseArray.slice(courseIndex+1)]
-      updateCourseArray(newCourseArray)
+    // let newCourseArray = [...courseArray.slice(0, courseIndex), ...courseArray.slice(courseIndex + 1)]
+    let newCourseArray = [...courseArray]
+    newCourseArray.splice(courseIndex, 1)
+    console.log(newCourseArray)
+    updateCourseArray(newCourseArray)
+
   }
   return (
     <div>
@@ -72,7 +92,7 @@ function SubjectTile(prop) {
 
         {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
 
-        <TextNLabel isLabelShown={isTitle} setIsLabelShown={setLabelController} label={label} setLabel={handleLabel} />
+        <TextNLabel isLabelShown={isTitle} courseIndex={courseIndex} setIsLabelShown={setLabelController} courseArray={courseArray} setLabel={handleLabel} />
 
         {name}
 
@@ -89,7 +109,7 @@ function SubjectTile(prop) {
           <FeedIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
 
-        <IconButton sx={{ marginRight: "10px" }} onClick={()=>handleDelete()}>
+        <IconButton sx={{ marginRight: "10px" }} onClick={() => handleDelete()}>
           <DeleteIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
 

@@ -60,10 +60,10 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
 
   const handleDelete = () => {
     let newCourseArray = [...courseArray]
-    let newTopicArray = [...courseArray[courseIndex].topics.slice(0, topicIndex), ...courseArray[courseIndex].topics.slice(topicIndex+1)]
+    let newTopicArray = [...courseArray[courseIndex].topics.slice(0, topicIndex), ...courseArray[courseIndex].topics.slice(topicIndex + 1)]
     newCourseArray[courseIndex].topics = newTopicArray
     updateCourseArray(newCourseArray)
-}
+  }
 
 
 
@@ -77,7 +77,7 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
         </IconButton>
         {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
 
-        <TextNLabel isLabelShown={isTitle} setIsLabelShown={setLabelController} label={label} setLabel={handleLabel} />
+        <TextNLabel isLabelShown={isTitle} courseIndex={courseIndex} setIsLabelShown={setLabelController} setLabel={handleLabel} courseArray={courseArray} />
 
         <div style={{ flexGrow: 1 }} />
 
@@ -92,7 +92,7 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
         </IconButton>
 
         <IconButton sx={{ marginRight: "10px" }}
-         onClick={() => handleDelete()}
+          onClick={() => handleDelete()}
         >
           <DeleteIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
@@ -113,7 +113,7 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
       </Collapse>
 
 
-    </div>
+    </div >
   )
 }
 
