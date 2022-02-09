@@ -77,7 +77,7 @@ function MainTile({course, courseIndex, courseArray, updateCurrentCourse, change
         }
       ]
     }
-
+ 
     updateCurrentCourse(newCourseObj, courseIndex)
   }
 
