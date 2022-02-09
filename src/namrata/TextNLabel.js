@@ -3,16 +3,16 @@ import { Button } from '@mui/material';
 import { Typography } from '@mui/material';
 import React, { useState } from 'react';
 
-function TextNLabel({ isLabelShown, setIsLabelShown, label, setLabel }) {
+function TextNLabel({ isLabelShown, setIsLabelShown, setLabel, courseArray, courseIndex }) {
 
-    const [labelIn, setLabelIn] = useState(label)
+    const [labelIn, setLabelIn] = useState(courseArray[courseIndex].name)
 
     return (
         isLabelShown ?
             (
                 <div style={{ display: "flex", alignItems: "center" }}>
                     <Typography fontSize={20} >
-                        {labelIn}
+                        {courseArray[courseIndex].name}
                     </Typography>
                 </div>
             )
@@ -23,7 +23,8 @@ function TextNLabel({ isLabelShown, setIsLabelShown, label, setLabel }) {
                         placeholder='Add Section'
                         variant="filled"
                         onChange={(e) => setLabelIn(e.target.value)}
-                        label="Set Title" />
+                        label="Set Title"
+                        value={labelIn} />
                     <Button onClick={() => {
                         setLabel(labelIn)
                         setIsLabelShown(!isLabelShown)
