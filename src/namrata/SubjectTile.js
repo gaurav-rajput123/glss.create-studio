@@ -39,6 +39,7 @@ function SubjectTile(prop) {
   const handleLabel = (labelVal) => {
     let newCourseArray = [...courseArray]
     newCourseArray[courseIndex].name = labelVal
+    setLabel(labelVal)
     updateCourseArray(newCourseArray)
   }
 
@@ -92,7 +93,7 @@ function SubjectTile(prop) {
 
         {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
 
-        <TextNLabel isLabelShown={isTitle} courseIndex={courseIndex} setIsLabelShown={setLabelController} courseArray={courseArray} setLabel={handleLabel} />
+        <TextNLabel isLabelShown={isTitle} label={label} courseIndex={courseIndex} setIsLabelShown={setLabelController} courseArray={courseArray} setLabel={handleLabel} />
 
         {name}
 
