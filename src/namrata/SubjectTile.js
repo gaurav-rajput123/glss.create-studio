@@ -16,6 +16,7 @@ import convertToString from "../resources/convertToString";
 // import parse from 'html-react-parser'
 import generateKey from "../resources/generateKey";
 const parse = require('html-react-parser')
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 function SubjectTile(prop) {
   let { name, changeCourseName, courseIndex, courseArray, addTopics, updateCourseArray } = prop
 
@@ -39,6 +40,7 @@ function SubjectTile(prop) {
   const handleLabel = (labelVal) => {
     let newCourseArray = [...courseArray]
     newCourseArray[courseIndex].name = labelVal
+    setLabel(labelVal)
     updateCourseArray(newCourseArray)
   }
 
@@ -92,12 +94,16 @@ function SubjectTile(prop) {
 
         {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
 
-        <TextNLabel isLabelShown={isTitle} courseIndex={courseIndex} setIsLabelShown={setLabelController} courseArray={courseArray} setLabel={handleLabel} />
+        <TextNLabel isLabelShown={isTitle} label={label} courseIndex={courseIndex} setIsLabelShown={setLabelController} courseArray={courseArray} setLabel={handleLabel} />
 
         {name}
 
 
         <div style={{ flexGrow: 1 }} />
+
+        <IconButton sx={{ marginRight: "10px" }} onClick={() => duplicateSection()}>
+          <FileCopyIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
+        </IconButton>
 
         <IconButton sx={{ marginRight: "10px" }} onClick={() => setLabelController()}>
           <EditIcon className="Icon1" sx={{ color: "#b7b7b7", }} />

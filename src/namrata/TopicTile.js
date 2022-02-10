@@ -38,8 +38,10 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
 
   }
   const handleLabel = (labelVal) => {
+    let newCourseArray = [...courseArray]
+    newCourseArray[courseIndex].topics[topicIndex].name = labelVal
     setLabel(labelVal)
-    changeTopicName(labelVal, topicIndex, topicArray)
+    updateCourseArray(newCourseArray)
   }
 
   const addSubTopic = () => {
@@ -77,7 +79,7 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
         </IconButton>
         {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
 
-        <TextNLabel isLabelShown={isTitle} courseIndex={courseIndex} setIsLabelShown={setLabelController} setLabel={handleLabel} courseArray={courseArray} />
+        <TextNLabel isLabelShown={isTitle} courseIndex={courseIndex} setIsLabelShown={setLabelController} setLabel={handleLabel} courseArray={courseArray} updateCourseArray={updateCourseArray} label={label} />
 
         <div style={{ flexGrow: 1 }} />
 

@@ -3,16 +3,16 @@ import { Button } from '@mui/material';
 import { Typography } from '@mui/material';
 import React, { useState } from 'react';
 
-function TextNLabel({ isLabelShown, setIsLabelShown, setLabel, courseArray, courseIndex }) {
+function TextNLabel({ isLabelShown, setIsLabelShown, setLabel, courseArray, courseIndex, label }) {
 
-    const [labelIn, setLabelIn] = useState(courseArray[courseIndex].name)
+    const [labelIn, setLabelIn] = useState(label)
 
     return (
         isLabelShown ?
             (
                 <div style={{ display: "flex", alignItems: "center" }}>
                     <Typography fontSize={20} >
-                        {courseArray[courseIndex].name}
+                        {label}
                     </Typography>
                 </div>
             )
