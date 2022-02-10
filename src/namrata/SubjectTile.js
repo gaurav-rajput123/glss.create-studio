@@ -16,6 +16,7 @@ import convertToString from "../resources/convertToString";
 // import parse from 'html-react-parser'
 import generateKey from "../resources/generateKey";
 const parse = require('html-react-parser')
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 function SubjectTile(prop) {
   let { name, changeCourseName, courseIndex, courseArray, addTopics, updateCourseArray } = prop
 
@@ -99,6 +100,10 @@ function SubjectTile(prop) {
 
 
         <div style={{ flexGrow: 1 }} />
+
+        <IconButton sx={{ marginRight: "10px" }} onClick={() => duplicateSection()}>
+          <FileCopyIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
+        </IconButton>
 
         <IconButton sx={{ marginRight: "10px" }} onClick={() => setLabelController()}>
           <EditIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
