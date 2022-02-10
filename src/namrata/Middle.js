@@ -160,7 +160,7 @@ function TopicTileBox({topic, topicIndex, topicArray, changeTopicName, addNewSub
       {
         topic.subTopics?.map((subTopic, subTopicIndex, subTopicArray)=>{
           return <SubTopicTile 
-          key={subTopicIndex+4} 
+          key={subTopic.id} 
           subTopic={subTopic}
           topicArray={topicArray}
           subTopicArray={subTopicArray}

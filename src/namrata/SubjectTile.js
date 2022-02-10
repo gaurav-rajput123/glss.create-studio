@@ -15,8 +15,9 @@ import convertToString from "../resources/convertToString";
 // import Subsection from './Subsection';
 // import parse from 'html-react-parser'
 import generateKey from "../resources/generateKey";
-const parse = require('html-react-parser')
 import FileCopyIcon from '@mui/icons-material/FileCopy';
+const parse = require('html-react-parser')
+
 function SubjectTile(prop) {
   let { name, changeCourseName, courseIndex, courseArray, addTopics, updateCourseArray } = prop
 
@@ -83,6 +84,28 @@ function SubjectTile(prop) {
     console.log(newCourseArray)
     updateCourseArray(newCourseArray)
 
+  }
+  const duplicateSection = () => {
+    let newCourseArray = [...courseArray]
+    let duplicateObj = { ...newCourseArray[courseIndex] }
+    duplicateObj.topics = [...duplicateObj.topics]
+    // duplicateObj.topics.subtopics ? duplicateObj.topics[topicIndex].subtopics = [...duplicateObj.topics[topicIndex].subtopics] : null
+    let newDuplicateObjTopics
+    if (duplicateObj.topics !== undefined) {
+      newDuplicateObjTopics = duplicateObj.topics.map(item => {
+        item.id = generateKey()
+        if (item.subTopics !== undefined) {
+          console.log("here")
+          item.subTopics = [...item.subTopics]
+        }
+        return item;
+      })
+    }
+
+    duplicateObj.topics = newDuplicateObjTopics
+    // duplicateObj.id = generateKey()
+    newCourseArray.push(duplicateObj)
+    updateCourseArray(newCourseArray)
   }
   return (
     <div>

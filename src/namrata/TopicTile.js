@@ -12,6 +12,7 @@ import TextDescription from "./TextDescription";
 import Collapsible from "./SubContent";
 import Subsection from './SubTopicTile';
 import convertToString from "../resources/convertToString";
+import { FileCopy } from "@mui/icons-material";
 const parse = require('html-react-parser')
 
 
@@ -67,7 +68,15 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
     updateCourseArray(newCourseArray)
   }
 
-
+  const duplicateTopic = () => {
+    let newCourseArray = [...courseArray]
+    let newTopicArray = [...courseArray[courseIndex].topics]
+    let duplicateTopicObj = { ...newTopicArray[topicIndex] }
+    duplicateTopicObj.subTopics = [...duplicateTopicObj.subTopics]
+    newTopicArray.push(duplicateTopicObj)
+    newCourseArray.push(newTopicArray)
+    updateCourseArray(newCourseArray)
+  }
 
   return (
     <div>
@@ -82,6 +91,10 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
         <TextNLabel isLabelShown={isTitle} courseIndex={courseIndex} setIsLabelShown={setLabelController} setLabel={handleLabel} courseArray={courseArray} updateCourseArray={updateCourseArray} label={label} />
 
         <div style={{ flexGrow: 1 }} />
+
+        <IconButton sx={{ marginRight: "10px" }} onClick={() => duplicateTopic()}>
+          <FileCopy className="Icon1" sx={{ color: "#b7b7b7", }} />
+        </IconButton>
 
         <IconButton sx={{ marginRight: "10px" }} onClick={() => setLabelController()}>
           <EditIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
