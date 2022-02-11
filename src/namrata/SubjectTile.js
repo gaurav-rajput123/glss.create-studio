@@ -8,12 +8,14 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import TextNLabel from "./TextNLabel";
 import "./SubjectTile.css";
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 import TextDescription from "./TextDescription";
 // import Collapsible from "./SubContent";
 import TopicTile from './TopicTile';
 import convertToString from "../resources/convertToString";
 // import Subsection from './Subsection';
 // import parse from 'html-react-parser'
+import pushToArray from "../resources/pushToArray";
 const parse = require('html-react-parser')
 function SubjectTile(prop) {
   let { name, changeCourseName, courseIndex, courseArray, addTopics, updateCourseArray } = prop
@@ -62,6 +64,13 @@ function SubjectTile(prop) {
       let newCourseArray = [...courseArray.slice(0, courseIndex), ...courseArray.slice(courseIndex+1)]
       updateCourseArray(newCourseArray)
   }
+
+  const makeCopy = () => {
+    let newCourseArrayA = [...courseArray]
+    let newCourseArray = pushToArray(newCourseArrayA, courseIndex)
+    console.log(newCourseArray)
+    updateCourseArray(newCourseArray)
+  }
   return (
     <div>
       <StyledCard sx={{ backgroundColor: "#f1f1f1" }}>
@@ -78,6 +87,10 @@ function SubjectTile(prop) {
 
 
         <div style={{ flexGrow: 1 }} />
+
+        <IconButton sx={{ marginRight: "10px" }} onClick={() => makeCopy()}>
+          <FileCopyIcon className="Icon5" sx={{ color: "#b7b7b7", }} />
+        </IconButton>   
 
         <IconButton sx={{ marginRight: "10px" }} onClick={() => setLabelController()}>
           <EditIcon className="Icon1" sx={{ color: "#b7b7b7", }} />

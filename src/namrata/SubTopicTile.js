@@ -20,6 +20,10 @@ import TextNLabel from "./TextNLabel";
 import "./SubjectTile.css";
 import TextDescription from "./TextDescription";
 import convertToString from "../resources/convertToString";
+import UploadModal from "./UploadModal";
+import FileCopy from "@mui/icons-material/FileCopy";
+import pushToArray from "../resources/pushToArray";
+
 
 const parse = require('html-react-parser');
 
@@ -87,6 +91,20 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
     newCourseArray[courseIndex].topics[topicIndex].subTopics = newSubTopicArray
     updateCourseArray(newCourseArray)
 }
+  const [modalState, setModalState] = useState(false)
+  const setModal = () => {
+    setModalState(!modalState)
+  }
+
+  // const makeCopy = () => {
+  //   let newCourseArray = [...courseArray]
+  //   let newSubTopicArray = pushToArray(newCourseArray[courseIndex].topics[topicIndex].subTopics, subTopicIndex)
+  //   newCourseArray[courseIndex].topics[topicIndex].subTopics = newSubTopicArray
+  
+  //   console.log(newCourseArray)
+  //   updateCourseArray(newCourseArray)
+   
+  // }
 
 
   return (
@@ -102,6 +120,9 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
         <TextNLabel isLabelShown={isTitle} setIsLabelShown={setLabelController} label={label} setLabel={handleLabel} />
 
         <div style={{ flexGrow: 1 }} />
+        {/* <IconButton sx={{ marginRight: "10px" }} onClick={() => makeCopy()}>
+          <FileCopy className="Icon1" sx={{ color: "#b7b7b7", }} />
+        </IconButton> */}
 
         <IconButton sx={{ marginRight: "10px" }} onClick={() => setLabelController()}>
           <EditIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
@@ -129,7 +150,7 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
       <Collapse in={expanded} timeout="auto" unmountOnExit>
 
         <CardContent sx={{ display: "flex", justifyContent: "center" }}>
-          <Button variant="contained" sx={{ minWidth: "60% !important", backgroundColor: "#375dbe", height: "50px" }}>
+          <Button variant="contained" sx={{ minWidth: "60% !important", backgroundColor: "#375dbe", height: "50px" }} onClick={()=>setModal()}>
             Add Component
           </Button>
         </CardContent>
@@ -180,6 +201,7 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
         </div>
 
       </Collapse>
+      <UploadModal setModal={setModal} modalState={modalState}/>
 
     </div >
 

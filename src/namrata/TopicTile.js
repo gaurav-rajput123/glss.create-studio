@@ -12,6 +12,9 @@ import TextDescription from "./TextDescription";
 import Collapsible from "./SubContent";
 import Subsection from './SubTopicTile';
 import convertToString from "../resources/convertToString";
+import FileCopy from "@mui/icons-material/FileCopy";
+import pushToArray from "../resources/pushToArray";
+
 const parse = require('html-react-parser')
 
 
@@ -65,10 +68,44 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
     updateCourseArray(newCourseArray)
 }
 
+const makeCopy = () => {
+  let newCourseArray = [...courseArray]
+  // let newTopicArray = pushToArray(newCourseArray[courseIndex].topics, topicIndex)
+  // let newCourseArray = [...courseArray]
 
+
+  let tempTopicArr = newCourseArray[courseIndex].topics
+  let newTopicArr = []
+  for(let i = 0; i<=topicIndex; i++){
+    newTopicArr.push({...tempTopicArr[i]})
+  }
+ 
+  newTopicArr.push(
+    {...newTopicArr[topicIndex]}
+  )
+  for(let i = topicIndex+1; i<tempTopicArr.length; i++){
+    newTopicArr.push({...tempTopicArr[i]})
+  }
+  // console.log(newCourseArray[courseIndex].topics)
+  // console.log(tempTopicArr)
+  // console.log(newTopicArr)
+
+  newCourseArray[courseIndex].topics = newTopicArr
+  
+  updateCourseArray(newCourseArray)
+
+  // console.log(courseArray)
+  // console.log(newCourseArray)
+  // console.log(newTopicArray)
+  // newCourseArray[courseIndex].topics = newTopicArray
+
+  // console.log(newCourseArray) 
+  // updateCourseArray(newCourseArray)
+ 
+}
 
   return (
-    <div>
+    <div onClick={()=>console.log(topicIndex)}>
       <StyledCard sx={{ backgroundColor: "#f1f1f1", borderLeft: '4px solid #375dbe' }}>
         <IconButton onClick={() => setIsExpanded(!isExpanded)}>
 
@@ -80,6 +117,10 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
         <TextNLabel isLabelShown={isTitle} setIsLabelShown={setLabelController} label={label} setLabel={handleLabel} />
 
         <div style={{ flexGrow: 1 }} />
+
+        <IconButton sx={{ marginRight: "10px" }} onClick={() => makeCopy()}>
+          <FileCopy className="Icon5" sx={{ color: "#b7b7b7", }} />
+        </IconButton>
 
         <IconButton sx={{ marginRight: "10px" }} onClick={() => setLabelController()}>
           <EditIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
