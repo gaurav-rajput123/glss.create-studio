@@ -4,6 +4,8 @@ import { Paper, Box, Button, Card } from "@mui/material";
 import SubjectTile from "./SubjectTile";
 import TopicTile from "./TopicTile";
 import SubTopicTile from './SubTopicTile';
+import generateKey from "../resources/generateKey";
+
 
 
 export default function Middle() {
@@ -11,10 +13,14 @@ export default function Middle() {
   const addNewSection = () => {
     let newCourses = [...courses]
     newCourses.push({
+      id: generateKey(),
       name: "Basic Electrical Engineering"
     })
     setCourses(newCourses)
   }
+
+
+
 
   const updateCourse = (course, index) => {
     let newCourseObj = [...courses]
@@ -30,8 +36,10 @@ export default function Middle() {
     setCourses(newCourseArray)
   }
   const updateCourseArray = (updatedCourseArray) => {
-    setCourses(updatedCourseArray)
+    let newUpdatedCourseArray = [...updatedCourseArray]
+    setCourses(newUpdatedCourseArray)
   }
+ 
   return (
     <Box className="box-list" style={{ margin: "10px 0px 0px 60px", width: "1400px", zIndex: 2 }}>
       <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height: "auto", borderRadius: "15px", paddingBottom:'1%' }}>
@@ -47,7 +55,7 @@ export default function Middle() {
         <Card />
     {courses.map((item, index) => {
     return (
-      <MainTile key={index} course={item} courseIndex={index} courseArray={courses} updateCurrentCourse={updateCourse} 
+      <MainTile key={item.id} course={item} courseIndex={index} courseArray={courses} updateCurrentCourse={updateCourse} 
         changeCourseName={changeCourseName}
         updateCourseArray={updateCourseArray}
       />
@@ -55,6 +63,10 @@ export default function Middle() {
   })}
       </Paper>
       <Button onClick={() =>console.log(courses)}>CheckUpdate</Button>
+      {/* <Button onClick={() =>{
+        let newArr = [1,2,3,4,5,6]
+        console.log(newArr.map(item=> uuidv4()))
+      }}>generateKey</Button> */}
     </Box>
   )
 }
@@ -67,7 +79,7 @@ function MainTile({course, courseIndex, courseArray, updateCurrentCourse, change
     if (newCourseObj.hasOwnProperty('topics')) {
       newCourseObj.topics.push({
         name: "Nortons Theorem",
-        subTopics: []
+        subTopics: [] 
       })
     } else {
       newCourseObj.topics = [
@@ -77,7 +89,7 @@ function MainTile({course, courseIndex, courseArray, updateCurrentCourse, change
         }
       ]
     }
-
+ 
     updateCurrentCourse(newCourseObj, courseIndex)
   }
 
@@ -100,7 +112,7 @@ function MainTile({course, courseIndex, courseArray, updateCurrentCourse, change
   
   return (
     <Box>
-      <SubjectTile changeCourseName={changeCourseName} courseIndex={courseIndex} courseArray={courseArray} addTopics={updateCourse} 
+      <SubjectTile changeCourseName={changeCourseName} courseIndex={courseIndex} courseArray={courseArray} 
         updateCourseArray={updateCourseArray}
       />
       <Box sx={{width: "98%", marginLeft:'1%'}}>
@@ -148,7 +160,7 @@ function TopicTileBox({topic, topicIndex, topicArray, changeTopicName, addNewSub
       {
         topic.subTopics?.map((subTopic, subTopicIndex, subTopicArray)=>{
           return <SubTopicTile 
-          key={subTopicIndex+4} 
+          key={subTopic.id} 
           subTopic={subTopic}
           topicArray={topicArray}
           subTopicArray={subTopicArray}

@@ -12,9 +12,7 @@ import TextDescription from "./TextDescription";
 import Collapsible from "./SubContent";
 import Subsection from './SubTopicTile';
 import convertToString from "../resources/convertToString";
-import FileCopy from "@mui/icons-material/FileCopy";
-import pushToArray from "../resources/pushToArray";
-
+import { FileCopy } from "@mui/icons-material";
 const parse = require('html-react-parser')
 
 
@@ -41,8 +39,10 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
 
   }
   const handleLabel = (labelVal) => {
+    let newCourseArray = [...courseArray]
+    newCourseArray[courseIndex].topics[topicIndex].name = labelVal
     setLabel(labelVal)
-    changeTopicName(labelVal, topicIndex, topicArray)
+    updateCourseArray(newCourseArray)
   }
 
   const addSubTopic = () => {
@@ -63,16 +63,20 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
 
   const handleDelete = () => {
     let newCourseArray = [...courseArray]
-    let newTopicArray = [...courseArray[courseIndex].topics.slice(0, topicIndex), ...courseArray[courseIndex].topics.slice(topicIndex+1)]
+    let newTopicArray = [...courseArray[courseIndex].topics.slice(0, topicIndex), ...courseArray[courseIndex].topics.slice(topicIndex + 1)]
     newCourseArray[courseIndex].topics = newTopicArray
     updateCourseArray(newCourseArray)
-}
+  }
 
-const makeCopy = () => {
-  let newCourseArray = [...courseArray]
-  // let newTopicArray = pushToArray(newCourseArray[courseIndex].topics, topicIndex)
-  // let newCourseArray = [...courseArray]
-
+  const duplicateTopic = () => {
+    let newCourseArray = [...courseArray]
+    let newTopicArray = [...courseArray[courseIndex].topics]
+    let duplicateTopicObj = { ...newTopicArray[topicIndex] }
+    duplicateTopicObj.subTopics = [...duplicateTopicObj.subTopics]
+    newTopicArray.push(duplicateTopicObj)
+    newCourseArray.push(newTopicArray)
+    updateCourseArray(newCourseArray)
+  }
 
   let tempTopicArr = newCourseArray[courseIndex].topics
   let newTopicArr = []
@@ -102,7 +106,7 @@ const makeCopy = () => {
   // console.log(newCourseArray) 
   // updateCourseArray(newCourseArray)
  
-}
+
 
   return (
     <div onClick={()=>console.log(topicIndex)}>
@@ -114,12 +118,12 @@ const makeCopy = () => {
         </IconButton>
         {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
 
-        <TextNLabel isLabelShown={isTitle} setIsLabelShown={setLabelController} label={label} setLabel={handleLabel} />
+        <TextNLabel isLabelShown={isTitle} courseIndex={courseIndex} setIsLabelShown={setLabelController} setLabel={handleLabel} courseArray={courseArray} updateCourseArray={updateCourseArray} label={label} />
 
         <div style={{ flexGrow: 1 }} />
 
-        <IconButton sx={{ marginRight: "10px" }} onClick={() => makeCopy()}>
-          <FileCopy className="Icon5" sx={{ color: "#b7b7b7", }} />
+        <IconButton sx={{ marginRight: "10px" }} onClick={() => duplicateTopic()}>
+          <FileCopy className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
 
         <IconButton sx={{ marginRight: "10px" }} onClick={() => setLabelController()}>
@@ -133,7 +137,7 @@ const makeCopy = () => {
         </IconButton>
 
         <IconButton sx={{ marginRight: "10px" }}
-         onClick={() => handleDelete()}
+          onClick={() => handleDelete()}
         >
           <DeleteIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
         </IconButton>
@@ -154,8 +158,11 @@ const makeCopy = () => {
       </Collapse>
 
 
-    </div>
+    </div >
   )
+
 }
+
+  
 
 export default TopicTile;
