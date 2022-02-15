@@ -1,12 +1,13 @@
 // import './App.css';
 import { useState } from 'react';
-import Landing from './namrata/Landing';
-import UploadComponentAlter from './namrata/UploadComponentAlter';
+
+import Home from './Home'
+import CardAnim from './namrata/CardAnim';
 function App() {
   const [val, setVal] = useState("hello")
   return (
     <div className="App">
-      <Landing />
+      <CardAnim name="Mahi"/>  
     </div>
   );
 
