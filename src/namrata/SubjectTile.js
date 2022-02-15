@@ -8,7 +8,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import TextNLabel from "./TextNLabel";
 import "./SubjectTile.css";
-import FileCopyIcon from '@mui/icons-material/FileCopy';
 import TextDescription from "./TextDescription";
 // import Collapsible from "./SubContent";
 import TopicTile from './TopicTile';
@@ -16,7 +15,7 @@ import convertToString from "../resources/convertToString";
 // import Subsection from './Subsection';
 // import parse from 'html-react-parser'
 import generateKey from "../resources/generateKey";
-// import FileCopyIcon from '@mui/icons-material/FileCopy';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 const parse = require('html-react-parser')
 
 function SubjectTile(prop) {
@@ -26,7 +25,7 @@ function SubjectTile(prop) {
     display: "flex",
     margin: '12px 10px',
     padding: "12px 12px 12px 0px"
-  })  
+  })
 
   const [expanded, setExpanded] = React.useState(false);
 
@@ -106,13 +105,6 @@ function SubjectTile(prop) {
     duplicateObj.topics = newDuplicateObjTopics
     // duplicateObj.id = generateKey()
     newCourseArray.push(duplicateObj)
-    updateCourseArray(newCourseArray)
-  }
-
-  const makeCopy = () => {
-    let newCourseArrayA = [...courseArray]
-    let newCourseArray = pushToArray(newCourseArrayA, courseIndex)
-    console.log(newCourseArray)
     updateCourseArray(newCourseArray)
   }
   return (
