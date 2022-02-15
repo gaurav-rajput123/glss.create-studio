@@ -3,7 +3,9 @@ import Alternate from './Alternate';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-
+import UploadComponentAlter from './UploadComponentAlter';
+import LinkIcon from '@mui/icons-material/Link';
+import IosShareIcon from '@mui/icons-material/IosShare';
 
 
 const style = {
@@ -27,16 +29,17 @@ export default function UploadModal({
 
   return (
     <div>
-    <Button onClick={()=> setModal()} />
+    {/* <Button onClick={handleOpen} /> */}
     <Modal
       open={modalState}
       onClose={()=>setModal()}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={style}>
+      {/* <Box sx={style}>
         <Alternate/>
-      </Box>
+      </Box> */}
+    <UploadComponentAlter/>
     </Modal>
     </div>
   );

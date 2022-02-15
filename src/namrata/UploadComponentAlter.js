@@ -24,6 +24,7 @@ function UploadComponentAlter({ courseArray, courseIndex, topicIndex, subTopicIn
 
         let newName = courseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].id + file.name.substring(file.name.lastIndexOf('.'))
         console.log(newName)
+        let newFile = new File([file], newName, { type: file.type })
         console.log(newFile)
         formData.append(setInForm, newFile, newName)
         updateCourseArray(newCourseArray)
