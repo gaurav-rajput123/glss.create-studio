@@ -19,8 +19,12 @@ function UploadComponentAlter({ courseArray, courseIndex, topicIndex, subTopicIn
         console.log(file)
         // setImageUrl(URL.createObjectURL(file))
         let newCourseArray = [...courseArray]
-        newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].resource = {}
-        if(newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].resource !== undefined)(newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].resource[setInForm] = true) 
+        // newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].resource = {}
+        if(newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].resource != undefined){newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].resource[setInForm] = true
+        }else{
+            newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].resource = {}
+            newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].resource[setInForm] = true
+        } 
 
         let newName = courseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].id + file.name.substring(file.name.lastIndexOf('.'))
         console.log(newName)

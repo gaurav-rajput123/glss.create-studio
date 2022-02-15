@@ -222,7 +222,7 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
             variant="outlined"
             color="success"
             onClick={()=>handleOpen("pdf")}
-            disabled={isDisable.ppt}
+            disabled={isDisable.pdf}
           >
             <PictureAsPdfIcon />
           </Button>
@@ -243,7 +243,7 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
             variant="outlined"
             color="warning"
             onClick={()=>handleOpen("ppt")}
-            disabled={isDisable.video}
+            disabled={isDisable.ppt}
           >
             <SlideshowIcon />
           </Button>
