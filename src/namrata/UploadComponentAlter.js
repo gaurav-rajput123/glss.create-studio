@@ -7,6 +7,12 @@ import LinkIcon from '@mui/icons-material/Link';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import img from '../resources/Preview.jpg'
 import { formContext } from '../Context';
+import AttachmentIcon from '@mui/icons-material/Attachment';
+import PlayCircleFilledSharpIcon from '@mui/icons-material/PlayCircleFilledSharp';
+import FileUploadSharpIcon from '@mui/icons-material/FileUploadSharp';
+import TextEditor from './TextEditor';
+import ListItemButton from '@mui/material/ListItemButton';
+
 
 const Input = styled('input')({
     display: 'none',
@@ -20,7 +26,7 @@ function UploadComponentAlter({ courseArray, courseIndex, topicIndex, subTopicIn
         // setImageUrl(URL.createObjectURL(file))
         let newCourseArray = [...courseArray]
         newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].resource = {}
-        if(newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].resource !== undefined)(newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].resource[setInForm] = true) 
+        if (newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].resource !== undefined) (newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].resource[setInForm] = true)
 
         let newName = courseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].id + file.name.substring(file.name.lastIndexOf('.'))
         console.log(newName)
@@ -37,80 +43,79 @@ function UploadComponentAlter({ courseArray, courseIndex, topicIndex, subTopicIn
             // minWidth: "500px",
             // minHeight: "500px"
         }}>
-            <Grid container>
+            <Grid container columns={12} >
                 <Grid item xs={1} />
-                <Grid item xs={10.5}>
-                    <Grid container>
-
-                        <Grid item xs={3} sx={{ direction: "column" }}>
-                            <Box sx={{
-                                marginY: "12px"
-                            }}>
-                                <div className="Transcript">
-                                    <Typography sx={{ fontWeight: "bold" }}>Transcript<Switch /></Typography>
-                                    {/* <UploadButton
+                <Grid item xs={11}>
+                    <Grid container >
+                        <Grid item xs={11} sx={{ direction: "column", paddingTop: "10px", paddingBottom: "10px" }}>
+                            <TextEditor />
+                        </Grid>
+                        <Grid item xs={5} >
+                            <div className="Transcript">
+                                <Typography sx={{ paddingBottom: "10px", fontWeight: 500 }}>Transcript<Switch /></Typography>
+                                {/* <UploadButton
                                         name={"Attach Transcript"}
                                         Icon={<LinkIcon className="attach-icon" />}>
                                     </UploadButton> */}
-                                    <label htmlFor="contained-button-file">
-                                        <Input accept="image/*" id="contained-button-files" multiple type="file" />
-                                        <Button className="upload-button" variant="contained" component="span" >
-                                            Attach Transcript
-                                        </Button>
-                                    </label>
-                                </div>
-                            </Box>
-                            <Box sx={{
-                                marginY: "12px"
-                            }}>
-                                <div className="Thumbnail">
-                                    <Typography sx={{ fontWeight: "bold" }}>Thumbnail</Typography>
-                                    {/* <UploadButton
+                                <label htmlFor="contained-button-file">
+                                    <Input accept="image/*" id="contained-button-files" multiple type="file" />
+                                    <ListItemButton className="upload-button" variant="contained" sx={{ width: "250px", background: "rgb(25, 118, 210)", color: "white", borderRadius: "10px" }} >
+                                        <AttachmentIcon sx={{ paddingRight: "10px" }} />
+                                        <Typography>Attach Transcript</Typography>
+
+                                    </ListItemButton>
+                                </label>
+                            </div>
+                            <div className="Thumbnail">
+                                <Typography sx={{ paddingBottom: "10px", fontWeight: 500 }}>Thumbnail</Typography>
+                                {/* <UploadButton
                                         name={"Upload Thumbnail"}
                                         Icon={<IosShareIcon className="thumb-icon" />} >
                                     </UploadButton> */}
-                                    <label htmlFor="contained-button-file">
-                                        <Input accept="image/*" id="contained-button-file" multiple type="file"
+                                <label htmlFor="contained-button-file">
+                                    <Input accept="image/*" id="contained-button-file" multiple type="file"
                                         onChange={e => {
                                             // console.log(e.target.files[0])
                                             // setFileObj(e.target.files[0])
                                             setImageUrl(URL.createObjectURL(e.target.files[0]))
                                             console.log(imageUrl)
                                         }} />
-                                        <Button className="upload-button" variant="contained" component="span"
-                                         >
-                                            Upload Thumbnail
-                                        </Button>
-                                    </label>
-                                </div>
-                            </Box>
-                            <Box sx={{
-                                marginTop: "48px"
-                            }}>
-                                <div>
-                                    <input
-                                        accept="image/*"
-                                        type="file"
-                                        id="select-image"
-                                        style={{ display: 'none' }}
-                                        onChange={e => {
+                                    <ListItemButton className="upload-button" sx={{ width: "250px", background: "rgb(25, 118, 210)", color: "white", borderRadius: "10px" }}
+                                    >
+                                        <PlayCircleFilledSharpIcon sx={{ paddingRight: "10px" }} />
+                                        <Typography>Upload Thumbnail</Typography>
 
-                                            setFileObj(e.target.files[0])
-                                            setImageUrl(URL.createObjectURL(fileObj))
-                                        }}
-                                    />
-                                    <label htmlFor="select-image">
-                                        <Button className="upload-image" variant="contained" color="primary" component="span" style={{ marginLeft: "20px", marginTop: "-20px" }}>
-                                            Upload
-                                        </Button>
-                                    </label>
-                                </div>
-                            </Box>
+                                    </ListItemButton>
+                                </label>
+                            </div>
+                            <div className="Thumbnail">
+                                <Typography sx={{ paddingBottom: "10px", fontWeight: 500 }}>Upload File</Typography>
+                                <input
+                                    accept="image/*"
+                                    type="file"
+                                    id="select-image"
+                                    style={{ display: 'none' }}
+                                    onChange={e => {
+
+                                        setFileObj(e.target.files[0])
+                                        setImageUrl(URL.createObjectURL(fileObj))
+                                    }}
+                                />
+
+
+
+                                <label htmlFor="select-image">
+                                    <ListItemButton className="upload-image" variant="contained" color="primary" sx={{ width: "250px", background: "rgb(25, 118, 210)", color: "white", borderRadius: "10px" }}>
+                                        <FileUploadSharpIcon sx={{ paddingRight: "10px" }} />
+                                        <Typography>Upload</Typography>
+
+                                    </ListItemButton>
+                                </label>
+                            </div>
                         </Grid>
-                        <Grid item xs={9} sx={{
-                            border: "3px solid black",
-                            // maxHeight: "100%"
-                        }}>
+                        <Grid item xs={7}>
+                            <Typography sx={{ paddingBottom: "10px",paddingTop:"10px" }}>Preview</Typography>
+
                             {/* <Box> */}
                             {
                                 imageUrl == null ?
@@ -118,7 +123,7 @@ function UploadComponentAlter({ courseArray, courseIndex, topicIndex, subTopicIn
                                         <img src={img}
                                             alt="asdf"
                                             style={{
-                                                maxWidth: "100%",
+                                                maxWidth: "80%",
                                                 maxHeight: "100%",
                                                 objectFit: "cover"
                                             }} />
@@ -128,8 +133,8 @@ function UploadComponentAlter({ courseArray, courseIndex, topicIndex, subTopicIn
                                         <img src={imageUrl}
                                             alt="hello"
                                             style={{
-                                                maxWidth: "100%",
-                                                maxHeight: "400px",
+                                                minWidth: "60%",
+                                                minHeight: "320px",
                                                 objectFit: "cover"
                                             }} />
                                     )}
@@ -138,12 +143,8 @@ function UploadComponentAlter({ courseArray, courseIndex, topicIndex, subTopicIn
 
                     </Grid>
                 </Grid>
-                <Grid item xs={0.5} />
-                <Grid item xs={12} sx={{
-                    // border: "2px black solid",
-                    marginTop: "48px",
-                    marginX: "48px"
-                }}>
+                <Grid item xs={5} />
+                <Grid item xs={2} >
                     <Button onClick={() => {
                         console.log(imageUrl)
                         handleUpload(fileObj)
@@ -151,11 +152,12 @@ function UploadComponentAlter({ courseArray, courseIndex, topicIndex, subTopicIn
                         fullWidth
                         disabled={fileObj == null ? true : false}
                         sx={{
+                            marginTop:"10px",
                             padding: "12px",
                             borderRadius: "6px",
-
                         }}
                         variant='contained'
+                        color="success"
                     >
                         SAVE
 

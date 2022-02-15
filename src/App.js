@@ -1,6 +1,7 @@
 // import './App.css';
 import { useState } from 'react';
 import Landing from './namrata/Landing';
+import UploadComponentAlter from './namrata/UploadComponentAlter';
 function App() {
   const [val, setVal] = useState("hello")
   return (
