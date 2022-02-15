@@ -2,14 +2,16 @@
 import { useState } from 'react';
 import Middle from './namrata/Middle';
 
+
 import Home from './Home'
 function App() {
   const [val, setVal] = useState("hello")
   return (
     <div className="App">
       {/* <SubjectTitle/> */}
-      <Middle/>
-      {/* <Home/> */}
+      {/* <Middle/> */}
+      <Home/>
+    
 
      
       
