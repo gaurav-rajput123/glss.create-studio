@@ -26,7 +26,7 @@ function SubjectTile(prop) {
     display: "flex",
     margin: '12px 10px',
     padding: "12px 12px 12px 0px"
-  })
+  })  
 
   const [expanded, setExpanded] = React.useState(false);
 
