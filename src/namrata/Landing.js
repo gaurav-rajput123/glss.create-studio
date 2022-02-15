@@ -14,7 +14,7 @@ export default function Landing() {
     //topbar section//
     <Grid
       container
-      xs={12}
+      // xs={12}
       direction="row"
       justifyContent="flex-start"
       alignItems="flex-start"

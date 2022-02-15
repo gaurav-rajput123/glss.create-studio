@@ -92,9 +92,9 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
 
         <div style={{ flexGrow: 1 }} />
 
-        <IconButton sx={{ marginRight: "10px" }} onClick={() => duplicateTopic()}>
+        {/* <IconButton sx={{ marginRight: "10px" }} onClick={() => duplicateTopic()}>
           <FileCopy className="Icon1" sx={{ color: "#b7b7b7", }} />
-        </IconButton>
+        </IconButton> */}
 
         <IconButton sx={{ marginRight: "10px" }} onClick={() => setLabelController()}>
           <EditIcon className="Icon1" sx={{ color: "#b7b7b7", }} />

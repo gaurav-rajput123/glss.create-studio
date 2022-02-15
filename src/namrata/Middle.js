@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Butn from "./Butn";
 import { Paper, Box, Button, Card } from "@mui/material";
 import SubjectTile from "./SubjectTile";
@@ -6,7 +6,8 @@ import TopicTile from "./TopicTile";
 import SubTopicTile from './SubTopicTile';
 import generateKey from "../resources/generateKey";
 
-
+import { formContext } from "../Context";
+import axios from "axios";
 
 export default function Middle() {
   const [courses, setCourses] = useState([])
@@ -18,7 +19,7 @@ export default function Middle() {
     })
     setCourses(newCourses)
   }
-
+  const formData = useContext(formContext)
 
 
 
@@ -62,7 +63,31 @@ export default function Middle() {
     )
   })}
       </Paper>
-      <Button onClick={() =>console.log(courses)}>CheckUpdate</Button>
+      <Button onClick={() =>{
+        const data = {
+          name: "hello",
+          data: courses
+        }
+        formData.append('courseData', JSON.stringify(data))
+        console.log(courses)
+      }}>
+        CheckUpdate
+        </Button>
+        <Button onClick={() =>{
+        // console.log(courses)
+        // formData.forEach(item=>{
+        //   console.log(item)
+        // })
+       
+        axios({
+          url:'http://localhost:8080/get',
+          data: formData,
+          method: "POST"
+        }).then(res=>console.log(res)).catch(r=>console.log(r))
+       
+      }}>
+        show form
+        </Button>
       {/* <Button onClick={() =>{
         let newArr = [1,2,3,4,5,6]
         console.log(newArr.map(item=> uuidv4()))
@@ -119,7 +144,7 @@ function MainTile({course, courseIndex, courseArray, updateCurrentCourse, change
       {
         course.topics?.map((topic, topicIndex, topicArr)=>{
           return <TopicTileBox
-          key={topicIndex+4}
+          key={topic.id}
           topic={topic}
           topicIndex={topicIndex}
           topicArray={topicArr}
@@ -141,6 +166,7 @@ function TopicTileBox({topic, topicIndex, topicArray, changeTopicName, addNewSub
   const updateSubTopic = () => {
    
     let newSubTopic = {
+      id: generateKey(),
       "name": "newSubTopic"
     }
 

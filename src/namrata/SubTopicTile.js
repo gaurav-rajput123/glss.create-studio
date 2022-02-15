@@ -23,6 +23,7 @@ import convertToString from "../resources/convertToString";
 import Alternate from './Alternate';
 import Modal from '@mui/material/Modal';
 import { Box } from "@mui/system";
+import UploadComponentAlter from "./UploadComponentAlter";
 
 
 const parse = require('html-react-parser');
@@ -32,7 +33,9 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: "80%",
+  maxHeight: "70%",
+  height: "70%",
   bgcolor: 'white',
   border: '2px solid #000',
   boxShadow: 24,
@@ -65,6 +68,15 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
   const [isTitle, setIsTitle] = useState(true)
 
   const [label, setLabel] = useState("Section")
+
+  const [resourceType, setResourceType]  = useState(null)
+
+  const [isDisable, setIsDisable] = useState({
+    "ppt": false,
+    "video": false,
+    "audio": false,
+    'pdf': false
+  })
 
   const setLabelController = () => {
     setIsTitle(!isTitle)
@@ -101,9 +113,14 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
   // below, three lines of code are for modal used in video
   const [open, setOpen] = React.useState(false);
 
-  const handleOpen = () => setOpen(true);
+  const handleOpen = (type) => {
+    setResourceType(type)
+    setOpen(true)
+  };
 
-  const handleClose = () => setOpen(false);
+  const handleClose = (txt) => {
+    setOpen(false)
+  };
 
 
   return (
@@ -162,29 +179,34 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
           <Button
             sx={{ minWidth: "150px", height: "100px" }}
             variant="outlined"
-            onClick={handleOpen}
+            onClick={()=>handleOpen("audio")}
             color="error"
+            disabled={isDisable.audio}
           >
             <AudioFileIcon />
           </Button>
+
           <Modal
             open={open}
-            onClose={handleClose}
+            onClose={()=>handleClose(null)}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
-              <Alternate />
+              <UploadComponentAlter courseArray={courseArray} topicIndex={topicIndex} subTopicIndex={subTopicIndex} courseIndex={courseIndex} setInForm={resourceType} updateCourseArray={updateCourseArray} handleClose={handleClose}/>
             </Box>
           </Modal>
+
           <Button
             sx={{ minWidth: "150px", height: "100px" }}
             variant="outlined"
-            onClick={handleOpen}
+            onClick={()=>handleOpen("video")}
+            disabled={isDisable.video}
           >
             <OndemandVideoIcon />
           </Button>
-          <Modal
+
+          {/* <Modal
             open={open}
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
@@ -193,16 +215,19 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
             <Box sx={style}>
               <Alternate />
             </Box>
-          </Modal>
+          </Modal> */}
+
           <Button
             sx={{ minWidth: "150px", height: "100px" }}
             variant="outlined"
             color="success"
-            onClick={handleOpen}
+            onClick={()=>handleOpen("pdf")}
+            disabled={isDisable.ppt}
           >
             <PictureAsPdfIcon />
           </Button>
-          <Modal
+
+          {/* <Modal
             open={open}
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
@@ -211,16 +236,19 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
             <Box sx={style}>
               <Alternate />
             </Box>
-          </Modal>
+          </Modal> */}
+
           <Button
             sx={{ minWidth: "150px", height: "100px" }}
             variant="outlined"
             color="warning"
-            onClick={handleOpen}
+            onClick={()=>handleOpen("ppt")}
+            disabled={isDisable.video}
           >
             <SlideshowIcon />
           </Button>
-          <Modal
+
+          {/* <Modal
             open={open}
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
@@ -229,7 +257,7 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
             <Box sx={style}>
               <Alternate />
             </Box>
-          </Modal>
+          </Modal> */}
         </Stack>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Button variant="contained" sx={{ backgroundColor: "#375dbe", borderRadius: "5px" }}>

@@ -124,9 +124,9 @@ function SubjectTile(prop) {
 
         <div style={{ flexGrow: 1 }} />
 
-        <IconButton sx={{ marginRight: "10px" }} onClick={() => duplicateSection()}>
+        {/* <IconButton sx={{ marginRight: "10px" }} onClick={() => duplicateSection()}>
           <FileCopyIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
-        </IconButton>
+        </IconButton> */}
 
         <IconButton sx={{ marginRight: "10px" }} onClick={() => setLabelController()}>
           <EditIcon className="Icon1" sx={{ color: "#b7b7b7", }} />
