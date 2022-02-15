@@ -68,7 +68,7 @@ export default function Middle() {
           name: "hello",
           data: courses
         }
-        formData.append('courseData', JSON.stringify(data))
+        formData.set('courseDataa', JSON.stringify(data))
         console.log(courses)
       }}>
         CheckUpdate
