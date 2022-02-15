@@ -1,20 +1,15 @@
 // import './App.css';
 import { useState } from 'react';
 import Middle from './namrata/Middle';
-import { Card } from '@mui/material';
-import { CardHeader } from '@mui/material';
-import { CardContent } from '@mui/material';
-import { CardActions } from '@mui/material';
-import { Button } from '@mui/material';
-import { Typography } from '@mui/material';
+
 import Home from './Home'
 function App() {
   const [val, setVal] = useState("hello")
   return (
     <div className="App">
       {/* <SubjectTitle/> */}
-      {/* <Middle/> */}
-      <Home/>
+      <Middle/>
+      {/* <Home/> */}
 
      
       
