@@ -16,7 +16,7 @@ import convertToString from "../resources/convertToString";
 // import Subsection from './Subsection';
 // import parse from 'html-react-parser'
 import generateKey from "../resources/generateKey";
-import FileCopyIcon from '@mui/icons-material/FileCopy';
+// import FileCopyIcon from '@mui/icons-material/FileCopy';
 const parse = require('html-react-parser')
 
 function SubjectTile(prop) {
