@@ -78,38 +78,8 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
     updateCourseArray(newCourseArray)
   }
 
-  let tempTopicArr = newCourseArray[courseIndex].topics
-  let newTopicArr = []
-  for(let i = 0; i<=topicIndex; i++){
-    newTopicArr.push({...tempTopicArr[i]})
-  }
- 
-  newTopicArr.push(
-    {...newTopicArr[topicIndex]}
-  )
-  for(let i = topicIndex+1; i<tempTopicArr.length; i++){
-    newTopicArr.push({...tempTopicArr[i]})
-  }
-  // console.log(newCourseArray[courseIndex].topics)
-  // console.log(tempTopicArr)
-  // console.log(newTopicArr)
-
-  newCourseArray[courseIndex].topics = newTopicArr
-  
-  updateCourseArray(newCourseArray)
-
-  // console.log(courseArray)
-  // console.log(newCourseArray)
-  // console.log(newTopicArray)
-  // newCourseArray[courseIndex].topics = newTopicArray
-
-  // console.log(newCourseArray) 
-  // updateCourseArray(newCourseArray)
- 
-
-
   return (
-    <div onClick={()=>console.log(topicIndex)}>
+    <div>
       <StyledCard sx={{ backgroundColor: "#f1f1f1", borderLeft: '4px solid #375dbe' }}>
         <IconButton onClick={() => setIsExpanded(!isExpanded)}>
 
@@ -160,9 +130,6 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
 
     </div >
   )
-
 }
-
-  
 
 export default TopicTile;
