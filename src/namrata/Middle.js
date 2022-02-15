@@ -1,35 +1,54 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Butn from "./Butn";
 import { Paper, Box, Button, Card } from "@mui/material";
 import SubjectTile from "./SubjectTile";
-import RecipeReviewCard from "./Subsection";
-import TextDescription from "./TextDescription";
+import TopicTile from "./TopicTile";
+import SubTopicTile from './SubTopicTile';
+import generateKey from "../resources/generateKey";
 
-
+import { formContext } from "../Context";
+import axios from "axios";
 
 export default function Middle() {
   const [courses, setCourses] = useState([])
   const addNewSection = () => {
     let newCourses = [...courses]
     newCourses.push({
+      id: generateKey(),
       name: "Basic Electrical Engineering"
     })
     setCourses(newCourses)
   }
+  const formData = useContext(formContext)
+
+
 
   const updateCourse = (course, index) => {
     let newCourseObj = [...courses]
     newCourseObj[index] = course
     setCourses(newCourseObj)
   }
+
+  const changeCourseName = (courseIndex, courseArray, labelVal) => {
+    let newCourseObj = {...courseArray[courseIndex]}
+    newCourseObj.name = labelVal
+    let newCourseArray = [...courseArray]
+    newCourseArray[courseIndex] = newCourseObj
+    setCourses(newCourseArray)
+  }
+  const updateCourseArray = (updatedCourseArray) => {
+    let newUpdatedCourseArray = [...updatedCourseArray]
+    setCourses(newUpdatedCourseArray)
+  }
+ 
   return (
     <Box className="box-list" style={{ margin: "10px 0px 0px 60px", width: "1400px", zIndex: 2 }}>
-      <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height: "auto", borderRadius: "15px" }}>
+      <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height: "auto", borderRadius: "15px", paddingBottom:'1%' }}>
 
 
         <div style={{ display: "flex", margin: "50px 0px 0px 70px", justifyContent:'space-evenly' }}>
           <Butn Text="Select Course"/>
-          <Butn Text="Select Course" clickHoja={addNewSection}/>
+          <Butn Text="Add Section +" clickHoja={addNewSection} />
           <Butn Text="Collapse All Section" />
           <Butn Text="Live View" />
           <Butn Text=" Save" />
@@ -37,28 +56,57 @@ export default function Middle() {
         <Card />
     {courses.map((item, index) => {
     return (
-      <MainTile key={index} course={item} courseIndex={index} courseArray={courses} updateCurrentCourse={updateCourse}/>
+      <MainTile key={item.id} course={item} courseIndex={index} courseArray={courses} updateCurrentCourse={updateCourse} 
+        changeCourseName={changeCourseName}
+        updateCourseArray={updateCourseArray}
+      />
     )
   })}
       </Paper>
-
-      
-
+      <Button onClick={() =>{
+        const data = {
+          name: "hello",
+          data: courses
+        }
+        formData.append('courseData', JSON.stringify(data))
+        console.log(courses)
+      }}>
+        CheckUpdate
+        </Button>
+        <Button onClick={() =>{
+        // console.log(courses)
+        // formData.forEach(item=>{
+        //   console.log(item)
+        // })
+       
+        axios({
+          url:'http://localhost:8080/get',
+          data: formData,
+          method: "POST"
+        }).then(res=>console.log(res)).catch(r=>console.log(r))
+       
+      }}>
+        show form
+        </Button>
+      {/* <Button onClick={() =>{
+        let newArr = [1,2,3,4,5,6]
+        console.log(newArr.map(item=> uuidv4()))
+      }}>generateKey</Button> */}
     </Box>
   )
 }
 
 
-
-function MainTile({course, courseIndex, courseArray, updateCurrentCourse}){
+//  For Courses
+function MainTile({course, courseIndex, courseArray, updateCurrentCourse, changeCourseName, updateCourseArray}){
   const updateCourse = () => {
-    let newCourseObj = {...course}
-    if(newCourseObj.hasOwnProperty('topics')){
+    let newCourseObj = { ...course }
+    if (newCourseObj.hasOwnProperty('topics')) {
       newCourseObj.topics.push({
         name: "Nortons Theorem",
-        subTopics: []
+        subTopics: [] 
       })
-    }else{
+    } else {
       newCourseObj.topics = [
         {
           name: "Thevenins Theorem",
@@ -66,147 +114,182 @@ function MainTile({course, courseIndex, courseArray, updateCurrentCourse}){
         }
       ]
     }
-
+ 
     updateCurrentCourse(newCourseObj, courseIndex)
+  }
+
+
+  const updateTopicName = (newTopicName, topicIndex, topicArray) => {
+    let newTopicObject = {...topicArray[topicIndex]}
+    newTopicObject.name = newTopicName
+    let newTopicArray = [...topicArray]
+    newTopicArray[topicIndex] = newTopicObject
+    let newCourseObject = {...course}
+    newCourseObject.topics = newTopicArray
+    updateCurrentCourse(newCourseObject, courseIndex)
+  } 
+
+  const addNewSubTopic = (newTopicArray) => {
+    let newCourseObject = {...course}
+    newCourseObject.topics = newTopicArray
+    updateCurrentCourse(newCourseObject, courseIndex)
   }
   
   return (
     <Box>
-      <SubjectTile />
-      <Box sx={{width: "60%"}}>
+      <SubjectTile changeCourseName={changeCourseName} courseIndex={courseIndex} courseArray={courseArray} 
+        updateCourseArray={updateCourseArray}
+      />
+      <Box sx={{width: "98%", marginLeft:'1%'}}>
       {
         course.topics?.map((topic, topicIndex, topicArr)=>{
-          return <SubjectTile/>
+          return <TopicTileBox
+          key={topic.id}
+          topic={topic}
+          topicIndex={topicIndex}
+          topicArray={topicArr}
+          changeTopicName={updateTopicName}
+          addNewSubTopic={addNewSubTopic} 
+          courseIndex={courseIndex} 
+          courseArray={courseArray}
+          updateCourseArray={updateCourseArray}
+          />
         })
       }
       </Box>
-      <Button onClick={()=>updateCourse()}>Update</Button>
-      <Button onClick={()=>console.log(course)}>check</Button>
     </Box>
   )
 }
-function SubTopicsTile({subtopic, subTopicIndex, subTopicArray}){
 
-
-
-
-  const retCourseList = () => {
-    let retArr = []
-
-    for (let [key, val] of Object.entries(subtopic.resources)){
-      retArr.push(val)
+// For Topics
+function TopicTileBox({topic, topicIndex, topicArray, changeTopicName, addNewSubTopic, courseIndex, courseArray, updateCourseArray}){
+  const updateSubTopic = () => {
+   
+    let newSubTopic = {
+      id: generateKey(),
+      "name": "newSubTopic"
     }
-    return retArr
+
+    let newTopicArray = [...topicArray]
+    if(newTopicArray[topicIndex].hasOwnProperty('subTopics')){
+      newTopicArray[topicIndex].subTopics.push(newSubTopic)
+    }else{
+      newTopicArray[topicIndex].subTopics = [newSubTopic]
+    }
+    addNewSubTopic(newTopicArray)
   }
-
   
-
-
-return (
-  <Box>
-    {subtopic.name}
-    {subtopic.subTopics.map((item)=>{
-      return (
-      <div>{item.name}</div>
-      )
-    })}
-  </Box>
-)
+  return (
+    <Box>
+      <TopicTile changeTopicName={changeTopicName} topicIndex={topicIndex} topicArray={topicArray} addSubTopics={updateSubTopic} updateCourseArray={updateCourseArray} courseArray={courseArray} courseIndex={courseIndex}/>
+      <Box sx={{width: "98%", marginLeft:'1%'}}>
+      {
+        topic.subTopics?.map((subTopic, subTopicIndex, subTopicArray)=>{
+          return <SubTopicTile 
+          key={subTopic.id} 
+          subTopic={subTopic}
+          topicArray={topicArray}
+          subTopicArray={subTopicArray}
+          courseIndex={courseIndex} 
+          courseArray={courseArray}
+          updateCourseArray={updateCourseArray}
+          topicIndex={topicIndex}
+          subTopicIndex={subTopicIndex}
+          updateCourseArray={updateCourseArray}
+          />
+        })
+      }
+      </Box>
+    </Box>
+  )
 }
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  <div className='mainCourse'>
+//         <h4>{item.name}</h4>
+//         <div className='course-content'>
+//           {
+//             item.topics.map((topic, index)=>{
+//               return(<div className="topic-tile">
+//                 <h5>{topic.name}</h5>
+//                 <div className='topic-contents'>
+//                   {topic.subTopics.map((subtopic, index)=>{
+//                     return (<div className='subtopicTile'>
+//                       <h6>{subtopic.name}</h6>
+//                        <div>
+//                         {subtopic.}
+//                       </div> 
+//                     </div>)
+//                   })}
+//                 </div>
+//               </div>)
+//             })
+//           }
+//         </div>
+//       </div> 
 // function SubTopicsTile({subtopic, subTopicIndex, subTopicArray}){
 
 
 
 
-//     const retCourseList = () => {
-//       let retArr = []
+//   const retCourseList = () => {
+//     let retArr = []
 
-//       for (let [key, val] of Object.entries(subtopic.resources)){
-//         retArr.push(val)
-//       }
-//       return retArr
+//     for (let [key, val] of Object.entries(subtopic.resources)){
+//       retArr.push(val)
 //     }
+//     return retArr
+//   }
 
-    
   
 
-//   return (
-//     <Box>
-//       {subtopic.name}
-//       {
-//         retCourseList()
-//       }
-//     </Box>
-//   )
+
+// return (
+//   <Box>
+//     {subtopic.name}
+//     {subtopic.subTopics.map((item)=>{
+//       return (
+//       <div>{item.name}</div>
+//       )
+//     })}
+//   </Box>
+// )
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{/* <div className='mainCourse'>
-        <h4>{item.name}</h4>
-        <div className='course-content'>
-          {
-            item.topics.map((topic, index)=>{
-              return(<div className="topic-tile">
-                <h5>{topic.name}</h5>
-                <div className='topic-contents'>
-                  {topic.subTopics.map((subtopic, index)=>{
-                    return (<div className='subtopicTile'>
-                      <h6>{subtopic.name}</h6>
-                      {/* <div>
-                        {subtopic.}
-                      </div> 
-                    </div>)
-                  })}
-                </div>
-              </div>)
-            })
-          }
-        </div>
-      </div> */}

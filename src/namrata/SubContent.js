@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import useCollapse from 'react-collapsed';
-import RecipeReviewCard from './Subsection';
+import RecipeReviewCard from './SubTopicTile';
 import SubjectTile from "./SubjectTile";
 import { GolfCourse } from '@mui/icons-material';
 import CourseTile from './CourseTile';
