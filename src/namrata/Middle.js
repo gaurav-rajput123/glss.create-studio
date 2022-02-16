@@ -46,7 +46,7 @@ export default function Middle() {
       <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height: "auto", borderRadius: "15px", paddingBottom:'1%' }}>
 
 
-        <div style={{ display: "flex", justifyContent:'space-between' }}>
+        <div style={{ display: "flex", justifyContent:'space-around' }}>
           <Butn Text="Select Course"/>
           <Butn Text="Add Section +" clickHoja={addNewSection} />
           <Butn Text="Collapse All Section" />

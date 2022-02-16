@@ -4,6 +4,9 @@ import { useState } from 'react';
 
 import Home from './Home'
 import CardAnim from './namrata/CardAnim';
+import AnimatedPage from './namrata/AnimatedPage';
+
+
 function App() {
   const [val, setVal] = useState("hello")
   return (

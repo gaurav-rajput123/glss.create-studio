@@ -11,22 +11,23 @@ export default function CardAnim({name}) {
     // let { name } = props
     return (
         <div className="container">
-            <Card sx={{ maxWidth: 1000, minHeight: 300 }} style={{ display: 'flex', backgroundColor: '#5468E7', borderRadius: '30px', position: 'relative' }}>
+            <Card sx={{ maxWidth: 1000, minHeight: 300 ,}} style={{ display: 'flex', backgroundColor: '#5468E7', borderRadius: '30px', position: 'relative',margin: "6px 2px 6px 10px" }}>
                 <div className="text" style={{ margin: '0 5% 0 0', width: '110%' }}>
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div" style={{ fontFamily: 'Montserrat', fontSize: '40px', fontWeight: '600', color: 'white' }}>
-                            Welcome Back, {name}!
+                            Welcome Back,<br></br>
+                             {name}!
                         </Typography>
-                        <Typography variant="body2" color="text.secondary" style={{ fontFamily: 'Montserrat', fontSize: '20px', fontWeight: '500', color: 'white' }}>
-                            Start making your first Course or Program by clicking on the button below.
+                        <Typography variant="body2" color="text.secondary" style={{ fontFamily: 'Montserrat', fontSize: '20px', fontWeight: '500', color: 'white'}}>
+                            Start making your first Course or Program by <br/> clicking on the button below.
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button size="large" variant="outlined" style={{ fontFamily: 'Montserrat', fontSize: '20px', color: '#334155', borderRadius: '25px', backgroundColor: 'white' }}><b>NEW COURSE</b></Button>
+                        <Button size="large" variant="outlined" style={{ fontFamily: 'Montserrat', fontSize: '20px', color: '#334155', borderRadius: '25px', backgroundColor: 'white', position: 'absolute', bottom: '10%' }}><b>NEW COURSE</b></Button>
                     </CardActions>
                 </div>
                 {/* <div className="group" > */}
-                    <img src={GroupImg} alt="qwerty" style={{  position: 'absolute', right: '05%', bottom: '0%', width: "300px", height: "240px" }} />
+                    <img src={GroupImg} alt="qwerty" style={{  position: 'absolute', right: '05%', bottom: '0%', width: "330px", height: "260px" }} />
                 {/* </div> */}
             </Card>
         </div>

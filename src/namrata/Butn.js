@@ -7,7 +7,7 @@ function Butn(props) {
     <Button
       variant="contained"
       size="large"
-      style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "200px" }}
+      style={{ backgroundColor: "#375DBE", borderRadius: "5px", fontFamily: "Roboto Slab", marginBottom: "40px", width: "auto" }}
     >
       {Text}
     </Button>
