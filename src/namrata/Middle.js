@@ -42,11 +42,11 @@ export default function Middle() {
   }
  
   return (
-    <Box className="box-list" style={{ margin: "10px 0px 0px 60px", width: "1400px", zIndex: 2 }}>
+    <Box className="box-list" style={{ padding: "6px 0px",margin:"0px 10px 0px 12px", width: "98%", zIndex: 2 }}>
       <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height: "auto", borderRadius: "15px", paddingBottom:'1%' }}>
 
 
-        <div style={{ display: "flex", margin: "50px 0px 0px 70px", justifyContent:'space-evenly' }}>
+        <div style={{ display: "flex", justifyContent:'space-between' }}>
           <Butn Text="Select Course"/>
           <Butn Text="Add Section +" clickHoja={addNewSection} />
           <Butn Text="Collapse All Section" />
@@ -140,7 +140,7 @@ function MainTile({course, courseIndex, courseArray, updateCurrentCourse, change
       <SubjectTile changeCourseName={changeCourseName} courseIndex={courseIndex} courseArray={courseArray} 
         updateCourseArray={updateCourseArray}
       />
-      <Box sx={{width: "98%", marginLeft:'1%'}}>
+      <Box sx={{width: "98%"}}>
       {
         course.topics?.map((topic, topicIndex, topicArr)=>{
           return <TopicTileBox

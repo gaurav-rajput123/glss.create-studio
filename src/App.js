@@ -1,9 +1,9 @@
 // import './App.css';
 import { useState } from 'react';
-import Middle from './namrata/Middle';
 
 
 import Home from './Home'
+import CardAnim from './namrata/CardAnim';
 function App() {
   const [val, setVal] = useState("hello")
   return (

@@ -1,19 +1,25 @@
 import { Grid } from "@mui/material";
 import Middle from "./namrata/Middle";
 import Progress from './vikram/Progress';
-
-export default function Home(){
+import CardAnim from "./namrata/CardAnim";
+export default function Home() {
     return (
         <Grid container>
-            <Grid item xs={1}/>
-            <Grid item xs={6}></Grid>
-            <Grid item xs={4}>
-            <Progress/>
+            <Grid item xs={0.5} />
+            <Grid item xs={7} sx={{ backgroundColor: "whitesmoke" }}>
+                <CardAnim name={"Vaibhav"} />
             </Grid>
-            <Grid item xs={1}/>
-            <Grid item xs={12}>
-                <Middle/>
+            <Grid item xs={4} sx={{ backgroundColor: "whitesmoke" }}>
+                <Progress />
             </Grid>
+            <Grid item xs={0.5} />
+            <Grid item xs={0.5} />
+            <Grid item xs={11}
+                sx={{ backgroundColor: "whitesmoke" }}
+            >
+                <Middle />
+            </Grid>
+            <Grid item xs={0.5} />
         </Grid>
     )
 }
