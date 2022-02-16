@@ -1,10 +1,10 @@
 import React from "react";
-import "./styles.css";
+// import "./styles.css";
 import StepProgressBar from "react-step-progress";
 // import the stylesheet
-import "react-step-progress/dist/index.css";
+// import "react-step-progress/dist/index.css";
 
-export default function App() {
+export default function ProgressBar() {
   const step1Content = <h1></h1>;
   const step2Content = <h1></h1>;
   const step3Content = <h1></h1>;

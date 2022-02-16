@@ -2,18 +2,18 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import ContentCard from './UploadFormat/ContentCard';
-import ContentCard2 from './UploadFormat/ContentCard2';
-import ContentCard3 from './UploadFormat/ContentCard3';
-import ContentCard4 from './UploadFormat/ContentCard4';
-import bg1 from '../images/bg1.png';
-import bg2 from '../images/bg2.png';
-import bg3 from '../images/bg3.png';
-import bg4 from '../images/bg4.png';
-import ImgBg1 from '../images/ImgBg1.png';
-import ImgBg2 from '../images/ImgBg2.png';
-import ImgBg3 from '../images/ImgBg3.png';
-import ImgBg4 from '../images/ImgBg4.png';
+import ContentCard from '../namrata/ContentCard';
+import ContentCard2 from '../namrata/ContentCard2';
+import ContentCard3 from '../namrata/ContentCard3';
+import ContentCard4 from '../namrata/ContentCard4';
+import bg1 from '../namrata/images/bg1.png';
+import bg2 from '../namrata/images/bg2.png';
+import bg3 from '../namrata/images/bg3.png';
+import bg4 from '../namrata/images/bg4.png';
+import ImgBg1 from '../namrata/images/ImgBg1.png';
+import ImgBg2 from '../namrata/images/ImgBg2.png';
+import ImgBg3 from '../namrata/images/ImgBg3.png';
+import ImgBg4 from '../namrata/images/ImgBg4.png';
 
 
 export default function AnimationGrid() {
