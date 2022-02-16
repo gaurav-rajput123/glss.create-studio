@@ -1,6 +1,7 @@
 // import './App.css';
 import { useState } from 'react';
-import Middle from './namrata/Middle';
+import CardAnim from './namrata/CardAnim';
+import AnimatedPage from './namrata/AnimatedPage';
 
 import Home from './Home'
 function App() {
