@@ -24,7 +24,14 @@ import Alternate from './Alternate';
 import Modal from '@mui/material/Modal';
 import { Box } from "@mui/system";
 import UploadComponentAlter from "./UploadComponentAlter";
-
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+import { MenuItem, Select } from "@mui/material";
+import generateKey from "../resources/generateKey";
+import CheckboxComponent from "../assesment/components/Checkbox";
+import TextFieldAssesment from "../assesment/assesmentComponents/TextFieldAssesment";
+import CheckBoxAssesment from "../assesment/assesmentComponents/CheckBoxAssesment";
+import RadioButtonAssesment from "../assesment/assesmentComponents/RadioButtonAssesment";
+import DropdownAssesment from "../assesment/assesmentComponents/DropdownAssesment";
 
 const parse = require('html-react-parser');
 
@@ -54,7 +61,7 @@ const style = {
 //   })
 // }));
 
-export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, courseIndex, courseArray, updateCourseArray }) {
+export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, courseArray, updateCourseArray }) {
   const [expanded, setExpanded] = React.useState(false);
   const [expandedDescription, setExpandedDescription] = React.useState(false);
   const StyledCard = styled(Card)({
@@ -69,7 +76,7 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
 
   const [label, setLabel] = useState("Section")
 
-  const [resourceType, setResourceType]  = useState(null)
+  const [resourceType, setResourceType] = useState(null)
 
   const [isDisable, setIsDisable] = useState({
     "ppt": false,
@@ -122,6 +129,65 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
     setOpen(false)
   };
 
+  const addAssesment = () => {
+    setOpenAssesment(!openAssesment)
+  }
+  const [openAssesment, setOpenAssesment] = useState(false)
+  const [assesmentType, setAssesmentType] = useState('')
+  const selectAssesment = (e) => {
+    setAssesmentType(e.target.value)
+    let newCourseArray = [...courseArray]
+    let newAssesmentObj;
+    let newAssesmentArray = newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].assesments? [...newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].assesments] : []
+    if(assesmentType === 0){
+      newAssesmentObj = {
+        name: "CheckBox",
+        type : e.target.value,
+        id: generateKey()
+      }
+    }else if(assesmentType === 1){
+      newAssesmentObj = {
+        name: "TextInput",
+        type : e.target.value,
+        id: generateKey()
+      }
+    }else if(assesmentType === 2){
+      newAssesmentObj = {
+        name: "Multiple Choice",
+        type : e.target.value,
+        id: generateKey()
+      }
+    }else if(assesmentType === 3){
+      newAssesmentObj = {
+        name: "DropDown",
+        type : e.target.value,
+        id: generateKey()
+      }
+    }
+    newAssesmentArray.push(
+      newAssesmentObj
+    )
+    newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].assesments = newAssesmentArray
+    updateCourseArray(newCourseArray)
+  }
+  const assessmentList = [
+    {
+      name: "Check Box",
+      value: 0
+    },
+    {
+      name: "Text Input",
+      value: 1
+    },
+    {
+      name: "Multiple Choice",
+      value: 2
+    },
+    {
+      name: "Drop Down",
+      value: 3
+    }
+  ]
 
   return (
     <div >
@@ -179,7 +245,7 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
           <Button
             sx={{ minWidth: "150px", height: "100px" }}
             variant="outlined"
-            onClick={()=>handleOpen("audio")}
+            onClick={() => handleOpen("audio")}
             color="error"
             disabled={isDisable.audio}
           >
@@ -188,19 +254,19 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
 
           <Modal
             open={open}
-            onClose={()=>handleClose(null)}
+            onClose={() => handleClose(null)}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
-              <UploadComponentAlter courseArray={courseArray} topicIndex={topicIndex} subTopicIndex={subTopicIndex} courseIndex={courseIndex} setInForm={resourceType} updateCourseArray={updateCourseArray} handleClose={handleClose}/>
+              <UploadComponentAlter courseArray={courseArray} topicIndex={topicIndex} subTopicIndex={subTopicIndex} courseIndex={courseIndex} setInForm={resourceType} updateCourseArray={updateCourseArray} handleClose={handleClose} />
             </Box>
           </Modal>
 
           <Button
             sx={{ minWidth: "150px", height: "100px" }}
             variant="outlined"
-            onClick={()=>handleOpen("video")}
+            onClick={() => handleOpen("video")}
             disabled={isDisable.video}
           >
             <OndemandVideoIcon />
@@ -221,7 +287,7 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
             sx={{ minWidth: "150px", height: "100px" }}
             variant="outlined"
             color="success"
-            onClick={()=>handleOpen("pdf")}
+            onClick={() => handleOpen("pdf")}
             disabled={isDisable.pdf}
           >
             <PictureAsPdfIcon />
@@ -242,23 +308,73 @@ export default function SubTopicTile({ subTopicIndex, topicArray, topicIndex, co
             sx={{ minWidth: "150px", height: "100px" }}
             variant="outlined"
             color="warning"
-            onClick={()=>handleOpen("ppt")}
+            onClick={() => handleOpen("ppt")}
             disabled={isDisable.ppt}
           >
             <SlideshowIcon />
           </Button>
-
-          {/* <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
+          <Button
+            sx={{ minWidth: "150px", height: "100px" }}
+            variant="outlined"
+            onClick={() => addAssesment()}
+            color="error"
+            disabled={isDisable.audio}
           >
-            <Box sx={style}>
-              <Alternate />
-            </Box>
-          </Modal> */}
+            <TextSnippetIcon />
+          </Button>
         </Stack>
+        <Collapse in={openAssesment}>
+          <Select 
+          sx={{
+            width: "250px"
+          }}
+            label='choose an assesment type'
+            value={assesmentType}
+            onChange={selectAssesment}>
+              {
+                assessmentList.map((assesment, index)=>{
+                  return (
+                    <MenuItem value={assesment.value} key={assesment.name}>{assesment.name}</MenuItem>
+                  )
+                })
+              }
+            </Select>
+            
+            <div>
+              {
+                courseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].assesments?.map((assesment, assesmentIndex, assesmentArray)=>{
+                  let basicProps = {
+                    color: "blue"
+                  }
+                  if(assesment == undefined){
+                    return null
+                  }
+                  if(assesment.type === 0){
+                    return (
+                      <CheckBoxAssesment {...basicProps}/>
+                    )
+                  }
+                  if(assesment.type === 1){
+                    return (
+                      <TextFieldAssesment {...basicProps}/>
+                    )
+                  }
+                  if(assesment.type === 2){
+                    return (
+                      <RadioButtonAssesment {...basicProps}/>
+                    )
+                  }
+                  if(assesment.type === 3){
+                    return (
+                      <DropdownAssesment {...basicProps}/>
+                    )
+                  }
+                })
+              }
+            </div>
+
+
+        </Collapse>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Button variant="contained" sx={{ backgroundColor: "#375dbe", borderRadius: "5px" }}>
             Upload
