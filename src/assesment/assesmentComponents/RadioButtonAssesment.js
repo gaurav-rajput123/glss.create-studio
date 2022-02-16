@@ -4,12 +4,12 @@ import CheckCard from "../vaibhav/RadioButtons";
 import Videoheader from "../Vikram/Header";
 
 
-export default function RadioButtonAssesment(){
+export default function RadioButtonAssesment({color, updateAssesment}){
     let [question, setQuestion] = useState('Add the questions text,or prompt here.This text is required.')
      return (
         <div>
             <Videoheader changeQuestion={setQuestion} title={"Check Boxes"}/>
-            <CheckCard question={question}/>
+            <CheckCard question={question} updateAssesment={updateAssesment}/>
             {/* <Button onClick={()=>console.log(question)}>Check</Button> */}
         </div>
     )

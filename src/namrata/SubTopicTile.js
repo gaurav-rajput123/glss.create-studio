@@ -187,6 +187,11 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
       value: 3
     }
   ]
+  const updateAssesment = (newItem, index)=>{
+    let newCourseArray = [...courseArray]
+    newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].assesments[index].content = newItem
+    updateCourseArray(newCourseArray)
+  }
 
   return (
     <div >
@@ -343,29 +348,30 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
               {
                 courseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].assesments?.map((assesment, assesmentIndex, assesmentArray)=>{
                   let basicProps = {
-                    color: "blue"
+                    // color: "blue",
+                    updateAssesment: updateAssesment 
                   }
                   if(assesment == undefined){
                     return null
                   }
                   if(assesment.type === 0){
                     return (
-                      <CheckBoxAssesment {...basicProps}/>
+                      <CheckBoxAssesment {...basicProps} color={"brown"}/>
                     )
                   }
                   if(assesment.type === 1){
                     return (
-                      <TextFieldAssesment {...basicProps}/>
+                      <TextFieldAssesment {...basicProps} color={"green"}/>
                     )
                   }
                   if(assesment.type === 2){
                     return (
-                      <RadioButtonAssesment {...basicProps}/>
+                      <RadioButtonAssesment {...basicProps} color={"yellow"}/>
                     )
                   }
                   if(assesment.type === 3){
                     return (
-                      <DropdownAssesment {...basicProps}/>
+                      <DropdownAssesment {...basicProps} color={"red"}/>
                     )
                   }
                 })

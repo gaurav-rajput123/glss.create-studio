@@ -11,10 +11,13 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import parse from 'html-react-parser'
-export default function CheckCard({ question }) {
+export default function CheckCard({ question, updateAssesment }) {
   // const [para, setPara] = useState("Questions ");
   let [newOption, setNewOption] = useState('')
   let [options, setOptions] = useState([])
+  const updateContent =() => {
+    
+  }
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
