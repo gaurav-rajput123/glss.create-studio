@@ -25,10 +25,10 @@ export default function DropCard({question, updateAssesment}) {
     
     <Card sx={{ minWidth: "575px" }}>
       <CardContent>
-        <Typography sx={{margin: "5px 5px 10px 25px" }}  variant="h4" color="text.secondary" >
+        <Typography sx={{margin: "5px 5px 0px 25px" }}  variant="h4" color="text.secondary" >
           Dropdown
         </Typography>
-        <Typography  sx={{margin: "5px 5px 10px 25px"}}  variant="h7" component="div">
+        <Typography  sx={{margin: "5px 5px 0px 25px"}}  variant="h7" component="div">
             {parse(question)}
         </Typography>
         {/* <Typography sx={{margin: "5px 5px 10px 25px"}} variant="h7" color="text.secondary">
@@ -63,12 +63,12 @@ export default function DropCard({question, updateAssesment}) {
         
       >
         {values.map((value, index) => {
-          return <MenuItem value={value}>{value}</MenuItem>;
+          return <MenuItem value={value} key={index}>{value}</MenuItem>;
         })}
       </Select>
     </FormControl>
     <div>
-    <Button  sx={{ margin: "5px 5px 10px 500px" , backgroundColor:"#7d8285"}}  variant="contained">submit</Button>
+    <Button  sx={{ margin: "5px 5px 10px 30px" , backgroundColor:"#7d8285"}}  variant="contained">submit</Button>
     </div>
   
     </Card>
