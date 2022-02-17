@@ -4,12 +4,12 @@ import {useState} from "react";
 
 import React from 'react'
 
-function CheckBoxAssesment() {
+function CheckBoxAssesment({color,updateAssesment}) {
     let [question, setQuestion] = useState('Add your question here')
   return (
     <div>
       <Videoheader changeQuestion={setQuestion} title={"Checkbox Assessment"}/>
-      <MainCard question={question}/>
+      <MainCard question={question} updateAssesment={updateAssesment}/>
     
     </div>
   )

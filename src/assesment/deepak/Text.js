@@ -6,10 +6,12 @@ import parse from 'html-react-parser'
 import TextDescription from './TextDescription'
 import EditIcon from '@mui/icons-material/Edit';
 
-const Textinput = ({question, title}) => {
+const Textinput = ({question, title ,}) => {
   
 
-  
+ const updateAssesment =() => {
+   
+ }
   return (
     <Card sx={{ width: '100', height: '100' , padding:'12px', paddingTop: "6px"
     , fontSize:'18px',

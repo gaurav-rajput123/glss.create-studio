@@ -40,8 +40,8 @@ export default function ContentCard(props) {
                         <div className="image1" style={{ position: 'relative', zIndex: '-1' }}>
                             <img src={imgback} alt="" style={{ width: '50%', marginLeft: '25%' }} />
                         </div>
-                        <div className="image2" style={{ position: 'absolute', top: '175%', left: '10%' }}>
-                            <img src={imgfront} alt="" style={{ width: '45%', float: 'right', marginTop: '-4%', marginRight: '5%' }} />
+                        <div className="image2" style={{position: 'absolute', marginTop: '-23%', marginLeft: '9%', zIndex: "12" }}>
+                            <img src={imgfront} alt="" style={{ width: '70%', float: 'left', marginBottom: '0%', marginLeft: '0%',  }} />
                         </div>
                     </div>
                 </Grid>

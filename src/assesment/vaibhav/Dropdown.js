@@ -11,10 +11,13 @@ import parse from 'html-react-parser'
 
 
 
-export default function DropCard({question}) {
+export default function DropCard({question, updateAssesment}) {
   const [values, setValues] = useState([]);
   const [selected, setSelected] = useState("A wise person should...");
-  function handleChange(event) {
+  const updateContent=() =>{
+    
+  }
+    function handleChange(event) {
     setSelected(event.target.value);
   }
   let [newOption, setNewOption] = useState('')

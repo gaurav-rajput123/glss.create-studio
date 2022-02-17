@@ -1,11 +1,11 @@
 import { Button, Grid, Typography } from '@mui/material';
 import React from 'react';
-import bg from '../Images/Createstudio/landingpage/bg.png';
-import Grid1 from '../Images/Createstudio/landingpage/Grid1.png';
+import bg from './images/bg.png';
+import Grid1 from './images/unnamed.png';
 import './fstcntnr.css';
-import Dekstop from '../Images/Createstudio/landingpage/Desktop.png';
-import Hand_1 from '../Images/Createstudio/landingpage/Hand_1.png';
-import Hand_ from '../Images/Createstudio/landingpage/Hand_.png';
+import Dekstop from './images/Desktop2.png';
+import Hand_1 from './images/Hand_1.png';
+import Hand_ from './images/Hand_.png';
 
 function img2() {
     var img2 = document.querySelectorAll(".img2");

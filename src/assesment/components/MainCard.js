@@ -6,8 +6,11 @@ import { Typography , Button} from '@mui/material';
 import parse from "html-react-parser";
 
 
-export default function MainCard({question}) {
+export default function MainCard({question, updateAssesment}) {
     const [option , setOption] = useState("'Type your question'")
+    const updateContent =() => {
+      
+    }
   return (
     <Card sx={{ minWidth: 200 , height:600}}>
       <CardContent>

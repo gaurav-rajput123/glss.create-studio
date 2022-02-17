@@ -2,9 +2,9 @@
 import { useState } from 'react';
 
 
-import Home from './Home'
+import Front from './Front'
 import CardAnim from './namrata/CardAnim';
-import AnimatedPage from './namrata/AnimatedPage';
+// import AnimatedPa from './namrata/AnimationGrid';
 
 // import Home from './Home'
 function App() {
@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       {/* <SubjectTitle/> */}
       {/* <Middle/> */}
-      <Home/>
+      <Front/>
     
 
      
