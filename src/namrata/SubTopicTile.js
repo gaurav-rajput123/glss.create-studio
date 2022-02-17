@@ -397,7 +397,8 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
                     return (
                       <Box sx={{
                         paddingY: "24px"
-                      }}>
+                      }}
+                      key={assesment.id}>
                         <CheckBoxAssesment {...basicProps} color={"brown"} />
                       </Box>
 
@@ -407,7 +408,8 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
                     return (
                       <Box sx={{
                         paddingY: "24px"
-                      }}>
+                      }}
+                      key={assesment.id}>
                         <TextFieldAssesment {...basicProps} color={"#177ACC"} />
                       </Box>
 
@@ -417,7 +419,8 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
                     return (
                       <Box sx={{
                         paddingY: "24px"
-                      }}>
+                      }}
+                      key={assesment.id}>
                         <RadioButtonAssesment {...basicProps} color={"grey"} />
                       </Box>
 
@@ -427,7 +430,8 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
                     return (
                       <Box sx={{
                         paddingY: "24px"
-                      }}>
+                      }}
+                      key={assesment.id}>
                         <DropdownAssesment {...basicProps} color={"#1A50B2"} />
                       </Box>
 
@@ -437,7 +441,8 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
                     return (
                       <Box sx={{
                         paddingY: "24px"
-                      }}>
+                      }}
+                      key={assesment.id}>
                         <DropdownAssesment {...basicProps} color={"#3eeda1"} />
                       </Box>
 
@@ -447,7 +452,8 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
                     return (
                       <Box sx={{
                         paddingY: "24px"
-                      }}>
+                      }}
+                      key={assesment.id}>
                         <TextFieldAssesmentNum {...basicProps} color={"#95c6ed"} />
                       </Box>
 
@@ -457,7 +463,8 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
                     return (
                       <Box sx={{
                         paddingY: "24px"
-                      }}>
+                      }}
+                      key={assesment.id}>
                         <Research {...basicProps} color={"#d1a080"} />
                       </Box>
 
@@ -467,7 +474,8 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
                     return (
                       <Box sx={{
                         paddingY: "24px"
-                      }}>
+                      }}
+                      key={assesment.id}>
                         <CaseStudy {...basicProps} color={"#b5d99c"} />
                       </Box>
 
@@ -477,7 +485,8 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
                     return (
                       <Box sx={{
                         paddingY: "24px"
-                      }}>
+                      }}
+                      key={assesment.id}>
                         <BlankProblem {...basicProps} color={"#eaf7d0"} />
                       </Box>
 
@@ -487,7 +496,8 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
                     return (
                       <Box sx={{
                         paddingY: "24px"
-                      }}>
+                      }}
+                      key={assesment.id}>
                         <CustomProblem {...basicProps} color={"#eaf7d0"} />
                       </Box>
 
@@ -500,11 +510,7 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
 
           </Collapse>
         </div>
-        {/* <div style={{ display: "flex", justifyContent: "center" }}>
-          <Button variant="contained" sx={{ backgroundColor: "#375dbe", borderRadius: "5px" }}>
-            Upload
-          </Button>
-        </div> */}
+        
 
       </Collapse>
 

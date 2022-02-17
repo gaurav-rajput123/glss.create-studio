@@ -5,10 +5,18 @@ import parse from 'html-react-parser'
 
 import TextDescription from './TextDescription'
 import EditIcon from '@mui/icons-material/Edit';
+import generateKey from "../../resources/generateKey";
 
-const Textinput = ({question, title}) => {
-  
-
+const Textinput = ({question, title, updateAssesment, index}) => {
+  const [correctOption, setCorrectOption] = useState("")
+  const updateContent = () => {
+    let newTextInput = {
+      question: parse(question).props?.children ? parse(question).props.children : "null question",
+      correctAnswer: correctOption.toString(),
+      id: generateKey()
+    }
+    updateAssesment(newTextInput, index)
+  }
   
   return (
     <Card sx={{ width: '100', height: '100' , padding:'12px', paddingTop: "6px"
@@ -30,10 +38,16 @@ const Textinput = ({question, title}) => {
         </p>
 
         <TextField variant="outlined" label="Enter correct answer"
-        sx={{width:'50%'}}/><br/>
+        sx={{width:'50%'}} value={correctOption} onChange={(e)=>{
+          setCorrectOption(e.target.value)
+        }}/><br/>
         <Button variant="contained" sx={{
           margin: "12px 0px 12px 0px"
-        }}>Save</Button>
+        }}
+        onClick={()=>{
+updateContent()
+        }}
+        >Save</Button>
       </div>
       
     </Card>
