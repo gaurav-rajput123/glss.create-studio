@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import Fstcntnr from "./namrata/Fstcntnr";
 import Secndcntnr from "./namrata/Secndcntnr";
 import AnimationGrid from "./namrata/AnimationGrid";
-import Topbar from "./namrata/Topbar";
+import Topbar2 from "./namrata/Topbar2";
 
 // import  from "./namrata/";
 
@@ -12,7 +12,7 @@ export default function Home() {
 
         <Grid container>
             <Grid item xs={12} sx={{}}>
-                <Topbar />
+                <Topbar2 />
             </Grid>
             <Grid item xs={12} sx={{}}>
                 <Fstcntnr />

@@ -2,8 +2,8 @@
 import { useState } from 'react';
 
 
-import Front from './Front'
-import CardAnim from './namrata/CardAnim';
+import Front from './Front';
+
 // import AnimatedPa from './namrata/AnimationGrid';
 
 // import Home from './Home'
@@ -11,7 +11,7 @@ function App() {
   const [val, setVal] = useState("hello")
   return (
     <div className="App">
-      {/* <SubjectTitle/> */}
+      {/* <Home/> */}
       {/* <Middle/> */}
       <Front/>
     
