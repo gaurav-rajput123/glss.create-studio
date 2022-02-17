@@ -25,14 +25,19 @@ import Modal from '@mui/material/Modal';
 import { Box } from "@mui/system";
 import UploadComponentAlter from "./UploadComponentAlter";
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
-import { MenuItem, Select } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import generateKey from "../resources/generateKey";
 import CheckboxComponent from "../assesment/components/Checkbox";
 import TextFieldAssesment from "../assesment/assesmentComponents/TextFieldAssesment";
+import TextFieldAssesmentNum from "../assesment/assesmentComponents/TextFieldAssesmentNum";
 import CheckBoxAssesment from "../assesment/assesmentComponents/CheckBoxAssesment";
 import RadioButtonAssesment from "../assesment/assesmentComponents/RadioButtonAssesment";
 import DropdownAssesment from "../assesment/assesmentComponents/DropdownAssesment";
-
+// import {Research, CaseStudy, BlankProblem} from '../assesment/assesmentComponents/TextFieldAssesmentNum'
+import Research from '../assesment/assesmentComponents/Research'
+import CaseStudy from '../assesment/assesmentComponents/CaseStudy'
+import BlankProblem from '../assesment/assesmentComponents/BlankProblem'
+import CustomProblem from "../assesment/assesmentComponents/CustomProblem";
 const parse = require('html-react-parser');
 
 const style = {
@@ -45,7 +50,7 @@ const style = {
   bgcolor: 'white',
   border: '2px solid #000',
   boxShadow: 24,
-  p:4
+  p: 4
 };
 
 
@@ -137,29 +142,59 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
     setAssesmentType(e.target.value)
     let newCourseArray = [...courseArray]
     let newAssesmentObj;
-    let newAssesmentArray = newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].assesments? [...newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].assesments] : []
-    if(assesmentType === 0){
+    let newAssesmentArray = newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].assesments ? [...newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].assesments] : []
+    if (assesmentType === 0) {
       newAssesmentObj = {
         name: "CheckBox",
-        type : e.target.value,
+        type: e.target.value,
         id: generateKey()
       }
-    }else if(assesmentType === 1){
+    } else if (assesmentType === 1) {
       newAssesmentObj = {
         name: "TextInput",
-        type : e.target.value,
+        type: e.target.value,
         id: generateKey()
       }
-    }else if(assesmentType === 2){
+    } else if (assesmentType === 2) {
       newAssesmentObj = {
         name: "Multiple Choice",
-        type : e.target.value,
+        type: e.target.value,
         id: generateKey()
       }
-    }else if(assesmentType === 3){
+    } else if (assesmentType === 3) {
       newAssesmentObj = {
         name: "DropDown",
-        type : e.target.value,
+        type: e.target.value,
+        id: generateKey()
+      }
+    } else if (assesmentType === 4) {
+      newAssesmentObj = {
+        name: "Numerical",
+        type: e.target.value,
+        id: generateKey()
+      }
+    } else if (assesmentType === 5) {
+      newAssesmentObj = {
+        name: "Research",
+        type: e.target.value,
+        id: generateKey()
+      }
+    } else if (assesmentType === 6) {
+      newAssesmentObj = {
+        name: "Case Study",
+        type: e.target.value,
+        id: generateKey()
+      }
+    } else if (assesmentType === 7) {
+      newAssesmentObj = {
+        name: "Blank",
+        type: e.target.value,
+        id: generateKey()
+      }
+    } else if (assesmentType === 8) {
+      newAssesmentObj = {
+        name: "Custom Based Problem Solving",
+        type: e.target.value,
         id: generateKey()
       }
     }
@@ -185,9 +220,29 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
     {
       name: "Drop Down",
       value: 3
+    },
+    {
+      name: "Numerical",
+      value: 4
+    },
+    {
+      name: "Research",
+      value: 5
+    },
+    {
+      name: "Case Study",
+      value: 6
+    },
+    {
+      name: "Blank",
+      value: 7
+    },
+    {
+      name: "Cutom Based Problem Solving",
+      value: 8
     }
   ]
-  const updateAssesment = (newItem, index)=>{
+  const updateAssesment = (newItem, index) => {
     let newCourseArray = [...courseArray]
     newCourseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].assesments[index].content = newItem
     updateCourseArray(newCourseArray)
@@ -231,12 +286,6 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
         <TextDescription getDescription={getDescription} />
       </Collapse>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-
-        <CardContent sx={{ display: "flex", justifyContent: "center" }}>
-          <Button variant="contained" sx={{ minWidth: "60% !important", backgroundColor: "#375dbe", height: "50px" }}>
-            Add Component
-          </Button>
-        </CardContent>
         <Stack
           sx={{
             padding: "10px 100px 10px 100px",
@@ -246,16 +295,6 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
           direction="row"
           spacing={2}
         >
-          <Button
-            sx={{ minWidth: "150px", height: "100px" }}
-            variant="outlined"
-            onClick={() => handleOpen("audio")}
-            color="error"
-            disabled={isDisable.audio}
-          >
-            <AudioFileIcon />
-          </Button>
-
           <Modal
             open={open}
             onClose={() => handleClose(null)}
@@ -266,7 +305,15 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
               <UploadComponentAlter courseArray={courseArray} topicIndex={topicIndex} subTopicIndex={subTopicIndex} courseIndex={courseIndex} setInForm={resourceType} updateCourseArray={updateCourseArray} handleClose={handleClose} />
             </Box>
           </Modal>
-
+          <Button
+            sx={{ minWidth: "150px", height: "100px" }}
+            variant="outlined"
+            onClick={() => handleOpen("audio")}
+            color="error"
+            disabled={isDisable.audio}
+          >
+            <AudioFileIcon />
+          </Button>
           <Button
             sx={{ minWidth: "150px", height: "100px" }}
             variant="outlined"
@@ -276,16 +323,6 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
             <OndemandVideoIcon />
           </Button>
 
-          {/* <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>
-              <Alternate />
-            </Box>
-          </Modal> */}
 
           <Button
             sx={{ minWidth: "150px", height: "100px" }}
@@ -297,16 +334,6 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
             <PictureAsPdfIcon />
           </Button>
 
-          {/* <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>
-              <Alternate />
-            </Box>
-          </Modal> */}
 
           <Button
             sx={{ minWidth: "150px", height: "100px" }}
@@ -327,51 +354,143 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
             <TextSnippetIcon />
           </Button>
         </Stack>
-        <Collapse in={openAssesment}>
-          <Select 
-          sx={{
-            width: "250px"
-          }}
-            label='choose an assesment type'
-            value={assesmentType}
-            onChange={selectAssesment}>
-              {
-                assessmentList.map((assesment, index)=>{
-                  return (
-                    <MenuItem value={assesment.value} key={assesment.name}>{assesment.name}</MenuItem>
-                  )
-                })
-              }
-            </Select>
-            
+        <div style={{
+          // display: "flex",
+          // justifyContent: "center"
+        }}>
+          <Collapse in={openAssesment} sx={{
+            // marginX: 'auto',
+            display: "flex",
+            justifyContent: "center"
+          }}>
+            <FormControl fullWidth>
+              <InputLabel>Assessment Types</InputLabel>
+              <Select
+                sx={{
+                  width: "100%"
+                }}
+                label='choose an assesment type'
+                value={assesmentType}
+                onChange={selectAssesment}>
+                {
+                  assessmentList.map((assesment, index) => {
+                    return (
+                      <MenuItem value={assesment.value} key={assesment.name}>{assesment.name}</MenuItem>
+                    )
+                  })
+                }
+              </Select>
+
+            </FormControl>
             <div>
               {
-                courseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].assesments?.map((assesment, assesmentIndex, assesmentArray)=>{
+                courseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].assesments?.map((assesment, assesmentIndex, assesmentArray) => {
                   let basicProps = {
                     // color: "blue",
-                    updateAssesment: updateAssesment 
+                    updateAssesment: updateAssesment,
+                    index: assesmentIndex
                   }
-                  if(assesment == undefined){
+                  if (assesment == undefined) {
                     return null
                   }
-                  if(assesment.type === 0){
+                  if (assesment.type === 0) {
                     return (
-                      <CheckBoxAssesment {...basicProps} color={"brown"}/>
+                      <Box sx={{
+                        paddingY: "24px"
+                      }}>
+                        <CheckBoxAssesment {...basicProps} color={"brown"} />
+                      </Box>
+
                     )
                   }
-                  if(assesment.type === 1){
+                  if (assesment.type === 1) {
                     return (
-                      <TextFieldAssesment {...basicProps} color={"green"}/>
+                      <Box sx={{
+                        paddingY: "24px"
+                      }}>
+                        <TextFieldAssesment {...basicProps} color={"#177ACC"} />
+                      </Box>
+
                     )
                   }
-                  if(assesment.type === 2){
+                  if (assesment.type === 2) {
                     return (
-                      <RadioButtonAssesment {...basicProps} color={"yellow"}/>
+                      <Box sx={{
+                        paddingY: "24px"
+                      }}>
+                        <RadioButtonAssesment {...basicProps} color={"grey"} />
+                      </Box>
+
                     )
                   }
-                  if(assesment.type === 3){
+                  if (assesment.type === 3) {
                     return (
-                      <DropdownAssesment {...basicProps} color={"red"}/>
+                      <Box sx={{
+                        paddingY: "24px"
+                      }}>
+                        <DropdownAssesment {...basicProps} color={"#1A50B2"} />
+                      </Box>
+
+                    )
+                  }
+                  if (assesment.type === 3) {
+                    return (
+                      <Box sx={{
+                        paddingY: "24px"
+                      }}>
+                        <DropdownAssesment {...basicProps} color={"#3eeda1"} />
+                      </Box>
+
+                    )
+                  }
+                  if (assesment.type === 4) {
+                    return (
+                      <Box sx={{
+                        paddingY: "24px"
+                      }}>
+                        <TextFieldAssesmentNum {...basicProps} color={"#95c6ed"} />
+                      </Box>
+
+                    )
+                  }
+                  if (assesment.type === 5) {
+                    return (
+                      <Box sx={{
+                        paddingY: "24px"
+                      }}>
+                        <Research {...basicProps} color={"#d1a080"} />
+                      </Box>
+
+                    )
+                  }
+                  if (assesment.type === 6) {
+                    return (
+                      <Box sx={{
+                        paddingY: "24px"
+                      }}>
+                        <CaseStudy {...basicProps} color={"#b5d99c"} />
+                      </Box>
+
+                    )
+                  }
+                  if (assesment.type === 7) {
+                    return (
+                      <Box sx={{
+                        paddingY: "24px"
+                      }}>
+                        <BlankProblem {...basicProps} color={"#eaf7d0"} />
+                      </Box>
+
+                    )
+                  }
+                  if (assesment.type === 8) {
+                    return (
+                      <Box sx={{
+                        paddingY: "24px"
+                      }}>
+                        <CustomProblem {...basicProps} color={"#eaf7d0"} />
+                      </Box>
+
                     )
                   }
                 })
@@ -379,12 +498,13 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
             </div>
 
 
-        </Collapse>
-        <div style={{ display: "flex", justifyContent: "center" }}>
+          </Collapse>
+        </div>
+        {/* <div style={{ display: "flex", justifyContent: "center" }}>
           <Button variant="contained" sx={{ backgroundColor: "#375dbe", borderRadius: "5px" }}>
             Upload
           </Button>
-        </div>
+        </div> */}
 
       </Collapse>
 

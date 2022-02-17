@@ -1,7 +1,7 @@
 import Videoheader from "../Vikram/Header";
-import MainCard from "../components/MainCard";
+// import MainCard from "../components/MainCard";
 import {useState} from "react";
-
+import MainCard from '../components/MainCarnNAM'
 import React from 'react'
 
 function CheckBoxAssesment() {

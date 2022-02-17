@@ -19,7 +19,7 @@ export default function Home() {
             <Grid item xs={0.5} />
             <Grid item xs={0.5} />
             <Grid item xs={11}
-                sx={{ backgroundColor: "whitesmoke" ,borderBottomLeftRadius: "12px",borderBottomRightRadius: "12px"}}
+                sx={{ backgroundColor: "whitesmoke" ,borderBottomLeftRadius: "12px",borderBottomRightRadius: "12px", marginBottom: "36px"}}
             >
                 <Middle />
             </Grid>

@@ -47,11 +47,11 @@ export default function Middle() {
 
 
         <div style={{ display: "flex", justifyContent:'space-around' }}>
-          <Butn Text="Select Course"/>
-          <Butn Text="Add Section +" clickHoja={addNewSection} />
-          <Butn Text="Collapse All Section" />
-          <Butn Text="Live View" />
-          <Butn Text=" Save" />
+          <Butn Text="Select Course" disabled/>
+          <Butn Text="Add Section" clickHoja={addNewSection} />
+          <Butn Text="Collapse All" disabled/>
+          <Butn Text="Live View" disabled/>
+          <Butn Text=" Save" disabled/>
         </div>
         <Card />
     {courses.map((item, index) => {
@@ -63,15 +63,26 @@ export default function Middle() {
     )
   })}
       </Paper>
-      <Button onClick={() =>{
+      <div style={{
+        marginTop: "24px",
+        marginBottom: "12px"
+      }}>
+        <Button onClick={() =>{
         const data = {
           name: "hello",
           data: courses
         }
         formData.set('courseDataa', JSON.stringify(data))
         console.log(courses)
-      }}>
-        CheckUpdate
+      }}
+      sx={{
+        marginRight: "36px",
+        
+      }}
+      variant="contained"
+      
+      >
+        update form
         </Button>
         <Button onClick={() =>{
         // console.log(courses)
@@ -85,9 +96,16 @@ export default function Middle() {
           method: "POST"
         }).then(res=>console.log(res)).catch(r=>console.log(r))
        
-      }}>
-        show form
+      }}
+      sx={{
+        marginRight: "36px",
+        
+      }}
+      variant="contained"
+      >
+        upload
         </Button>
+      </div>
       {/* <Button onClick={() =>{
         let newArr = [1,2,3,4,5,6]
         console.log(newArr.map(item=> uuidv4()))
