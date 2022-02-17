@@ -11,7 +11,7 @@ export default function RadioButtonAssesment({color, updateAssesment, index}){
     }, [question])
      return (
         <div>
-            <Videoheader changeQuestion={setQuestion} title={"Check Boxes"}/>
+            <Videoheader changeQuestion={setQuestion} title={"Check Boxes"} color={color}/>
             <CheckCard question={question} updateAssesment={updateAssesment} index={index}/>
             {/* <Button onClick={()=>console.log(question)}>Check</Button> */}
         </div>
