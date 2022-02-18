@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 
 import Front from './Front';
+import Form from './vikram/Form';
 
 // import AnimatedPa from './namrata/AnimationGrid';
 
@@ -13,7 +14,7 @@ function App() {
     <div className="App">
       {/* <Home/> */}
       {/* <Middle/> */}
-      <Front/>
+      <Form/>
     
 
      

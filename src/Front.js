@@ -7,7 +7,7 @@ import Topbar2 from "./namrata/Topbar2";
 // import  from "./namrata/";
 
 
-export default function Home() {
+export default function Front() {
     return (
 
         <Grid container>

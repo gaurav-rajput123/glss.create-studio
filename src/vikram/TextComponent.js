@@ -16,8 +16,8 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "light" ? "#fcfcfb" : "#2b2b2b",
     border: "1px solid #ced4da",
     fontSize: 16,
-    width: "70%",
-    padding: "10px 12px",
+    // width: "100%",
+    padding: "10px 0px",
     transition: theme.transitions.create([
       "border-color",
       "background-color",
@@ -31,16 +31,19 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 export default function TextBox({ heading, label, helpertext, handler, name }) {
 
   return (
-    <Box component="from" display="flex" sx={{ padding: "6px" }}>
-      <FormControl fullWidth width="100%" variant="standard">
-        <InputLabel
+    <Box component="form" display="flex" sx={{ padding: "6px", width: "50%", alignItems: "center" }}>
+      <FormControl fullWidth width="60%" variant="standard" sx={{
+        justifyContent: "center"
+      }}>
+        {/* <InputLabel
+        
           shrink
           sx={{ fontSize: "24px", fontWeight: "400", color: "black" }}
 
         >
           {heading}
-        </InputLabel>
-        <BootstrapInput placeholder={label} id="bootstrap-input" onChange={(e) => {
+        </InputLabel> */}
+        <BootstrapInput fullWidth placeholder={label} id="bootstrap-input" onChange={(e) => {
           handler(name, e.target.value)
         }} />
         <FormHelperText>
