@@ -14,11 +14,7 @@ function App() {
     <div className="App">
       {/* <Home/> */}
       {/* <Middle/> */}
-      <Form/>
-    
-
-     
-      
+      <Form/>   
     </div>
   );
 

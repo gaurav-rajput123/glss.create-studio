@@ -6,6 +6,7 @@ import './fstcntnr.css';
 import Dekstop from './images/Desktop2.png';
 import Hand_1 from './images/Hand_1.png';
 import Hand_ from './images/Hand_.png';
+import { NavLink } from 'react-router-dom';
 
 function img2() {
     var img2 = document.querySelectorAll(".img2");
@@ -87,18 +88,23 @@ const Fstcntnr = () => {
                 Welcome
             </Typography>
             <Typography variant='h1' style={{fontWeight:'700'}}>
-            to Create 
+            to Course 
             </Typography>
             <Typography variant='h1' style={{fontWeight:'700'}}>
             Studio
             </Typography>
             <Typography width={'80%'} padding={'2%'}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+            Create amazing courses and get create an interactive eco system for learning and teaching
+            
             </Typography>
             <Grid paddingTop={'4%'}>
-            <Button variant='contained'>
+            <NavLink to={"/create"} style={{
+              textDecoration: "none"
+            }}>
+            {/* <Button variant='contained'>
                 Skip Tour
-            </Button>
+            </Button> */}
+            </NavLink>
             </Grid>
           </Grid>
           <Grid xs={6} padding={'3%'}>

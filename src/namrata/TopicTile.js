@@ -17,7 +17,7 @@ const parse = require('html-react-parser')
 
 
 
-function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, updateCourseArray, courseArray, courseIndex }) {
+function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, updateCourseArray, courseArray, courseIndex, expand }) {
 
 
   const StyledCard = styled(Card)({
@@ -30,7 +30,7 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
 
   const [isExpanded, setIsExpanded] = useState(false)
 
-  const [isTitle, setIsTitle] = useState(true)
+  const [isTitle, setIsTitle] = useState(false)
 
   const [label, setLabel] = useState("Topic")
 
@@ -43,10 +43,12 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
     newCourseArray[courseIndex].topics[topicIndex].name = labelVal
     setLabel(labelVal)
     updateCourseArray(newCourseArray)
+    handleExpandClick()
   }
 
   const addSubTopic = () => {
     addSubTopics()
+    
   }
 
   const handleExpandClick = () => {
@@ -81,14 +83,14 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
   return (
     <div>
       <StyledCard sx={{ backgroundColor: "#f1f1f1", borderLeft: '4px solid #375dbe' }}>
-        <IconButton onClick={() => setIsExpanded(!isExpanded)}>
+        <IconButton onClick={() => {setIsExpanded(!isExpanded);     expand() }}>
 
-          <ArrowRightIcon sx={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0)" }}
+          <ArrowRightIcon sx={{ transform: !isExpanded ? "rotate(90deg)" : "rotate(0)" }}
           />
         </IconButton>
         {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
 
-        <TextNLabel isLabelShown={isTitle} courseIndex={courseIndex} setIsLabelShown={setLabelController} setLabel={handleLabel} courseArray={courseArray} updateCourseArray={updateCourseArray} label={label} />
+        <TextNLabel placeHolder={"set Topic Title"} isLabelShown={isTitle} courseIndex={courseIndex} setIsLabelShown={setLabelController} setLabel={handleLabel} courseArray={courseArray} updateCourseArray={updateCourseArray} label={label} />
 
         <div style={{ flexGrow: 1 }} />
 
@@ -124,7 +126,7 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
       </StyledCard>
 
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <TextDescription getDescription={getDescription} />
+        <TextDescription getDescription={getDescription} titleDescription="Topic Description" skipDescription={()=>handleExpandClick()} add={()=>addSubTopic()}/>
       </Collapse>
 
 

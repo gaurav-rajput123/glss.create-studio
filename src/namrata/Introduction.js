@@ -60,19 +60,19 @@ export default function Introduction() {
         </Grid>
 
         <Grid xs={12}>
-          <div  style={{marginLeft:"600px", marginTop:"60px"}}>
-           <Typography style={{color:"white", fontSize:"25px", fontWeight:"bolder", fontFamily:"Roboto Slab"}}>
+          {/* <div  style={{marginLeft:"600px", marginTop:"60px"}}>
+           <Typography style={{color:"white", fontSize:"25px", fontWeight:"bolder"}}>
              View your Uploaded Courses<br/>
              in your Library
            </Typography>
-          </div>
-          <div style={{marginLeft:"600px", marginTop:"40px"}}>
-           <Typography style={{color:"grey", fontFamily:"Roboto Slab"}}>
+          </div> */}
+          {/* <div style={{marginLeft:"600px", marginTop:"40px"}}>
+           <Typography style={{color:"white", marginBottom: "24px"}}>
               <p>"Life is our resume. It is our story to tell, and the choices<br/> we make
                write the chapters.Can we live in a way where<br/> we look forward to looking back?"</p>
             </Typography>
-          </div>
-          <div style={{marginLeft:"600px", marginTop:"40px"}}>
+          </div> */}
+          {/* <div style={{marginLeft:"600px", marginTop:"40px"}}>
             <Button 
               variant="contained" 
               size="large"
@@ -80,7 +80,7 @@ export default function Introduction() {
               >
               My Library
             </Button>
-          </div>
+          </div> */}
         </Grid>
        
         </Grid>

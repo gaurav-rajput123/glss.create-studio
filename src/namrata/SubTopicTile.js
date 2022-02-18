@@ -76,7 +76,7 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
 
   const [isExpanded, setIsExpanded] = useState(false)
 
-  const [isTitle, setIsTitle] = useState(true)
+  const [isTitle, setIsTitle] = useState(false)
 
   const [label, setLabel] = useState("Section")
 
@@ -98,6 +98,7 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
     console.log(courseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex])
     courseArray[courseIndex].topics[topicIndex].subTopics[subTopicIndex].name = labelVal.toString()
     updateCourseArray(newArr)
+    handleExpandClick()
   }
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -258,7 +259,7 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
         </IconButton>
         {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
 
-        <TextNLabel isLabelShown={isTitle} setIsLabelShown={setLabelController} label={label} setLabel={handleLabel} />
+        <TextNLabel placeHolder={"set Subtopic Title"} isLabelShown={isTitle} setIsLabelShown={setLabelController} label={label} setLabel={handleLabel} />
 
         <div style={{ flexGrow: 1 }} />
 

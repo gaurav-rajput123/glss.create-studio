@@ -7,6 +7,9 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
+
+
+
 const Topbar = () => {
   return <>
         <Box sx={{ flexGrow: 1 }}>
@@ -29,7 +32,7 @@ const Topbar = () => {
                         <Button variant='text'>About</Button>
                 </Typography>
                 <Typography variant="h6"  sx={{ flexGrow: 1 }}>
-                        <Button variant='text'>Create Studio</Button>
+                <Button variant='text'>Create Studio</Button>
                     </Typography>
                 </Typography>
                 <Button color="inherit" variant='contained'>Watch Tutorial</Button>

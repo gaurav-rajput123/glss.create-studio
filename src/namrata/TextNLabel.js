@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 import { Typography } from '@mui/material';
 import React, { useState } from 'react';
 
-function TextNLabel({ isLabelShown, setIsLabelShown, setLabel, courseArray, courseIndex, label }) {
+function TextNLabel({placeHolder, isLabelShown, setIsLabelShown, setLabel, courseArray, courseIndex, label }) {
 
     const [labelIn, setLabelIn] = useState(label)
 
@@ -20,10 +20,10 @@ function TextNLabel({ isLabelShown, setIsLabelShown, setLabel, courseArray, cour
             (
                 <div style={{ display: "flex", alignItems: "center" }}>
                     <TextField
-                        placeholder='Add Section'
+                        placeholder={placeHolder}
                         variant="filled"
                         onChange={(e) => setLabelIn(e.target.value)}
-                        label="Set Title"
+                        label={placeHolder}
                         value={labelIn} />
                     <Button onClick={() => {
                         setLabel(labelIn)

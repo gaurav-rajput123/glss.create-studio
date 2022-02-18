@@ -19,7 +19,7 @@ import FileCopyIcon from '@mui/icons-material/FileCopy';
 const parse = require('html-react-parser')
 
 function SubjectTile(prop) {
-  let { name, changeCourseName, courseIndex, courseArray, addTopics, updateCourseArray } = prop
+  let { name, changeCourseName, courseIndex, courseArray, addTopics, updateCourseArray, expand } = prop
 
   const StyledCard = styled(Card)({
     display: "flex",
@@ -31,9 +31,9 @@ function SubjectTile(prop) {
 
   const [isExpanded, setIsExpanded] = useState(false)
 
-  const [isTitle, setIsTitle] = useState(true)
+  const [isTitle, setIsTitle] = useState(false)
 
-  const [label, setLabel] = useState("Section")
+  const [label, setLabel] = useState("Module")
 
   const setLabelController = () => {
     setIsTitle(!isTitle)
@@ -43,10 +43,12 @@ function SubjectTile(prop) {
     newCourseArray[courseIndex].name = labelVal
     setLabel(labelVal)
     updateCourseArray(newCourseArray)
+    handleExpandClick()
   }
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+
   };
 
 
@@ -67,6 +69,7 @@ function SubjectTile(prop) {
     }
     console.log(newCourseArray)
     updateCourseArray(newCourseArray)
+   
   }
 
 
@@ -85,39 +88,39 @@ function SubjectTile(prop) {
     updateCourseArray(newCourseArray)
 
   }
-  const duplicateSection = () => {
-    let newCourseArray = [...courseArray]
-    let duplicateObj = { ...newCourseArray[courseIndex] }
-    duplicateObj.topics = [...duplicateObj.topics]
-    // duplicateObj.topics.subtopics ? duplicateObj.topics[topicIndex].subtopics = [...duplicateObj.topics[topicIndex].subtopics] : null
-    let newDuplicateObjTopics
-    if (duplicateObj.topics !== undefined) {
-      newDuplicateObjTopics = duplicateObj.topics.map(item => {
-        item.id = generateKey()
-        if (item.subTopics !== undefined) {
-          console.log("here")
-          item.subTopics = [...item.subTopics]
-        }
-        return item;
-      })
-    }
+  // const duplicateSection = () => {
+  //   let newCourseArray = [...courseArray]
+  //   let duplicateObj = { ...newCourseArray[courseIndex] }
+  //   duplicateObj.topics = [...duplicateObj.topics]
+  //   // duplicateObj.topics.subtopics ? duplicateObj.topics[topicIndex].subtopics = [...duplicateObj.topics[topicIndex].subtopics] : null
+  //   let newDuplicateObjTopics
+  //   if (duplicateObj.topics !== undefined) {
+  //     newDuplicateObjTopics = duplicateObj.topics.map(item => {
+  //       item.id = generateKey()
+  //       if (item.subTopics !== undefined) {
+  //         console.log("here")
+  //         item.subTopics = [...item.subTopics]
+  //       }
+  //       return item;
+  //     })
+  //   }
 
-    duplicateObj.topics = newDuplicateObjTopics
-    // duplicateObj.id = generateKey()
-    newCourseArray.push(duplicateObj)
-    updateCourseArray(newCourseArray)
-  }
+  //   duplicateObj.topics = newDuplicateObjTopics
+  //   // duplicateObj.id = generateKey()
+  //   newCourseArray.push(duplicateObj)
+  //   updateCourseArray(newCourseArray)
+  // }
   return (
     <div>
       <StyledCard sx={{ backgroundColor: "#f1f1f1" }}>
-        <IconButton onClick={() => setIsExpanded(!isExpanded)}>
-          <ArrowRightIcon sx={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0)" }} />
+        <IconButton onClick={() => {setIsExpanded(!isExpanded);     expand()  }}>
+          <ArrowRightIcon sx={{ transform: !isExpanded ? "rotate(90deg)" : "rotate(0)" }} />
         </IconButton>
         {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
 
         {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
 
-        <TextNLabel isLabelShown={isTitle} label={label} courseIndex={courseIndex} setIsLabelShown={setLabelController} courseArray={courseArray} setLabel={handleLabel} />
+        <TextNLabel placeHolder={"set Module Name"} isLabelShown={isTitle} label={label} courseIndex={courseIndex} setIsLabelShown={setLabelController} courseArray={courseArray} setLabel={handleLabel} />
 
         {name}
 
@@ -152,7 +155,17 @@ function SubjectTile(prop) {
       </StyledCard>
 
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <TextDescription getDescription={getDescription} />
+        <Box sx={{
+          backgroundColor: "lightgray",
+          borderRadius: "6px",
+          width: "90%",
+          textAlign: "center",
+          marginX: "auto"
+
+        }}>
+          hello
+        </Box>
+        <TextDescription getDescription={getDescription} titleDescription="Module Description" skipDescription={()=>handleExpandClick()} add={()=>addNewTopics()}/>
       </Collapse>
     </div >
   )

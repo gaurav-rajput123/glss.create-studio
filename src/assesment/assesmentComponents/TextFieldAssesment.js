@@ -2,11 +2,7 @@ import React, {useState} from 'react'
 import Videoheader from '../Vikram/Header'
 import Textinput from '../deepak/Text'
 
-<<<<<<< HEAD
 function TextFieldAssesment({color, updateAssesment}) {
-=======
-function TextFieldAssesment({color, updateAssesment, index}) {
->>>>>>> b59b8587b00a4c6cee52783cc6d4d8cfc86d2f23
     let [question, setQuestion] = useState(`You can use this template as a guide to the simple editor markdown and OLX markup to use for text input problems. 
     Edit this component to replace this template with your own assessment.
     Add the questions text,or prompt here.This text is required.`)
@@ -14,13 +10,8 @@ function TextFieldAssesment({color, updateAssesment, index}) {
     <div style={{
         // width: "50%"
     }}>
-<<<<<<< HEAD
         <Videoheader title={"Text Field Input"} changeQuestion={setQuestion} color="#dcebf1" />
         <Textinput title={'Text Input Assesment'} question={question} updateAssesment={updateAssesment}/>
-=======
-        <Videoheader title={"Text Field Input"} changeQuestion={setQuestion} color={color} />
-        <Textinput title={'Text Input Assesment'} question={question} updateAssesment={updateAssesment} index={index}/>
->>>>>>> b59b8587b00a4c6cee52783cc6d4d8cfc86d2f23
     </div>
   )
 }

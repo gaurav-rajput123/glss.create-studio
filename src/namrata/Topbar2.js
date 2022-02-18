@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Avatar from '@mui/material/Avatar';
 import profile from './images/profile.jpg';
+import { Link, NavLink } from "react-router-dom";
 
 
 // const handleMenuprofile = (event) => {
@@ -32,11 +33,17 @@ const Topbar = () => {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     </Typography>
                     <Typography sx={{ flexGrow: 1 }} style={{ display: 'flex' }} >
-                        <Typography variant="h6" style={{ paddingRight: '30px' }}>
+                        {/* <Typography variant="h6" style={{ paddingRight: '30px' }}>
                             <Button sx={{color:"black"}} variant='text'>About</Button>
-                        </Typography>
+                        </Typography> */}
                         <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                            <Button  sx={{color:"black"}} variant='text'>Create Studio</Button>
+                        {/* Create Studio */}
+                        <NavLink to={'/create'} style={{
+                            textDecoration: "none",
+                            color: "black",
+                        }}>
+                        LET'S CREATE
+                        </NavLink>
                         </Typography>
                     </Typography>
                     <IconButton

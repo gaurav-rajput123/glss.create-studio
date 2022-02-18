@@ -8,34 +8,38 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Progress1 from './Image/Progress1.jpg';
-
+import { stepNumber } from '../Context';
 const steps = [
-  {
-    label: 'Select course',
-    description: `Select the course from the menu`,
-  },
+  // {
+  //   label: 'Select course',
+  //   description: `Select the course from the menu`,
+  // },
   {
     label: 'Course Outline',
-    description:
-      'Add Modules and Sub-modules',
+    description: 'Create the outline of the course',
   },
   {
-    label: 'Choose the format',
+    label: 'Create New Modules',
     description: `Video , audio , ppt or pdf`,
   },
   {
-    label: 'Preview and Upload',
-    description: `Prevoew and Upload your content`,
+    label: 'Preview and Upload your course',
+    description: `Preview and Upload your content`,
   },
   
 ];
 
 export default function Progress() {
-  const [activeStep, setActiveStep] = React.useState(0);
 
+  let counterTracker = React.useContext(stepNumber)
+
+  const [activeStep, setActiveStep] = React.useState(counterTracker.val);
+ 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
+    console.log(activeStep)
+    console.log("___________________")
+    counterTracker.increment()   
+  };  
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -44,24 +48,27 @@ export default function Progress() {
   const handleReset = () => {
     setActiveStep(0);
   };
-
+  React.useEffect(()=>{
+    console.log("render")
+  })
   return (
-    <Box sx={{ maxWidth: "400px" , backgroundImage:'url(${"https://media.istockphoto.com/photos/growth-arrow-up-and-progress-success-business-skill-increase-graph-picture-id1325680818?b=1&k=20&m=1325680818&s=170667a&w=0&h=0QiulvGagV8DPWJcM-iHpzvaL_5WY_iNHhg9xGjbEVM="})',  marginLeft:"70px" , borderRadius: "16px"}}>
-      <Stepper activeStep={activeStep} orientation="vertical"  sx={{paddingLeft:"16px"}}>
+    <Box sx={{ maxWidth: "400px" , backgroundImage:'url(${"https://media.istockphoto.com/photos/growth-arrow-up-and-progress-success-business-skill-increase-graph-picture-id1325680818?b=1&k=20&m=1325680818&s=170667a&w=0&h=0QiulvGagV8DPWJcM-iHpzvaL_5WY_iNHhg9xGjbEVM="})',  marginLeft:"70px" , borderRadius: "16px", background: "white", marginY: "18px"}}>
+      <Stepper activeStep={counterTracker.val} orientation="vertical"  sx={{paddingLeft:"26px"}}>
         {steps.map((step, index) => (
-          <Step key={step.label}>
+          <Step key={step.label} sx={{
+            marginY: '16px'
+          }}>
             <StepLabel
-              optional={
-                index === 3 ? (
-                  <Typography variant="caption">Last step</Typography>
-                ) : null
-              }
+              sx={{
+                // marginY: "16px",
+                // fontSize: "20px"
+              }} 
             >
-              {step.label}
+              <Typography fontSize={"18px"}>{step.label}</Typography>
             </StepLabel>
             <StepContent>
-              <Typography>{step.description}</Typography>
-              <Box sx={{ mb: 2 }}>
+              <Typography fontSize={"14px"}>{step.description}</Typography>
+              {/* <Box sx={{ mb: 2 }}>
                 <div>
                   <Button
                     variant="contained"
@@ -78,19 +85,19 @@ export default function Progress() {
                     Back
                   </Button>
                 </div>
-              </Box>
+              </Box> */}
             </StepContent>
           </Step>
         ))}
       </Stepper>
-      {activeStep === steps.length && (
+      {/* {activeStep === steps.length && (
         <Paper square elevation={0} sx={{ p: 3 }}>
           <Typography>All steps completed - you&apos;re finished</Typography>
           <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
             Reset
           </Button>
         </Paper>
-      )}
+      )} */}
     </Box>
   );
 }
