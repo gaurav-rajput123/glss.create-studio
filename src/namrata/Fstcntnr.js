@@ -88,7 +88,7 @@ const Fstcntnr = () => {
                 Welcome
             </Typography>
             <Typography variant='h1' style={{fontWeight:'700'}}>
-            to Course Create 
+            to Course 
             </Typography>
             <Typography variant='h1' style={{fontWeight:'700'}}>
             Studio
@@ -101,9 +101,9 @@ const Fstcntnr = () => {
             <NavLink to={"/create"} style={{
               textDecoration: "none"
             }}>
-            <Button variant='contained'>
+            {/* <Button variant='contained'>
                 Skip Tour
-            </Button>
+            </Button> */}
             </NavLink>
             </Grid>
           </Grid>

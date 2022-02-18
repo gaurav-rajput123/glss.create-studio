@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Routes, Route, useParams } from "react-router-dom";
 
-
+import MetaLogin from './formlogin/MetaLogin';
 
 import Front from './Front';
 import Home from './Home';
@@ -13,19 +13,27 @@ import { stepNumber } from './Context';
 
 // import Home from './Home'
 function App() {
-  const [val, setVal] = useState(0)
+  const [val, setVal] = useState(-1)
   return (
     <stepNumber.Provider value={{
-      val, increment: ()=>setVal(val+1), decrement: ()=>setVal(val-1)
+      val, increment: () => {
+        if(val >= 2){
+          return setVal(-1)
+        }else{
+          setVal(val + 1)
+        }
+        
+      }, decrement: () => setVal(val - 1)
     }}>
       <div className="App">
-      <Routes>
-      <Route path="/" element={ <Front/>} />
-      <Route path="/form" element={ <Form/>} />
-      <Route path="/create" element={<Home />} />
-    </Routes>
-    
-    </div>
+        <Routes>
+          <Route path='/auth' element={<MetaLogin/>}/>
+          <Route path="/" element={<Front />} />
+          <Route path="/form" element={<Form />} />
+          <Route path="/create" element={<Home />} />
+        </Routes>
+
+      </div>
     </stepNumber.Provider>
   );
 

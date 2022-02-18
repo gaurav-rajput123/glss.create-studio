@@ -42,7 +42,7 @@ const Topbar = () => {
                             textDecoration: "none",
                             color: "black",
                         }}>
-                        Lets Create
+                        LET'S CREATE
                         </NavLink>
                         </Typography>
                     </Typography>

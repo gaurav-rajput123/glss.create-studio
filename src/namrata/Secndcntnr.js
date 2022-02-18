@@ -4,7 +4,7 @@ import Features from './Features';
 function Secndcntnr() {
   return (
     <div className="Secndcntnr">
-      <Introduction/>
+      {/* <Introduction/> */}
       <Features/>
     </div>
   );

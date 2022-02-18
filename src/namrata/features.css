@@ -8,14 +8,14 @@
     position: relative;
 }
 
-@keyframes animate{
+/* @keyframes animate{
     from{
         bottom:0;
     }
     to{
         bottom:20px;
     }
-}
+} */
 
 .image-1 img{
     -webkit-transition: all 1s ease;
@@ -24,14 +24,14 @@
     transition: all 1s ease;
   }
 
-.image-1 img:hover{
+/* .image-1 img:hover{
     width:70%;
     height: 100%;
     margin-top: -22%;
     background-color:#375dbe;
     border-radius: 20px;
     
-}
+} */
 
 .image-2 img{
     -webkit-transition: all 1s ease;
@@ -40,34 +40,34 @@
     transition: all 1s ease;
   }
 
-.image-2 img:hover{
+/* .image-2 img:hover{
     width:70%;
     height: 100%;
     margin-top: -22%;
     background-color:#375dbe;
     border-radius: 20px;
-}
+} */
 
-.image-3 img{
+/* .image-3 img{
     -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
     -ms-transition: all 1s ease;
     transition: all 1s ease;
-  }
-
-.image-3 img:hover{
-    /* width:70%;
-    height: 100%; */
+  } */
+/* img:hover */
+/* .image-3 {
+    width:70%;
+    height: 100%;
     transform: scale(1, 1.5);
     margin-top: -22%;
     background-color:#375dbe;
     border-radius: 20px;
 
-}
-.img:hover{
+} */
+/* .img:hover{
     max-width: 128px !important;
     max-height: 128px !important;
-}
+} */
 
 
 .image-4 img{
@@ -76,14 +76,18 @@
     -ms-transition: all 1s ease;
     transition: all 1s ease;
   }
-
-.image-4 img:hover{
+  .image-4:hover, .image-1:hover, .image-2:hover, .image-3:hover{
+    background-color: lightcyan;
+    border-radius: 24px;
+    height: 65%;
+}
+/* .image-4 img:hover{
     width:70%;
     height: auto;
     margin-top: -22%;
     border-radius: 20px;
     background-color:#375dbe;
-}
+} */
 
 .responsive{
     height:auto;
