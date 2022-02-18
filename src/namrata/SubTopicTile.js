@@ -259,7 +259,7 @@ export default function SubTopicTile({ subTopicIndex, topicIndex, courseIndex, c
         </IconButton>
         {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
 
-        <TextNLabel isLabelShown={isTitle} setIsLabelShown={setLabelController} label={label} setLabel={handleLabel} />
+        <TextNLabel placeHolder={"set Subtopic Title"} isLabelShown={isTitle} setIsLabelShown={setLabelController} label={label} setLabel={handleLabel} />
 
         <div style={{ flexGrow: 1 }} />
 

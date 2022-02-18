@@ -33,7 +33,7 @@ function SubjectTile(prop) {
 
   const [isTitle, setIsTitle] = useState(false)
 
-  const [label, setLabel] = useState("Section")
+  const [label, setLabel] = useState("Module")
 
   const setLabelController = () => {
     setIsTitle(!isTitle)
@@ -120,7 +120,7 @@ function SubjectTile(prop) {
 
         {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
 
-        <TextNLabel isLabelShown={isTitle} label={label} courseIndex={courseIndex} setIsLabelShown={setLabelController} courseArray={courseArray} setLabel={handleLabel} />
+        <TextNLabel placeHolder={"set Module Name"} isLabelShown={isTitle} label={label} courseIndex={courseIndex} setIsLabelShown={setLabelController} courseArray={courseArray} setLabel={handleLabel} />
 
         {name}
 

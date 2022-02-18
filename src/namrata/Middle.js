@@ -48,7 +48,7 @@ export default function Middle() {
 
         <div style={{ display: "flex", justifyContent:'space-around' }}>
           <Butn Text="Select Course" disabled/>
-          <Butn Text="Add Section" clickHoja={addNewSection} />
+          <Butn Text="Add Modules" clickHoja={addNewSection} />
           <Butn Text="Collapse All" disabled/>
           <Butn Text="Live View" disabled/>
           <Butn Text=" Save" disabled/>

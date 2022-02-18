@@ -90,7 +90,7 @@ function TopicTile({ changeTopicName, topicIndex, topicArray, addSubTopics, upda
         </IconButton>
         {/* <TextField value={subTitle} onChange={(e)=>setSubTitle(e.target.value)}/> */}
 
-        <TextNLabel isLabelShown={isTitle} courseIndex={courseIndex} setIsLabelShown={setLabelController} setLabel={handleLabel} courseArray={courseArray} updateCourseArray={updateCourseArray} label={label} />
+        <TextNLabel placeHolder={"set Topic Title"} isLabelShown={isTitle} courseIndex={courseIndex} setIsLabelShown={setLabelController} setLabel={handleLabel} courseArray={courseArray} updateCourseArray={updateCourseArray} label={label} />
 
         <div style={{ flexGrow: 1 }} />
 
