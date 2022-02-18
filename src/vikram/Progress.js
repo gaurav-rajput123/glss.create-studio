@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Progress1 from './Image/Progress1.jpg';
-
+import { stepNumber } from '../Context';
 const steps = [
   {
     label: 'Select course',
@@ -31,11 +31,16 @@ const steps = [
 ];
 
 export default function Progress() {
-  const [activeStep, setActiveStep] = React.useState(0);
 
+  let counterTracker = React.useContext(stepNumber)
+
+  const [activeStep, setActiveStep] = React.useState(counterTracker.val);
+ 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
+    console.log(activeStep)
+    console.log("___________________")
+    counterTracker.increment()   
+  };  
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -44,10 +49,12 @@ export default function Progress() {
   const handleReset = () => {
     setActiveStep(0);
   };
-
+  React.useEffect(()=>{
+    console.log("render")
+  })
   return (
     <Box sx={{ maxWidth: "400px" , backgroundImage:'url(${"https://media.istockphoto.com/photos/growth-arrow-up-and-progress-success-business-skill-increase-graph-picture-id1325680818?b=1&k=20&m=1325680818&s=170667a&w=0&h=0QiulvGagV8DPWJcM-iHpzvaL_5WY_iNHhg9xGjbEVM="})',  marginLeft:"70px" , borderRadius: "16px"}}>
-      <Stepper activeStep={activeStep} orientation="vertical"  sx={{paddingLeft:"16px"}}>
+      <Stepper activeStep={counterTracker.val} orientation="vertical"  sx={{paddingLeft:"16px"}}>
         {steps.map((step, index) => (
           <Step key={step.label}>
             <StepLabel

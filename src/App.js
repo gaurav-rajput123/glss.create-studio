@@ -1,24 +1,32 @@
 // import './App.css';
 import { useState } from 'react';
+import { Routes, Route, useParams } from "react-router-dom";
+
 
 
 import Front from './Front';
+import Home from './Home';
+import Form from './vikram/Form';
+import { stepNumber } from './Context';
 
 // import AnimatedPa from './namrata/AnimationGrid';
 
 // import Home from './Home'
 function App() {
-  const [val, setVal] = useState("hello")
+  const [val, setVal] = useState(0)
   return (
-    <div className="App">
-      {/* <Home/> */}
-      {/* <Middle/> */}
-      <Front/>
+    <stepNumber.Provider value={{
+      val, increment: ()=>setVal(val+1), decrement: ()=>setVal(val-1)
+    }}>
+      <div className="App">
+      <Routes>
+      <Route path="/" element={ <Front/>} />
+      <Route path="/form" element={ <Form/>} />
+      <Route path="/create" element={<Home />} />
+    </Routes>
     
-
-     
-      
     </div>
+    </stepNumber.Provider>
   );
 
 

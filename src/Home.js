@@ -1,9 +1,12 @@
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import Middle from "./namrata/Middle";
 import Progress from './vikram/Progress';
 import CardAnim from "./namrata/CardAnim";
 import Header from "./namrata/Topbar";
+import { stepNumber } from "./Context";
+import { useContext } from "react";
 export default function Home() {
+    let context = useContext(stepNumber)
     return (
         <Grid container>
             <Grid item xs={12} sx={{paddingBottom:"30px"}}>
@@ -22,6 +25,7 @@ export default function Home() {
                 sx={{ backgroundColor: "whitesmoke" ,borderBottomLeftRadius: "12px",borderBottomRightRadius: "12px", marginBottom: "36px"}}
             >
                 <Middle />
+                
             </Grid>
             <Grid item xs={0.5} />
         </Grid>

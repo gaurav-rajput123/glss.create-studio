@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Butn from "./Butn";
-import { Paper, Box, Button, Card } from "@mui/material";
+import { Paper, Box, Button, Card, Collapse } from "@mui/material";
 import SubjectTile from "./SubjectTile";
 import TopicTile from "./TopicTile";
 import SubTopicTile from './SubTopicTile';
@@ -42,7 +42,7 @@ export default function Middle() {
   }
  
   return (
-    <Box className="box-list" style={{ padding: "6px 0px",margin:"0px 10px 0px 12px", width: "98%", zIndex: 2 }}>
+    <Box className="box-lista" style={{ padding: "6px 0px",margin:"0px 10px 0px 12px", width: "98%", zIndex: 2 }}>
       <Paper style={{ backgroundColor: "white", alignItems: "flex-start", height: "auto", borderRadius: "15px", paddingBottom:'1%' }}>
 
 
@@ -152,12 +152,15 @@ function MainTile({course, courseIndex, courseArray, updateCurrentCourse, change
     newCourseObject.topics = newTopicArray
     updateCurrentCourse(newCourseObject, courseIndex)
   }
+
+  const [expanded, setExpanded] = useState(true)
   
   return (
     <Box>
       <SubjectTile changeCourseName={changeCourseName} courseIndex={courseIndex} courseArray={courseArray} 
-        updateCourseArray={updateCourseArray}
+        updateCourseArray={updateCourseArray} expand={()=>setExpanded(!expanded)}
       />
+      <Collapse in={expanded}>
       <Box sx={{width: "98%"}}>
       {
         course.topics?.map((topic, topicIndex, topicArr)=>{
@@ -175,6 +178,7 @@ function MainTile({course, courseIndex, courseArray, updateCurrentCourse, change
         })
       }
       </Box>
+      </Collapse>
     </Box>
   )
 }
@@ -196,10 +200,12 @@ function TopicTileBox({topic, topicIndex, topicArray, changeTopicName, addNewSub
     }
     addNewSubTopic(newTopicArray)
   }
-  
+  console.log(TopicTile.prototype)
+  const [expand, setIsExpand] = useState(true)
   return (
     <Box>
-      <TopicTile changeTopicName={changeTopicName} topicIndex={topicIndex} topicArray={topicArray} addSubTopics={updateSubTopic} updateCourseArray={updateCourseArray} courseArray={courseArray} courseIndex={courseIndex}/>
+      <TopicTile changeTopicName={changeTopicName} topicIndex={topicIndex} topicArray={topicArray} addSubTopics={updateSubTopic} updateCourseArray={updateCourseArray} courseArray={courseArray} courseIndex={courseIndex} expand={()=>setIsExpand(!expand)}/>
+      <Collapse in={expand}>
       <Box sx={{width: "98%", marginLeft:'1%'}}>
       {
         topic.subTopics?.map((subTopic, subTopicIndex, subTopicArray)=>{
@@ -218,6 +224,7 @@ function TopicTileBox({topic, topicIndex, topicArray, changeTopicName, addNewSub
         })
       }
       </Box>
+      </Collapse>
     </Box>
   )
 }
