@@ -7,12 +7,17 @@ import TextDescription from './TextDescription'
 import EditIcon from '@mui/icons-material/Edit';
 import generateKey from "../../resources/generateKey";
 
-const Textinput = ({question, title ,}) => {
+const Textinput = ({question, title, updateAssesment, index}) => {
+  const [correctOption, setCorrectOption] = useState("")
+  const updateContent = () => {
+    let newTextInput = {
+      question: parse(question).props?.children ? parse(question).props.children : "null question",
+      correctAnswer: correctOption.toString(),
+      id: generateKey()
+    }
+    updateAssesment(newTextInput, index)
+  }
   
-
- const updateAssesment =() => {
-   
- }
   return (
     <Card sx={{ width: '100', height: '100' , padding:'12px', paddingTop: "6px"
     , fontSize:'18px',
