@@ -32,14 +32,14 @@ export default function CheckCard({ question, updateAssesment, index }) {
         <div>
           <Typography
             variant="h4"
-            sx={{ padding: "5px 5px 5px 5px" }}
+            sx={{ margin: "5px 5px 5px 25px" }}
             color="text.secondary"
           >
             Checkboxes
           </Typography>
 
 
-          <Typography sx={{ padding: "5px 5px 0px 5px" }} variant="h7">
+          <Typography sx={{ marginLeft:"30px" }} variant="h7">
             {
               parse(question)
             }
@@ -48,10 +48,10 @@ export default function CheckCard({ question, updateAssesment, index }) {
         </div>
         <div>
           <div>
-            <TextField sx={{ margin: "20px 5px 10px 5px", }} id="standard-basic" label="Add Option" variant="standard" value={newOption} onChange={(e) => {
+            <TextField sx={{ margin: "40px 5px 10px 25px", }} id="standard-basic" label="Add Option" variant="standard" value={newOption} onChange={(e) => {
               setNewOption(e.target.value)
             }} />
-            <Button sx={{ margin: "20px 50px 6px 5px", padding: "12px" }} variant="contained" onClick={() => {
+            <Button sx={{ margin: "50px 50px 6px 25px" , backgroundColor:"#7d8285"}} variant="contained" onClick={() => {
               let newOptionArr = [...options]
               let newOptionObject = {
                 name: newOption,
@@ -88,7 +88,7 @@ export default function CheckCard({ question, updateAssesment, index }) {
             </RadioGroup>
           </FormControl>
         </div>
-        <Button sx={{ margin: "5px 5px 10px 15px", }} variant="contained" onClick={updateContent}>
+        <Button sx={{ margin: "40px 5px 10px 25px", width:"100px" , backgroundColor:"#7d8285"}} variant="contained" onClick={updateContent}>
           SAVE
         </Button>
       </CardContent>

@@ -26,24 +26,18 @@ export default function MainCard({ question, updateAssesment, index }) {
         <Card sx={{ minWidth: 200, height: "auto" }}>
             <CardContent>
 
-                <Typography style={{ fontFamily: "inter", fontWeight: "bold" }}>
-                    1 point possible (ungraded)
+                <Typography sx={{margin: "5px 5px 0px 25px" }}  variant="h4" color="text.secondary">
+                    Checkbox Assessment
                 </Typography>
-                <Typography style={{ fontFamily: "inter", fontWeight: "bold", fontSize: "24px" }}>
+                <Typography sx={{margin: "5px 5px 0px 25px"}}  variant="h7" component="div">
                     {parse(question)}
                 </Typography>
 
-                <Typography style={{ fontFamily: "inter", fontWeight: "bold" }}>
-                    Type your question
-                </Typography>
-
-                <Typography style={{ fontSize: "15px", fontFamily: "inter", fontWeight: "bold" }}>
-                    <p>You can add an optional tip or note related to the prompt like this.</p>
-                </Typography>
-                <TextField sx={{ margin: "20px 5px 10px 5px", }} id="standard-basic" label="Add Option" variant="standard" value={newOption} onChange={(e) => {
+             
+                <TextField sx={{marginLeft:"30px", marginTop:"30px" }} id="standard-basic" label="Add Option" variant="standard" value={newOption} onChange={(e) => {
                     setNewOption(e.target.value)
                 }} />
-                <Button variant="contained" onClick={() => {
+                <Button sx={{ marginTop:"40px" , marginLeft:"20px", backgroundColor:"#7d8285"}}   variant="contained" onClick={() => {
                     let newOptionArr = [...options]
                     let newOptionObject = {
                         name: newOption,
@@ -82,7 +76,7 @@ export default function MainCard({ question, updateAssesment, index }) {
 
 
 
-                <Button variant="contained" size="medium" style={{ marginTop: "80px" }} onClick={() => {
+                <Button  sx={{margin: "5px 5px 10px 30px" , backgroundColor:"#7d8285" }} variant="contained" size="medium" style={{ marginTop: "80px" }} onClick={() => {
                     updateContent()
                 }}>Submit</Button>
             </CardContent>
